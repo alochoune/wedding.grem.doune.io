@@ -1,7 +1,0 @@
-cd chemin/vers/mariage-doune-grem
-git init
-git add .
-git commit -m "Site du mariage"
-git branch -M main
-git remote add origin https://github.com/doune/mariage-doune-grem.git
-git push -u origin main
