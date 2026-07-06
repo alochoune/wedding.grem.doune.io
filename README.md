@@ -1,7 +1,8 @@
-[README.md](https://github.com/user-attachments/files/29719761/README.md)
 # Doune & Grem, site de mariage
 
 Site web privé, protégé par code d'accès, créé pour informer les invités du mariage de Doune & Grem (samedi 28 mai 2028, Provence, France).
+
+🔗 Site en ligne : https://alochoune.github.io/wedding.grem.doune.io/
 
 ## Contenu du site
 
@@ -15,38 +16,26 @@ Site web privé, protégé par code d'accès, créé pour informer les invités 
 - Formulaire RSVP
 - Tirelire collective pour le voyage de noces (cagnotte en ligne + urne sur place)
 - FAQ
-- Galerie photo avec fondu enchaîné aléatoire, et bandes photo défilantes sur les côtés (desktop uniquement)
 
-## Structure du dépôt
+## Design
 
-```
-index.html            la page du site (à ouvrir dans un navigateur)
-photos/
-  photobooth-1.png     photo photomaton affichée en haut de la galerie
-  gold-texture.jpg     texture dorée utilisée pour l'effet feuille d'or
-  scroll-left.jpg      bande photo défilante, côté gauche
-  scroll-right.jpg     bande photo défilante, côté droit
-  gallery/             photos de la galerie principale (gallery-1.jpg, gallery-2.jpg, ...)
-```
+- Palette : ivoire parchemin, bleu marine, lavande, olive, doré
+- Typographie : Cormorant Garamond (titres), EB Garamond (texte), Jost (labels)
+- Signature visuelle : tulipe dessinée au trait, présente sur l'écran d'accès et en en-tête
 
-## Accès
+## À personnaliser avant publication
 
-Le site est protégé par un code d'invitation saisi sur l'écran d'accueil. Le code n'est pas sensible à la casse (`MOUSSE`, `mousse`, `Mousse`... fonctionnent tous).
+Le fichier `index.html` contient des espaces réservés entre crochets `[...]` à remplacer :
+- Nom et adresse exacts du lieu
+- Détails d'accès et de parking
+- Texte de "Notre histoire"
+- Lieu précis de la cérémonie
+- Date limite de réponse au RSVP
+- Lien réel de la cagnotte
+- Code d'accès (`ACCESS_CODE` dans le `<script>`, actuellement `MOUSSE`)
 
-Cette protection est uniquement côté navigateur : elle filtre les visites accidentelles mais ne constitue pas une sécurité forte (le code est visible dans le code source de la page).
+Le formulaire RSVP est un placeholder : à connecter à un service comme Formspree ou un Google Form pour recevoir réellement les réponses.
 
-## Personnalisation
+## Déploiement
 
-Toutes les informations restant à compléter sont signalées dans le code par `À COMPLÉTER`. La configuration technique (code d'accès, adresse e-mail de RSVP, date du mariage) se trouve en haut de la balise `<script>` dans `index.html` :
-
-```js
-const ACCESS_CODE = "MOUSSE";
-const WEDDING_DATE = "2028-05-28T15:00:00";
-const MAILTO_ADDRESS = "votre-adresse@example.com";
-```
-
-Pour ajouter des photos à la galerie, déposez-les dans `photos/gallery/` puis ajoutez leur chemin dans la liste `GALLERY_PHOTOS` du script.
-
-## Hébergement
-
-Le site est déployé via GitHub Pages à partir de la branche `main`.
+Le site est déployé automatiquement via **GitHub Pages** à chaque `push` sur la branche `main`.
