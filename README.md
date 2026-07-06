@@ -39,3 +39,5 @@ Le formulaire RSVP est un placeholder : à connecter à un service comme Formspr
 ## Déploiement
 
 Le site est déployé automatiquement via **GitHub Pages** à chaque `push` sur la branche `main`.
+
+file:///Users/chaloaud/Downloads/index%20(1).html
