@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doune & Grem — 28 mai 2028</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#F6F1E6;
+    --navy:#1B2A40;
+    --lavender:#8C87A6;
+    --olive:#6E7857;
+    --gold:#B08D57;
+    --charcoal:#2B2924;
+    --line:rgba(27,42,64,0.14);
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ivory);
+    color:var(--charcoal);
+    font-family:'EB Garamond', serif;
+    font-size:18px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    margin:0 0 0.4em;
+    color:var(--navy);
+  }
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--olive);
+    display:block;
+    margin-bottom:0.9em;
+  }
+  a{color:inherit;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- ACCESS GATE ---------- */
+  #gate{
+    position:fixed;inset:0;z-index:50;
+    background:var(--navy);
+    color:var(--ivory);
+    display:flex;align-items:center;justify-content:center;
+    padding:24px;
+    transition:opacity 0.9s ease, visibility 0.9s ease;
+  }
+  #gate.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+  .gate-card{max-width:420px;width:100%;text-align:center;}
+  .tulip{width:64px;height:auto;margin:0 auto 28px;display:block;opacity:0.92;}
+  .gate-card h1{
+    color:var(--ivory);
+    font-size:2.1rem;
+    font-style:italic;
+    letter-spacing:0.02em;
+  }
+  .gate-card .eyebrow{color:var(--lavender);}
+  .gate-sub{
+    font-size:0.95rem;
+    color:rgba(246,241,230,0.72);
+    margin-bottom:2em;
+  }
+  .code-form{display:flex;flex-direction:column;gap:14px;align-items:center;}
+  #code-input{
+    width:100%;
+    max-width:280px;
+    background:transparent;
+    border:none;
+    border-bottom:1px solid rgba(246,241,230,0.4);
+    color:var(--ivory);
+    font-family:'Jost', sans-serif;
+    font-size:1rem;
+    letter-spacing:0.35em;
+    text-align:center;
+    text-transform:uppercase;
+    padding:10px 0;
+    outline:none;
+  }
+  #code-input::placeholder{color:rgba(246,241,230,0.35);letter-spacing:0.2em;}
+  #code-input:focus{border-bottom-color:var(--gold);}
+  .gate-btn{
+    font-family:'Jost', sans-serif;
+    font-size:0.78rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    background:none;
+    border:1px solid var(--gold);
+    color:var(--gold);
+    padding:12px 30px;
+    cursor:pointer;
+    border-radius:var(--radius);
+    transition:background 0.25s ease, color 0.25s ease;
+  }
+  .gate-btn:hover{background:var(--gold);color:var(--navy);}
+  .gate-error{
+    font-family:'Jost', sans-serif;
+    font-size:0.78rem;
+    color:#D98C6B;
+    height:1.2em;
+    letter-spacing:0.05em;
+  }
+
+  /* ---------- SITE ---------- */
+  #site{display:none;}
+  #site.visible{display:block;}
+
+  header.hero{
+    padding:110px 0 90px;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+  }
+  header.hero .tulip{width:46px;margin-bottom:22px;opacity:0.8;}
+  header.hero h1{
+    font-size:3.2rem;
+    font-style:italic;
+  }
+  header.hero .amp{color:var(--gold);font-style:normal;padding:0 10px;}
+  header.hero .date{
+    font-family:'Jost', sans-serif;
+    font-size:0.85rem;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--olive);
+    margin-top:18px;
+  }
+
+  section{padding:86px 0;border-bottom:1px solid var(--line);}
+  section.dark{
+    background:var(--navy);
+    color:var(--ivory);
+    border-bottom:none;
+  }
+  section.dark h2{color:var(--ivory);}
+  section.dark .eyebrow{color:var(--lavender);}
+  section.dark .line{background:rgba(246,241,230,0.18);}
+
+  .center{text-align:center;}
+  .line{width:40px;height:1px;background:var(--line);margin:26px auto 0;}
+
+  /* countdown */
+  #countdown{
+    display:flex;justify-content:center;gap:34px;flex-wrap:wrap;
+    margin-top:18px;
+  }
+  #countdown .unit{text-align:center;}
+  #countdown .num{
+    font-family:'Cormorant Garamond', serif;
+    font-size:3rem;
+    color:var(--navy);
+    line-height:1;
+  }
+  #countdown .lab{
+    font-family:'Jost', sans-serif;
+    font-size:0.68rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--olive);
+    display:block;
+    margin-top:6px;
+  }
+
+  /* programme */
+  .timeline{margin-top:40px;}
+  .tl-item{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    gap:24px;
+    padding:20px 0;
+    border-top:1px solid rgba(246,241,230,0.14);
+  }
+  .tl-item:first-child{border-top:none;}
+  .tl-time{
+    font-family:'Jost', sans-serif;
+    font-size:0.85rem;
+    letter-spacing:0.05em;
+    color:var(--gold);
+    padding-top:2px;
+  }
+  .tl-item h3{color:var(--ivory);font-size:1.3rem;margin-bottom:4px;}
+  .tl-item p{margin:0;color:rgba(246,241,230,0.78);font-size:0.98rem;}
+
+  /* venue / info grid */
+  .info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:36px;
+    margin-top:36px;
+  }
+  .info-block h3{font-size:1.15rem;margin-bottom:8px;}
+  .info-block p{margin:0;color:var(--charcoal);}
+  .info-block .eyebrow{margin-bottom:0.5em;}
+
+  /* dress code */
+  .swatches{display:flex;gap:14px;justify-content:center;margin:30px 0 10px;}
+  .swatch{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);}
+
+  /* RSVP */
+  form.rsvp{max-width:480px;margin:40px auto 0;display:flex;flex-direction:column;gap:20px;}
+  .field{text-align:left;}
+  .field label{
+    display:block;
+    font-family:'Jost', sans-serif;
+    font-size:0.7rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--olive);
+    margin-bottom:6px;
+  }
+  .field input,.field select,.field textarea{
+    width:100%;
+    font-family:'EB Garamond', serif;
+    font-size:1rem;
+    padding:10px 2px;
+    border:none;
+    border-bottom:1px solid var(--line);
+    background:transparent;
+    color:var(--charcoal);
+    outline:none;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{border-bottom-color:var(--gold);}
+  .submit-btn{
+    align-self:center;
+    margin-top:10px;
+    font-family:'Jost', sans-serif;
+    font-size:0.78rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    background:var(--navy);
+    color:var(--ivory);
+    border:none;
+    padding:14px 34px;
+    cursor:pointer;
+    border-radius:var(--radius);
+    transition:background 0.25s ease;
+  }
+  .submit-btn:hover{background:var(--olive);}
+  .rsvp-note{
+    font-size:0.85rem;
+    color:var(--olive);
+    text-align:center;
+    margin-top:14px;
+  }
+
+  /* cagnotte */
+  .cagnotte-box{
+    max-width:420px;margin:34px auto 0;
+    border:1px solid var(--line);
+    padding:30px;
+    text-align:center;
+  }
+  .cagnotte-box a{
+    display:inline-block;margin-top:16px;
+    font-family:'Jost', sans-serif;
+    font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;
+    color:var(--gold);border-bottom:1px solid var(--gold);padding-bottom:2px;
+  }
+
+  /* FAQ */
+  .faq-item{padding:22px 0;border-top:1px solid var(--line);}
+  .faq-item:first-child{border-top:none;}
+  .faq-item h3{font-size:1.1rem;}
+  .faq-item p{margin:6px 0 0;}
+
+  footer{
+    padding:56px 0;text-align:center;
+    font-family:'Jost', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--olive);
+  }
+
+  @media(max-width:640px){
+    header.hero h1{font-size:2.3rem;}
+    .info-grid{grid-template-columns:1fr;}
+    #countdown{gap:20px;}
+    #countdown .num{font-size:2.2rem;}
+    .tl-item{grid-template-columns:80px 1fr;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    #gate{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ============ ACCESS GATE ============ -->
+  <div id="gate">
+    <div class="gate-card">
+      <svg class="tulip" viewBox="0 0 60 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M30 40 C15 40 12 20 18 8 C22 15 26 18 30 18 C34 18 38 15 42 8 C48 20 45 40 30 40Z" stroke="#F6F1E6" stroke-width="1.1"/>
+        <path d="M30 18 V 4" stroke="#F6F1E6" stroke-width="1.1"/>
+        <path d="M30 40 L30 78" stroke="#F6F1E6" stroke-width="1.1"/>
+        <path d="M30 55 C22 55 18 62 16 70" stroke="#F6F1E6" stroke-width="1.1"/>
+        <path d="M30 62 C38 62 42 68 44 74" stroke="#F6F1E6" stroke-width="1.1"/>
+      </svg>
+      <span class="eyebrow">Accès invités</span>
+      <h1>Doune &amp; Grem</h1>
+      <p class="gate-sub">Entrez le code d'invitation pour découvrir tous les détails du mariage.</p>
+      <div class="code-form">
+        <input id="code-input" type="text" placeholder="Code d'invitation" autocomplete="off">
+        <button class="gate-btn" onclick="checkCode()">Entrer</button>
+        <div class="gate-error" id="gate-error"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SITE ============ -->
+  <div id="site">
+
+    <header class="hero">
+      <div class="wrap">
+        <svg class="tulip" viewBox="0 0 60 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M30 40 C15 40 12 20 18 8 C22 15 26 18 30 18 C34 18 38 15 42 8 C48 20 45 40 30 40Z" stroke="#1B2A40" stroke-width="1.1"/>
+          <path d="M30 18 V 4" stroke="#1B2A40" stroke-width="1.1"/>
+          <path d="M30 40 L30 78" stroke="#1B2A40" stroke-width="1.1"/>
+          <path d="M30 55 C22 55 18 62 16 70" stroke="#1B2A40" stroke-width="1.1"/>
+          <path d="M30 62 C38 62 42 68 44 74" stroke="#1B2A40" stroke-width="1.1"/>
+        </svg>
+        <h1>Doune <span class="amp">&amp;</span> Grem</h1>
+        <div class="date">Samedi 28 Mai 2028 — Provence, France</div>
+      </div>
+    </header>
+
+    <!-- COUNTDOWN -->
+    <section class="center">
+      <div class="wrap">
+        <span class="eyebrow">Compte à rebours</span>
+        <h2>Il reste encore un peu de patience</h2>
+        <div id="countdown">
+          <div class="unit"><span class="num" id="cd-days">--</span><span class="lab">Jours</span></div>
+          <div class="unit"><span class="num" id="cd-hours">--</span><span class="lab">Heures</span></div>
+          <div class="unit"><span class="num" id="cd-min">--</span><span class="lab">Minutes</span></div>
+          <div class="unit"><span class="num" id="cd-sec">--</span><span class="lab">Secondes</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTRE HISTOIRE -->
+    <section>
+      <div class="wrap center">
+        <span class="eyebrow">Notre histoire</span>
+        <h2>Comment tout a commencé</h2>
+        <div class="line"></div>
+        <p style="max-width:560px;margin:26px auto 0;text-align:left;">
+          [À compléter — racontez ici votre rencontre, un souvenir marquant, et le moment de la demande.
+          Ce texte est un espace réservé : remplacez-le par votre histoire, telle que vous voulez la partager
+          avec vos invités.]
+        </p>
+      </div>
+    </section>
+
+    <!-- PROGRAMME -->
+    <section class="dark">
+      <div class="wrap">
+        <div class="center">
+          <span class="eyebrow">Le jour J</span>
+          <h2 style="color:var(--ivory);">Programme du weekend</h2>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-time">Ven. 26 mai</div>
+            <div><h3>Arrivée &amp; dîner d'accueil</h3><p>Installation au gîte, apéritif et dîner convivial pour ouvrir le weekend.</p></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">Sam. 28 mai — 15h</div>
+            <div><h3>Cérémonie</h3><p>[Lieu de la cérémonie], suivie du vin d'honneur dans les jardins.</p></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">Sam. 28 mai — 20h</div>
+            <div><h3>Dîner &amp; soirée</h3><p>Dîner assis puis ouverture de la piste de danse jusqu'au bout de la nuit.</p></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">Dim. 29 mai</div>
+            <div><h3>Brunch de clôture</h3><p>Un dernier moment ensemble avant les départs, dans la matinée.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LE LIEU -->
+    <section>
+      <div class="wrap">
+        <div class="center">
+          <span class="eyebrow">Le lieu</span>
+          <h2>Une bastide en Provence</h2>
+          <div class="line"></div>
+        </div>
+        <div class="info-grid">
+          <div class="info-block">
+            <span class="eyebrow">Adresse</span>
+            <h3>[Nom de la bastide]</h3>
+            <p>[Adresse complète, à environ 25 min de l'aéroport de Marseille]</p>
+          </div>
+          <div class="info-block">
+            <span class="eyebrow">Accès</span>
+            <h3>Comment venir</h3>
+            <p>[Indications routières, transferts organisés ou covoiturage entre invités]</p>
+          </div>
+          <div class="info-block">
+            <span class="eyebrow">Parking</span>
+            <h3>Sur place</h3>
+            <p>[Détails de parking / stationnement disponible sur le domaine]</p>
+          </div>
+          <div class="info-block">
+            <span class="eyebrow">Contact</span>
+            <h3>Une question ?</h3>
+            <p>N'hésitez pas à contacter Doune ou Grem directement.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HEBERGEMENT -->
+    <section>
+      <div class="wrap center">
+        <span class="eyebrow">Hébergement</span>
+        <h2>Où dormir sur place</h2>
+        <div class="line"></div>
+        <p style="max-width:560px;margin:26px auto 0;text-align:left;">
+          Le domaine dispose de plusieurs gîtes pour accueillir l'ensemble des invités sur place le temps du weekend.
+          Une carte des gîtes avec la répartition des chambres et la liste des invités qui y logent vous sera envoyée
+          séparément à l'approche de la date.
+        </p>
+      </div>
+    </section>
+
+    <!-- CODE VESTIMENTAIRE -->
+    <section class="center">
+      <div class="wrap">
+        <span class="eyebrow">Code vestimentaire</span>
+        <h2>Old money vibes</h2>
+        <div class="line"></div>
+        <p style="max-width:520px;margin:26px auto 0;">
+          Pensez élégance discrète et intemporelle : matières nobles, coupes classiques, tons doux et naturels.
+          On évite le total look noir et le blanc (réservé à la mariée).
+        </p>
+        <div class="swatches">
+          <div class="swatch" style="background:#1B2A40;"></div>
+          <div class="swatch" style="background:#F6F1E6;border-color:#c9c2ae;"></div>
+          <div class="swatch" style="background:#8C87A6;"></div>
+          <div class="swatch" style="background:#6E7857;"></div>
+          <div class="swatch" style="background:#B08D57;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section>
+      <div class="wrap center">
+        <span class="eyebrow">RSVP</span>
+        <h2>Confirmez votre présence</h2>
+        <div class="line"></div>
+        <form class="rsvp" onsubmit="return submitRsvp(event)">
+          <div class="field">
+            <label for="rsvp-name">Nom &amp; prénom</label>
+            <input id="rsvp-name" type="text" required>
+          </div>
+          <div class="field">
+            <label for="rsvp-presence">Serez-vous des nôtres ?</label>
+            <select id="rsvp-presence" required>
+              <option value="">Choisissez une réponse</option>
+              <option value="oui">Oui, avec plaisir</option>
+              <option value="non">Non, je ne pourrai pas venir</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="rsvp-guests">Nombre de personnes</label>
+            <input id="rsvp-guests" type="number" min="1" max="4">
+          </div>
+          <div class="field">
+            <label for="rsvp-diet">Allergies / régime alimentaire</label>
+            <textarea id="rsvp-diet" rows="2"></textarea>
+          </div>
+          <button class="submit-btn" type="submit">Envoyer ma réponse</button>
+        </form>
+        <p class="rsvp-note">Merci de répondre avant le [date limite].</p>
+      </div>
+    </section>
+
+    <!-- CAGNOTTE -->
+    <section class="center">
+      <div class="wrap">
+        <span class="eyebrow">Cagnotte</span>
+        <h2>Voyage de noces</h2>
+        <div class="line"></div>
+        <div class="cagnotte-box">
+          <p>Votre présence est le plus beau des cadeaux. Si vous souhaitez tout de même
+          nous gâter, une cagnotte est ouverte pour notre voyage de noces — et une urne
+          sera aussi disponible sur place le jour J.</p>
+          <a href="#">Contribuer à la cagnotte →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+      <div class="wrap">
+        <div class="center">
+          <span class="eyebrow">Questions fréquentes</span>
+          <h2>FAQ</h2>
+          <div class="line"></div>
+        </div>
+        <div style="margin-top:30px;">
+          <div class="faq-item">
+            <h3>Puis-je venir accompagné(e) ?</h3>
+            <p>Se référer à votre carton d'invitation : le nombre de places qui vous est réservé y est précisé.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Les enfants sont-ils les bienvenus ?</h3>
+            <p>[À préciser selon votre choix : oui / non / à partir de tel âge]</p>
+          </div>
+          <div class="faq-item">
+            <h3>Que faire si j'ai une allergie alimentaire ?</h3>
+            <p>Indiquez-le simplement dans le formulaire RSVP ci-dessus, nous transmettrons au traiteur.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Doune &amp; Grem — 28 mai 2028
+    </footer>
+
+  </div>
+
+<script>
+  // ---- Access gate ----
+  const ACCESS_CODE = "MOUSSE"; // à modifier si besoin
+  const gate = document.getElementById('gate');
+  const site = document.getElementById('site');
+
+  function unlockSite(){
+    gate.classList.add('hidden');
+    site.classList.add('visible');
+    startCountdown();
+  }
+
+  if(localStorage.getItem('wedding_access') === 'granted'){
+    unlockSite();
+  }
+
+  function checkCode(){
+    const val = document.getElementById('code-input').value.trim().toUpperCase();
+    const err = document.getElementById('gate-error');
+    if(val === ACCESS_CODE){
+      localStorage.setItem('wedding_access', 'granted');
+      unlockSite();
+    } else {
+      err.textContent = "Code incorrect, réessayez.";
+    }
+  }
+
+  document.getElementById('code-input').addEventListener('keydown', function(e){
+    if(e.key === 'Enter') checkCode();
+  });
+
+  // ---- Countdown ----
+  function startCountdown(){
+    const target = new Date('2028-05-28T15:00:00');
+    function tick(){
+      const now = new Date();
+      let diff = target - now;
+      if(diff < 0) diff = 0;
+      const days = Math.floor(diff / (1000*60*60*24));
+      const hours = Math.floor((diff / (1000*60*60)) % 24);
+      const mins = Math.floor((diff / (1000*60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+      document.getElementById('cd-days').textContent = days;
+      document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+      document.getElementById('cd-min').textContent = String(mins).padStart(2,'0');
+      document.getElementById('cd-sec').textContent = String(secs).padStart(2,'0');
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  // ---- RSVP (placeholder submit) ----
+  function submitRsvp(e){
+    e.preventDefault();
+    alert("Merci ! Votre réponse a bien été enregistrée. (Formulaire à connecter à un service d'envoi — Formspree, Google Form, etc.)");
+    e.target.reset();
+    return false;
+  }
+</script>
+</body>
+</html>
