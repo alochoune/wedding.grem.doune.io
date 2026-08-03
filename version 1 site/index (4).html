@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aude &amp; Charles, 6 mai 2028</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#faf6ee;
+    --white:#ffffff;
+    --marine:#0d2340;
+    --marine-deep:#081627;
+    --gold:#b98f4a;
+    --gold-light:#e6c98a;
+    --ink:#26241f;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'Cormorant Garamond', serif;
+    font-size:19px;
+    line-height:1.6;
+  }
+  h1,h2,h3{font-family:'Playfair Display', serif; font-weight:600; margin:0 0 .4em;}
+  .eyebrow{
+    font-family:'Cinzel', serif;
+    font-size:.72rem;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+  a{color:inherit;}
+  .todo{
+    background:#fff3d6;
+    border:1px dashed var(--gold);
+    padding:.15em .5em;
+    border-radius:4px;
+    font-size:.85em;
+    font-family:'Cinzel', serif;
+    letter-spacing:.03em;
+  }
+  section{padding:5rem 1.5rem; max-width:820px; margin:0 auto;}
+  .center{text-align:center;}
+
+  /* ---------- Access gate ---------- */
+  #gate{
+    position:fixed; inset:0; z-index:50;
+    background:var(--marine);
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column; text-align:center; padding:2rem;
+    transition:opacity .8s ease, visibility .8s ease;
+  }
+  #gate.hidden{opacity:0; visibility:hidden; pointer-events:none;}
+  #gate svg{width:110px; height:110px; margin-bottom:1.5rem;}
+  #gate h1{color:var(--white); font-family:'Great Vibes', cursive; font-size:3rem; font-weight:400; margin-bottom:.2em;}
+  #gate p{color:var(--gold-light); margin-bottom:1.6rem;}
+  #code-input{
+    background:transparent; border:none; border-bottom:1px solid var(--gold);
+    color:var(--white); font-family:'Cinzel', serif; letter-spacing:.3em;
+    text-transform:uppercase; text-align:center; font-size:1rem;
+    padding:.6em .4em; width:220px; outline:none;
+  }
+  #code-input::placeholder{color:rgba(255,255,255,.35); letter-spacing:.2em;}
+  #gate button{
+    margin-top:1.4rem; background:none; border:1px solid var(--gold);
+    color:var(--gold-light); font-family:'Cinzel', serif; font-size:.75rem;
+    letter-spacing:.2em; text-transform:uppercase; padding:.8em 2em;
+    cursor:pointer; transition:background .3s;
+  }
+  #gate button:hover{background:rgba(185,143,74,.15);}
+  #gate-error{color:#e08a8a; font-size:.85rem; margin-top:.8rem; min-height:1.2em; font-family:'Cinzel', serif; letter-spacing:.05em;}
+
+  /* ---------- Hero ---------- */
+  #hero{
+    min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:2rem; position:relative;
+    background:linear-gradient(180deg, var(--ivory), #f2ead9);
+  }
+  #hero .arch{width:220px; height:auto; margin-bottom:1.2rem; opacity:.85;}
+  #hero h1{
+    font-family:'Playfair Display', serif;
+    font-size:clamp(3rem, 9vw, 5.2rem);
+    font-weight:600;
+    background:linear-gradient(120deg, #7a5a24, var(--gold-light) 35%, var(--gold) 55%, #7a5a24 80%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    margin:0;
+  }
+  #hero .amp{font-family:'Great Vibes', cursive; font-size:.55em; display:inline-block; margin:0 .15em; color:var(--gold);}
+  #hero .date{margin-top:1rem; font-family:'Cinzel', serif; letter-spacing:.25em; font-size:.95rem; color:var(--marine);}
+  #hero .place{margin-top:.3rem; font-size:1.05rem; color:#5a5648;}
+
+  /* ---------- Countdown ---------- */
+  #countdown{display:flex; gap:2.2rem; justify-content:center; margin-top:2.6rem; flex-wrap:wrap;}
+  #countdown div{text-align:center;}
+  #countdown .num{font-family:'Playfair Display', serif; font-size:2.4rem; color:var(--marine); line-height:1;}
+  #countdown .lab{font-family:'Cinzel', serif; font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold);}
+
+  /* ---------- Programme (navy) ---------- */
+  #programme{background:var(--marine); color:var(--white); max-width:none;}
+  #programme .inner{max-width:820px; margin:0 auto;}
+  #programme .eyebrow{color:var(--gold-light);}
+  #programme h2{color:var(--white);}
+  .prog-item{
+    display:flex; gap:1.4rem; padding:1.1rem 0; border-bottom:1px solid rgba(255,255,255,.14);
+  }
+  .prog-item:last-child{border-bottom:none;}
+  .prog-time{font-family:'Cinzel', serif; font-size:.85rem; letter-spacing:.08em; color:var(--gold-light); min-width:74px;}
+  .prog-what b{font-weight:600;}
+  .prog-what span{display:block; opacity:.75; font-size:.92em; margin-top:.15em;}
+
+  /* ---------- Venue ---------- */
+  .card{
+    background:var(--white); border:1px solid #e8dfc9; border-radius:6px;
+    padding:1.4rem 1.6rem; margin-top:1rem;
+  }
+
+  /* ---------- Accommodation ---------- */
+  .gite-grid{display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-top:1.4rem;}
+  @media (max-width:640px){.gite-grid{grid-template-columns:1fr;}}
+  .gite h3{font-size:1.15rem; margin-bottom:.2em;}
+  .gite ul{margin:.6em 0 0; padding-left:1.1em;}
+
+  /* ---------- RSVP ---------- */
+  form#rsvp-form{display:flex; flex-direction:column; gap:1rem; margin-top:1.4rem;}
+  form#rsvp-form label{font-family:'Cinzel', serif; font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; color:var(--marine); margin-bottom:.3em; display:block;}
+  form#rsvp-form input, form#rsvp-form select, form#rsvp-form textarea{
+    width:100%; font-family:'Cormorant Garamond', serif; font-size:1.05rem;
+    padding:.6em .3em; border:none; border-bottom:1px solid #c9bd9e; background:transparent; outline:none;
+  }
+  form#rsvp-form button{
+    align-self:flex-start; background:var(--marine); color:var(--white); border:none;
+    font-family:'Cinzel', serif; font-size:.78rem; letter-spacing:.16em; text-transform:uppercase;
+    padding:.9em 2.2em; cursor:pointer; margin-top:.6rem; transition:background .3s;
+  }
+  form#rsvp-form button:hover{background:var(--marine-deep);}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border-bottom:1px solid #e8dfc9; padding:1rem 0;}
+  .faq-item h3{font-size:1.1rem; margin-bottom:.3em;}
+
+  /* ---------- Gallery ---------- */
+  #gallery-wrap{position:relative; max-width:none; padding:5rem 0;}
+  #gallery-strip-left, #gallery-strip-right{
+    position:fixed; top:0; bottom:0; width:140px; overflow:hidden; z-index:1; display:none;
+  }
+  #gallery-strip-left{left:0;}
+  #gallery-strip-right{right:0;}
+  .strip-track{display:flex; flex-direction:column; animation:scrollUp 40s linear infinite;}
+  .strip-track img{width:100%; height:auto; opacity:.5;}
+  @keyframes scrollUp{from{transform:translateY(0);} to{transform:translateY(-50%);}}
+  @media (min-width:1200px){
+    #gallery-strip-left, #gallery-strip-right{display:block;}
+  }
+  #gallery-fade{
+    position:relative; width:100%; max-width:640px; height:70vh; margin:0 auto;
+    background:var(--marine-deep); border-radius:4px; overflow:hidden;
+  }
+  #gallery-fade img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    opacity:0; transition:opacity 1.4s ease;
+  }
+  #gallery-fade img.active{opacity:1;}
+
+  footer{text-align:center; padding:3rem 1.5rem 4rem; font-family:'Cinzel', serif; font-size:.7rem; letter-spacing:.15em; color:var(--gold); text-transform:uppercase;}
+</style>
+</head>
+<body>
+
+<!-- ================= ACCESS GATE ================= -->
+<div id="gate">
+  <svg viewBox="0 0 100 100" fill="none" stroke="#e6c98a" stroke-width="1.6">
+    <path d="M50 88 V45"/>
+    <path d="M50 45 C30 45 28 20 40 12 C46 8 54 8 60 12 C72 20 70 45 50 45 Z"/>
+    <path d="M50 30 C50 18 58 10 68 12"/>
+    <path d="M50 30 C50 18 42 10 32 12"/>
+  </svg>
+  <h1>Aude &amp; Charles</h1>
+  <p class="eyebrow">Accès invités</p>
+  <input id="code-input" type="text" placeholder="Code d'invitation" autocomplete="off">
+  <button onclick="checkCode()">Entrer</button>
+  <div id="gate-error"></div>
+</div>
+
+<!-- ================= HERO ================= -->
+<section id="hero">
+  <svg class="arch" viewBox="0 0 200 120" fill="none" stroke="#b98f4a" stroke-width="1.2">
+    <path d="M20 120 V50 C20 15 60 5 100 5 C140 5 180 15 180 50 V120"/>
+    <path d="M35 110 C45 90 40 70 55 65" stroke-width=".9"/>
+    <path d="M165 110 C155 90 160 70 145 65" stroke-width=".9"/>
+  </svg>
+  <h1>Aude <span class="amp">&amp;</span> Charles</h1>
+  <div class="date">Samedi 6 mai 2028</div>
+  <div class="place">Domaine du Clos d'Hullias, Saint-Christol-de-Rodières, Gard</div>
+  <div id="countdown">
+    <div><div class="num" id="cd-days">–</div><div class="lab">Jours</div></div>
+    <div><div class="num" id="cd-hours">–</div><div class="lab">Heures</div></div>
+    <div><div class="num" id="cd-min">–</div><div class="lab">Min</div></div>
+    <div><div class="num" id="cd-sec">–</div><div class="lab">Sec</div></div>
+  </div>
+</section>
+
+<!-- ================= NOTRE HISTOIRE ================= -->
+<section id="histoire">
+  <div class="eyebrow center">Le week-end</div>
+  <h2 class="center">Un mariage au cœur du Gard</h2>
+  <p>Nous avons hâte de vous retrouver au Domaine du Clos d'Hullias pour un week-end de fête au cœur d'un hameau provençal du XVIIe siècle, entre vignobles, cèdres et vue panoramique sur le Mont Ventoux.</p>
+  <p>Entre moments de partage, repas en extérieur et soirée dansante, nous voulons que ce week-end reste à la fois élégant, chaleureux et décontracté.</p>
+</section>
+
+<!-- ================= PROGRAMME ================= -->
+<section id="programme">
+  <div class="inner">
+    <div class="eyebrow center">Le week-end</div>
+    <h2 class="center">Programme</h2>
+    <div class="prog-item">
+      <div class="prog-time">Vendredi 5 mai</div>
+      <div class="prog-what"><b>Arrivée des invités à partir de 16h</b><span>Installation, temps libre et découverte du domaine.</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-time">Samedi 6 mai</div>
+      <div class="prog-what"><b>Cérémonie laïque en fin d'après-midi</b><span>Heure précise à confirmer.</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-time">Samedi 6 mai</div>
+      <div class="prog-what"><b>Cocktail d'arrivée</b><span>Moment de détente avant le dîner.</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-time">Samedi 6 mai</div>
+      <div class="prog-what"><b>Dîner</b><span>Grillades et plancha en extérieur.</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-time">Samedi 6 mai</div>
+      <div class="prog-what"><b>Soirée dansante</b><span>DJ, avec possibilité d'un groupe de musique live en première partie de soirée.</span></div>
+    </div>
+    <div class="prog-item">
+      <div class="prog-time">Dimanche 7 mai</div>
+      <div class="prog-what"><b>Brunch en matinée</b><span>Départ des invités jusqu'à 16h, heure limite de check-out.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LE LIEU ================= -->
+<section id="lieu">
+  <div class="eyebrow center">Où</div>
+  <h2 class="center">Le lieu</h2>
+  <div class="card">
+    <p><b>Adresse :</b> Domaine du Clos d'Hullias, 314 chemin d'Hullias, 30760 Saint Christol de Rodières (Gard)</p>
+    <p><b>Le lieu :</b> Hameau provençal du XVIIe siècle, avec vue panoramique sur les vignobles et le Mont Ventoux, 2 piscines et un parc de cèdres.</p>
+    <p><b>Accès :</b> 25 min de l'autoroute, 1h de la gare TGV d'Avignon, 2h de l'aéroport de Marseille, 2h10 de Lyon, 1h30 de Montpellier / Aix-en-Provence. Pour les invités venant d'Amsterdam, le trajet le plus pratique passe par l'aéroport de Lyon-Saint Exupéry, puis 1h40 à 2h de route jusqu'au domaine.</p>
+    <p><b>Parking :</b> Parking sur place pour les invités venant en voiture.</p>
+    <p><b>Transport :</b> Des taxis sont disponibles de jour comme de nuit entre les hébergements extérieurs et le domaine.</p>
+    <p><b>Maps :</b> <a href="https://maps.app.goo.gl/h7Cuv1ZLrgEkhD6XA" target="_blank" rel="noopener noreferrer">Voir l'itinéraire</a> · <a href="https://www.hullias.com/" target="_blank" rel="noopener noreferrer">Site du domaine</a></p>
+  </div>
+</section>
+
+<!-- ================= HÉBERGEMENT ================= -->
+<section id="hebergement">
+  <div class="eyebrow center">Sur place</div>
+  <h2 class="center">Hébergement</h2>
+  <p class="center">Le domaine propose des couchages sur place en nombre limité, en priorité pour une partie des invités. Pour l'instant, voici les options générales.</p>
+  <div class="gite-grid">
+    <div class="card gite">
+      <h3>30 couchages au domaine</h3>
+      <p>13 chambres et 10 salles de bain.</p>
+    </div>
+    <div class="card gite">
+      <h3>15 couchages supplémentaires</h3>
+      <p>Chez la voisine, Le Mas d'Hullias.</p>
+    </div>
+    <div class="card gite">
+      <h3>Hébergements à proximité</h3>
+      <p>Saint Martin d'Ardèche, Saint Julien de Peyrolas et Aiguèze, avec environ 100 lits disponibles au total.</p>
+    </div>
+    <div class="card gite">
+      <h3>Logement personnalisé</h3>
+      <p>Une section dédiée sera ajoutée une fois la répartition finale établie.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CODE VESTIMENTAIRE ================= -->
+<section id="dresscode">
+  <div class="eyebrow center">Tenue</div>
+  <h2 class="center">Code vestimentaire</h2>
+  <p class="center">Ambiance old money Provence : élégante mais décontractée. Nous vous conseillons une tenue habillée chic, dans des tons naturels et terreux, adaptée à un mariage en extérieur. Prévoyez une paire de chaussures confortables, car le gravier et la pelouse peuvent être délicats avec des talons fins.</p>
+</section>
+
+<!-- ================= TIRELIRE ================= -->
+<section id="cagnotte">
+  <div class="eyebrow center">Voyage de noces</div>
+  <h2 class="center">Tirelire collective</h2>
+  <p class="center">Pas de liste de mariage, mais une cagnotte est proposée pour contribuer à notre voyage de noces. Votre présence est déjà le plus beau des cadeaux.</p>
+</section>
+
+<!-- ================= RSVP ================= -->
+<section id="rsvp">
+  <div class="eyebrow center">Merci de répondre au plus tard avant le 6 mai 2027</div>
+  <h2 class="center">RSVP</h2>
+  <form id="rsvp-form" onsubmit="return submitRsvp(event)">
+    <div><label>Nom et prénom</label><input type="text" required></div>
+    <div><label>Serez-vous présent(e) ?</label>
+      <select required>
+        <option value="">—</option>
+        <option>Oui, avec joie</option>
+        <option>Non, je ne pourrai pas venir</option>
+      </select>
+    </div>
+    <div><label>Nombre de personnes</label><input type="number" min="1" value="1"></div>
+    <div><label>Allergies / régime alimentaire</label><input type="text"></div>
+    <div><label>Message (optionnel)</label><textarea rows="3"></textarea></div>
+    <button type="submit">Envoyer ma réponse</button>
+  </form>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="eyebrow center">Questions fréquentes</div>
+  <h2 class="center">FAQ</h2>
+  <div class="faq-item"><h3>Puis-je venir avec mes enfants ?</h3><p>Le mariage se déroule sans enfants, à l'exception du neveu et de la nièce des mariés.</p></div>
+  <div class="faq-item"><h3>Où dois-je me loger ?</h3><p>Le domaine propose des couchages sur place en nombre limité, réservés en priorité selon la répartition établie par les mariés. Pour les autres invités, plusieurs hébergements sont disponibles dans les villages alentour (Saint Martin d'Ardèche, Saint Julien de Peyrolas, Aiguèze). Des taxis assurent les navettes.</p></div>
+  <div class="faq-item"><h3>Comment venir si je n'ai pas de voiture ?</h3><p>La gare TGV la plus proche est Avignon, à environ 1h de route du domaine.</p></div>
+  <div class="faq-item"><h3>Y a-t-il une piscine ?</h3><p>Oui, le domaine dispose de deux piscines. La baignade de nuit n'est pas autorisée.</p></div>
+  <div class="faq-item"><h3>Quel temps fait-il début mai dans le Gard ?</h3><p>Le climat est généralement doux et ensoleillé début mai, avec des soirées pouvant être fraîches. Prévoyez une petite veste pour la soirée.</p></div>
+  <div class="faq-item"><h3>Avez-vous une liste de mariage ?</h3><p>Pas de liste de mariage, mais une cagnotte est proposée pour contribuer à notre voyage de noces.</p></div>
+  <div class="faq-item"><h3>Jusqu'à quelle heure dure la soirée ?</h3><p>La musique se poursuit tard dans la soirée, avec DJ jusqu'au bout de la nuit.</p></div>
+</section>
+
+<!-- ================= GALERIE ================= -->
+<div id="gallery-wrap">
+  <div id="gallery-strip-left"><div class="strip-track" id="strip-left-track"></div></div>
+  <div class="eyebrow center">En images</div>
+  <h2 class="center">Galerie</h2>
+  <div id="gallery-fade"></div>
+  <div id="gallery-strip-right"><div class="strip-track" id="strip-right-track"></div></div>
+</div>
+
+<footer>Aude &amp; Charles, 6 mai 2028</footer>
+
+<script>
+  const ACCESS_CODE = "MOUSSE";
+  const WEDDING_DATE = "2028-05-06T16:00:00";
+  const MAILTO_ADDRESS = "votre-adresse@example.com";
+
+  function checkCode(){
+    const val = document.getElementById('code-input').value.trim().toUpperCase();
+    if(val === ACCESS_CODE){
+      document.getElementById('gate').classList.add('hidden');
+    } else {
+      document.getElementById('gate-error').textContent = "Code incorrect, réessayez.";
+    }
+  }
+  document.getElementById('code-input').addEventListener('keydown', function(e){
+    if(e.key === 'Enter') checkCode();
+  });
+
+  // ---- Countdown ----
+  function startCountdown(){
+    const target = new Date(WEDDING_DATE);
+    function tick(){
+      const now = new Date();
+      let diff = target - now;
+      if(diff < 0) diff = 0;
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff / 3600000) % 24);
+      const mins = Math.floor((diff / 60000) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+      document.getElementById('cd-days').textContent = days;
+      document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+      document.getElementById('cd-min').textContent = String(mins).padStart(2,'0');
+      document.getElementById('cd-sec').textContent = String(secs).padStart(2,'0');
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+  startCountdown();
+
+  // ---- RSVP (mailto placeholder) ----
+  function submitRsvp(e){
+    e.preventDefault();
+    const inputs = e.target.querySelectorAll('input, select, textarea');
+    let body = "";
+    inputs.forEach(i => body += i.previousElementSibling.textContent + ": " + i.value + "%0D%0A");
+    window.location.href = "mailto:" + MAILTO_ADDRESS + "?subject=RSVP Mariage Aude %26 Charles&body=" + body;
+    return false;
+  }
+
+  // ---- Gallery: random fade ----
+  const galleryEl = document.getElementById('gallery-fade');
+  const galleryPaths = [
+    '../photos%20site/Images%202/IMG_5808.JPG',
+    '../photos%20site/Images%202/IMG_6939.JPG',
+    '../photos%20site/Images%202/IMG_0194.JPG',
+    '../photos%20site/Images%202/IMG_0181.JPG',
+    '../photos%20site/Images%202/BF9534E5-0163-4594-90A1-D3C29FAA27A2.JPG',
+    '../photos%20site/Images%202/8b6e3a0c-c058-4e49-9d8f-1cc5feca65e1%202.JPG',
+    '../photos%20site/Images%202/IMG_5297.jpg',
+    '../photos%20site/Images%202/IMG_7723.JPG',
+    '../photos%20site/Images%202/DF662B31-F67A-48A0-BEEA-6E9688774C49.JPG',
+    '../photos%20site/Images%202/IMG_2388.JPG',
+    '../photos%20site/Images%202/IMG_5948.JPG',
+    '../photos%20site/Images%202/88E9CDC4-7583-41AA-A3FA-20E4F3CD4CFD.JPG',
+    '../photos%20site/Images%202/99CD3FC4-AC72-4BC4-B29F-9A4C175D82D2.JPG',
+    '../photos%20site/Images%202/IMG_7962.JPG',
+    '../photos%20site/Images%202/IMG_0203.JPG',
+    '../photos%20site/Images%202/IMG_7155.JPG',
+    '../photos%20site/Images%202/IMG_0615.jpeg',
+    '../photos%20site/Images%202/IMG_0731.jpeg',
+    '../photos%20site/Images%202/IMG_0940.jpeg',
+    '../photos%20site/Images%202/IMG_1009.jpeg',
+    '../photos%20site/Images%202/IMG_1033.jpeg',
+    '../photos%20site/Images%202/IMG_1114.jpeg',
+    '../photos%20site/Images%202/IMG_1142.jpeg',
+    '../photos%20site/Images%202/IMG_1291.jpeg',
+    '../photos%20site/Images%202/IMG_1381.jpeg'
+  ];
+  const total = galleryPaths.length;
+  const paths = [...galleryPaths];
+  // shuffle
+  for(let i=paths.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [paths[i],paths[j]] = [paths[j],paths[i]];
+  }
+  let idx = 0;
+  const imgA = document.createElement('img');
+  const imgB = document.createElement('img');
+  imgA.src = paths[0];
+  galleryEl.appendChild(imgA);
+  galleryEl.appendChild(imgB);
+  imgA.classList.add('active');
+  function cycle(){
+    idx = (idx+1) % paths.length;
+    const showingA = imgA.classList.contains('active');
+    const nextImg = showingA ? imgB : imgA;
+    const curImg = showingA ? imgA : imgB;
+    nextImg.src = paths[idx];
+    nextImg.classList.add('active');
+    curImg.classList.remove('active');
+  }
+  setInterval(cycle, 4500);
+
+  // ---- Side scrolling strips (desktop only, decorative) ----
+  function fillStrip(trackId, startOffset){
+    const track = document.getElementById(trackId);
+    for(let r=0; r<2; r++){
+      for(let i=1;i<=12;i++){
+        const n = ((i + startOffset - 1) % total) + 1;
+        const img = document.createElement('img');
+        img.src = paths[n - 1];
+        track.appendChild(img);
+      }
+    }
+  }
+  fillStrip('strip-left-track', 0);
+  fillStrip('strip-right-track', 20);
+</script>
+</body>
+</html>
