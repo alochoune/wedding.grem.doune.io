@@ -17,7 +17,7 @@
     --navy-deep: #1C2A12;
     --gold: #9A8830;
     --gold-soft: #B8A54C;
-    --ink: #2E2318;
+    --ink: #4a2701;
     --line: rgba(100, 95, 28, 0.28);
     --paper: #FDFAF0;
     --shadow: 0 18px 60px rgba(20, 28, 8, 0.09);
@@ -225,6 +225,30 @@
     letter-spacing: 0.08em;
     font-size: 0.84rem;
   }
+
+  .gate-hint {
+    margin-top: 12px;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.76rem;
+    letter-spacing: 0.04em;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .personal-greeting {
+    display: inline-block;
+    margin: 0 auto 18px;
+    padding: 8px 20px;
+    border: 1px solid rgba(188,141,62,0.5);
+    border-radius: 20px;
+    background: rgba(255,248,226,0.6);
+    color: var(--navy);
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .personal-greeting.hidden { display: none; }
 
   .hero {
     min-height: 100vh;
@@ -870,7 +894,8 @@
       </svg>
       <h1 class="script">Doune &amp; Grem</h1>
       <div class="gate-sub" data-i18n="gate.sub">Accès invités</div>
-      <input id="gateInput" class="gate-input" type="password" placeholder="Code d'invitation" autocomplete="off" aria-label="Code d'invitation" data-i18n-placeholder="gate.placeholder">
+      <input id="gateInput" class="gate-input" type="text" placeholder="Votre prénom" autocomplete="off" aria-label="Votre prénom" data-i18n-placeholder="gate.placeholder">
+      <div class="gate-hint" data-i18n="gate.hint">Tapez le prénom indiqué sur votre invitation</div>
       <div style="margin-top:18px;">
         <button class="button button-outline" id="gateButton" type="button"><span data-i18n="gate.btn">Entrer</span></button>
       </div>
@@ -890,6 +915,7 @@
         <h1 class="hero-name">Doune &amp; Grem</h1>
         <div class="hero-date" data-i18n="hero.date">Samedi 6 mai 2028</div>
         <div class="hero-place">Clos d'Hullias · Saint-Christol-de-Rodières, Gard</div>
+        <div id="personalGreeting" class="personal-greeting hidden"></div>
         <div class="countdown" data-i18n-aria="hero.countdown" aria-label="Compte à rebours">
           <div class="countdown-item"><div class="countdown-num" id="days">663</div><div class="countdown-label" data-i18n="cd.days">Jours</div></div>
           <div class="countdown-item"><div class="countdown-num" id="hours">16</div><div class="countdown-label" data-i18n="cd.hours">Heures</div></div>
@@ -980,139 +1006,15 @@
     </section>
 
     <section class="section">
-      <div class="section-inner content-block center">
+      <div class="section-inner content-block center narrow">
         <div class="eyebrow" data-i18n="arrival.eyebrow">Qui arrive quand ?</div>
-        <h2 class="title" data-i18n="arrival.title">Liste des conviés</h2>
+        <h2 class="title" data-i18n="arrival.title">Un site personnalisé</h2>
         <p class="content-copy" style="margin-top:10px;margin-bottom:0">
-          <span data-i18n="arrival.desc">Certains invités sont attendus dès le vendredi pour le dîner d'arrivée. Tous les autres arrivent le samedi pour la cérémonie.</span>
+          <span data-i18n="arrival.desc">En fonction de votre identité, votre invitation est personnalisée avec les dates et horaires qui vous sont propres, affichés juste après votre connexion, en haut de cette page.</span>
         </p>
-
-        <div class="arrival-day" style="margin-top:32px">
-          <div class="arrival-day-header">
-            <h3 data-i18n="prog.fri">Vendredi 5 mai</h3>
-            <small data-i18n="arrival.fri.small">Dîner de retrouvailles, arrivée dès 16h</small>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
-            <div>
-              <div style="padding:12px 20px 8px;font-family:'Cormorant SC',serif;font-size:0.74rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-soft);opacity:0.8;border-bottom:1px solid rgba(255,255,255,0.1);text-align:center">Côté Aude</div>
-              <ul class="arrival-names">
-                <li>Auriane &amp; Pierre <span style="opacity:0.55;font-size:0.85em">témoin Aude</span></li>
-                <li>Shems <span style="opacity:0.55;font-size:0.85em">témoin Charles</span></li>
-                <li>Solène &amp; Adrien <span style="opacity:0.55;font-size:0.85em">témoin Aude, beau-frère</span></li>
-                <li>Sabine &amp; Noémie <span style="opacity:0.55;font-size:0.85em">D.H. sœur + belle-sœur</span></li>
-                <li>Margaux &amp; Paul <span style="opacity:0.55;font-size:0.85em">D.H.</span></li>
-                <li>Livia &amp; Sam <span style="opacity:0.55;font-size:0.85em">D.H.</span></li>
-                <li>Laurence &amp; Lawrence <span style="opacity:0.55;font-size:0.85em">D.H.</span></li>
-                <li>Élodie <span style="opacity:0.55;font-size:0.85em">D.H.</span></li>
-                <li>Alix <span style="opacity:0.55;font-size:0.85em">nièce</span></li>
-                <li>Pablo <span style="opacity:0.55;font-size:0.85em">neveu</span></li>
-                <li>Joëlle <span style="opacity:0.55;font-size:0.85em">mère</span></li>
-                <li>Vincent <span style="opacity:0.55;font-size:0.85em">beau-père</span></li>
-                <li>Dominique <span style="opacity:0.55;font-size:0.85em">père</span></li>
-              </ul>
-            </div>
-            <div style="border-left:1px solid rgba(255,255,255,0.12)">
-              <div style="padding:12px 20px 8px;font-family:'Cormorant SC',serif;font-size:0.74rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-soft);opacity:0.8;border-bottom:1px solid rgba(255,255,255,0.1);text-align:center">Côté Charles</div>
-              <ul class="arrival-names">
-                <li>Médéric <span style="opacity:0.55;font-size:0.85em">G.H.</span></li>
-                <li>Irvin <span style="opacity:0.55;font-size:0.85em">G.H.</span></li>
-                <li>Mewen <span style="opacity:0.55;font-size:0.85em">G.H.</span></li>
-                <li>Lucas <span style="opacity:0.55;font-size:0.85em">G.H.</span></li>
-                <li>Valentin &amp; Alexia <span style="opacity:0.55;font-size:0.85em">G.H.</span></li>
-                <li>Ludwig <span style="opacity:0.55;font-size:0.85em">frère</span></li>
-                <li>Léonie &amp; Iain <span style="opacity:0.55;font-size:0.85em">sœur</span></li>
-                <li>Aglaée <span style="opacity:0.55;font-size:0.85em">sœur</span></li>
-                <li>Lorelei <span style="opacity:0.55;font-size:0.85em">sœur</span></li>
-                <li>Alain &amp; Nathalie <span style="opacity:0.55;font-size:0.85em">père, belle-mère</span></li>
-                <li>Mamie Françoise <span style="opacity:0.55;font-size:0.85em">grand-mère</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="arrival-day" style="margin-top:16px">
-          <div class="arrival-day-header">
-            <h3 data-i18n="prog.sat">Samedi 6 mai</h3>
-            <small data-i18n="arrival.sat.small">Cérémonie à 16h</small>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0" class="sat-grid">
-            <ul class="arrival-names">
-              <li>Irvin</li>
-              <li>Mewen</li>
-              <li>Lucas</li>
-              <li>Valentin &amp; Alexia</li>
-              <li>Sten</li>
-              <li>Benoît</li>
-              <li>Benjamin</li>
-              <li>Nicolas</li>
-              <li>Margaux &amp; Paul</li>
-              <li>Laurie</li>
-              <li>Élodie</li>
-              <li>Baudouin &amp; Servane</li>
-              <li>Mina</li>
-              <li>Élisabeth</li>
-              <li>Faustine</li>
-              <li>Clémence</li>
-              <li>Antonin</li>
-              <li>Fabien</li>
-              <li>Shems</li>
-              <li>Khadija &amp; Jules</li>
-              <li>Léa &amp; Daniel</li>
-              <li>Lucas</li>
-              <li>Hugo</li>
-              <li>Louise</li>
-              <li>Enzo</li>
-              <li>Agathe</li>
-            </ul>
-            <ul class="arrival-names" style="border-left:1px solid rgba(255,255,255,0.12)">
-              <li>Koen &amp; Federica</li>
-              <li>Guy-Jean</li>
-              <li>Dirk</li>
-              <li>Kevin</li>
-              <li>Sander &amp; Céline</li>
-              <li>Marajsha</li>
-              <li>Médéric</li>
-              <li>Dominique</li>
-              <li>Livia</li>
-              <li>Sam</li>
-              <li>Espérance</li>
-              <li>Auriane</li>
-              <li>Pierre</li>
-              <li>Noëlle</li>
-              <li>Raquel</li>
-              <li>Carlos</li>
-              <li>Nga</li>
-              <li>Laurence</li>
-              <li>Taylor &amp; Remco</li>
-              <li>Enzo</li>
-              <li>Ethan</li>
-              <li>Léo &amp; Iain</li>
-              <li>Aglaée</li>
-              <li>Ludwig</li>
-              <li>Lorelei</li>
-              <li>Léonie</li>
-              <li>Mamie Françoise</li>
-            </ul>
-            <ul class="arrival-names" style="border-left:1px solid rgba(255,255,255,0.12)">
-              <li>Alain &amp; Nathalie</li>
-              <li>Sabine, Noémie &amp; Alix</li>
-              <li>Solène, Pablo &amp; Adrien</li>
-              <li>Dominique <span style="opacity:0.55;font-size:0.85em">papa</span></li>
-              <li>Joëlle <span style="opacity:0.55;font-size:0.85em">maman</span></li>
-              <li>Vincent <span style="opacity:0.55;font-size:0.85em">beau-père</span></li>
-              <li>Janick &amp; Jérôme</li>
-              <li>Papou</li>
-              <li>Juliette</li>
-              <li>Raphaël</li>
-              <li>Manon</li>
-              <li>Claude</li>
-              <li>Éric</li>
-            </ul>
-          </div>
-        </div>
-
       </div>
     </section>
+
 
     <section class="section">
       <div class="section-inner content-block center">
@@ -1210,9 +1112,9 @@
     <section class="section">
       <div class="section-inner content-block center narrow">
         <div class="eyebrow" data-i18n="dress.eyebrow">Tenue</div>
-        <h2 class="title" data-i18n="dress.title">Code vestimentaire</h2>
+        <h2 class="title" data-i18n="dress.title">Suggestion de tenue</h2>
         <p class="content-copy">
-          Pensez à la Provence de carte postale : lin froissé, soie sauvage, matières naturelles. Des silhouettes décontractées, dans une palette de tons chauds et terreux. Le mariage se déroule en extérieur, pelouse, gravier, terrasses, préférez des chaussures confortables, les talons aiguilles sont déconseillés.
+          Aucune obligation, mais si l'inspiration vous manque, voici quelques idées : la Provence de carte postale, lin froissé, soie sauvage, matières naturelles, des silhouettes décontractées, dans une palette de tons chauds et terreux. Le mariage se déroule en extérieur, pelouse, gravier, terrasses, les chaussures confortables sont recommandées, les talons aiguilles sont déconseillés.
         </p>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:36px;align-items:start" class="dress-moodboard-grid">
@@ -1271,7 +1173,15 @@
         <form class="rsvp-form" onsubmit="return false;">
           <label class="field">
             <span data-i18n="rsvp.name">Nom et prénom</span>
-            <input type="text" name="name" placeholder="">
+            <input type="text" name="name" placeholder="" id="rsvpName">
+          </label>
+          <label class="field" id="rsvpFridayField" style="display:none">
+            <span data-i18n="rsvp.attend.fri">Serez-vous présent(e) au dîner de vendredi 5 mai ?</span>
+            <select name="attendanceFri">
+              <option>—</option>
+              <option>Oui</option>
+              <option>Non</option>
+            </select>
           </label>
           <label class="field">
             <span data-i18n="rsvp.attend">Serez-vous présent(e) le samedi 6 mai ?</span>
@@ -1374,10 +1284,10 @@
       <h3 style="margin-bottom:4px">Sur place au Clos d'Hullias</h3>
       <p style="font-size:0.9rem;color:rgba(45,42,39,0.6);margin:0 0 18px">Couchages disponibles</p>
       <ul class="modal-guest-list">
-        <li>Aude</li><li>Charles</li><li>Dominique</li><li>Sabine</li><li>Noémie</li><li>Alix</li>
+        <li>Aude</li><li>Charles</li><li>Dominique Chalot</li><li>Sabine</li><li>Noémie</li><li>Alix</li>
         <li>Solène</li><li>Adrien</li><li>Pablo</li><li>Auriane</li><li>Pierre</li><li>Shems</li>
         <li>Faustine</li><li>Margaux</li><li>Paul</li><li>Laurence</li><li>Lawrence</li><li>Livia</li>
-        <li>Sam</li><li>Dominique VR</li><li>Médéric</li><li>Irvin</li><li>Mewen</li><li>Lucas</li>
+        <li>Sam</li><li>Dominique Van Ravensberg</li><li>Médéric</li><li>Irvin</li><li>Mewen</li><li>Lucas</li>
         <li>Valentin</li><li>Aglaée</li><li>Ludwig</li><li>Lorelei</li><li>Mina</li><li>Carlos</li>
       </ul>
     </div>
@@ -1390,20 +1300,153 @@
     const gateInput = document.getElementById('gateInput');
     const gateButton = document.getElementById('gateButton');
     const gateError = document.getElementById('gateError');
-    const password = 'mousse';
+
+    // Base d'invités : prénom (ou prénom+nom si homonyme) → jour d'arrivée
+    const GUESTS = [
+      ['Irvin', 'Vendredi'],
+      ['Mewen', 'Vendredi'],
+      ['Lucas', 'Vendredi'],
+      ['Valentin', 'Vendredi'],
+      ['Sten', 'Samedi'],
+      ['Benoît', 'Samedi'],
+      ['Benjamin', 'Samedi'],
+      ['Nicolas', 'Samedi'],
+      ['Margaux', 'Vendredi'],
+      ['Paul', 'Vendredi'],
+      ['Laurie', 'Samedi'],
+      ['Élodie', 'Samedi'],
+      ['Baudouin', 'Samedi'],
+      ['Servane', 'Samedi'],
+      ['Mina', 'Samedi'],
+      ['Liliane', 'Samedi'],
+      ['Élisabeth', 'Samedi'],
+      ['Faustine', 'Vendredi'],
+      ['Clémence', 'Samedi'],
+      ['Antonin', 'Samedi'],
+      ['Fabien', 'Samedi'],
+      ['Shems', 'Vendredi'],
+      ['Khadija', 'Samedi'],
+      ['Jules', 'Samedi'],
+      ['Léa', 'Samedi'],
+      ['Daniel', 'Samedi'],
+      ['Lucas Gomard', 'Samedi'],
+      ['Hugo', 'Samedi'],
+      ['Julie', 'Samedi'],
+      ['Camille', 'Samedi'],
+      ['Koen', 'Samedi'],
+      ['Federica', 'Samedi'],
+      ['Guy-Jean', 'Samedi'],
+      ['Dirk', 'Samedi'],
+      ['Kevin', 'Samedi'],
+      ['Sander', 'Samedi'],
+      ['Céline', 'Samedi'],
+      ['Marajsha', 'Samedi'],
+      ['Médéric', 'Vendredi'],
+      ['Dominique Van Ravensberg', 'Vendredi'],
+      ['Livia', 'Vendredi'],
+      ['Sam', 'Vendredi'],
+      ['Espérance', 'Samedi'],
+      ['Auriane', 'Vendredi'],
+      ['Pierre', 'Vendredi'],
+      ['Noëlle', 'Samedi'],
+      ['Raquel', 'Samedi'],
+      ['Carlos', 'Samedi'],
+      ['Nga', 'Samedi'],
+      ['Laurence', 'Vendredi'],
+      ['Lawrence', 'Vendredi'],
+      ['Taylor', 'Samedi'],
+      ['Remco', 'Samedi'],
+      ['Sophie', 'Samedi'],
+      ['Fabrice', 'Samedi'],
+      ['Léonie', 'Vendredi'],
+      ['Iain', 'Vendredi'],
+      ['Aglaée', 'Vendredi'],
+      ['Ludwig', 'Vendredi'],
+      ['Lorelei', 'Vendredi'],
+      ['Françoise', 'Vendredi'],
+      ['Alain', 'Vendredi'],
+      ['Nathalie', 'Vendredi'],
+      ['Sabine', 'Vendredi'],
+      ['Noémie', 'Vendredi'],
+      ['Alix', 'Vendredi'],
+      ['Solène', 'Vendredi'],
+      ['Adrien', 'Vendredi'],
+      ['Pablo', 'Vendredi'],
+      ['Dominique Chalot', 'Vendredi'],
+      ['Joëlle', 'Vendredi'],
+      ['Vincent', 'Vendredi'],
+      ['Janick', 'Samedi'],
+      ['Jérôme', 'Samedi'],
+      ['Papou', 'Vendredi'],
+      ['François', 'Samedi'],
+      ['Manon', 'Samedi'],
+      ['Claude', 'Samedi'],
+      ['Bella', 'Samedi'],
+      ['Juliette', 'Samedi'],
+      ['Aude', 'Mariee'],
+      ['Charles', 'Mariee'],
+    ];
+
+    // Normalisation : minuscules, sans accents, espaces multiples réduits
+    function normalize(str) {
+      return str
+        .trim()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/\s+/g, ' ');
+    }
+
+    const GUEST_LOOKUP = {};
+    GUESTS.forEach(([name, day]) => {
+      GUEST_LOOKUP[normalize(name)] = { name, day };
+    });
+
+    let currentGuest = null;
 
     const unlock = () => {
-      if (gateInput.value.trim().toLowerCase() !== password) {
+      const entered = normalize(gateInput.value);
+      const match = GUEST_LOOKUP[entered];
+
+      if (!match) {
         gateError.textContent = t[currentLang]['gate.error'];
         gateInput.focus();
         return;
       }
 
+      currentGuest = match;
       gate.classList.add('hidden');
       site.classList.remove('hidden');
       document.body.style.overflow = 'auto';
       initGuestMap();
+      renderPersonalGreeting();
     };
+
+    function renderPersonalGreeting() {
+      const el = document.getElementById('personalGreeting');
+      if (!el || !currentGuest) return;
+      const lang = t[currentLang];
+      let dayText;
+      if (currentGuest.day === 'Vendredi') dayText = lang['greet.fri'];
+      else if (currentGuest.day === 'Samedi') dayText = lang['greet.sat'];
+
+      if (currentGuest.day === 'Mariee') {
+        el.textContent = lang['greet.married'];
+      } else {
+        el.textContent = `${lang['greet.hello']} ${currentGuest.name} — ${lang['greet.expected']} ${dayText}.`;
+      }
+      el.classList.remove('hidden');
+
+      // Personnalisation du formulaire RSVP
+      const fridayField = document.getElementById('rsvpFridayField');
+      if (fridayField) {
+        fridayField.style.display = (currentGuest.day === 'Vendredi') ? '' : 'none';
+      }
+      const nameInput = document.getElementById('rsvpName');
+      if (nameInput && !nameInput.value && currentGuest.day !== 'Mariee') {
+        nameInput.value = currentGuest.name;
+      }
+    }
 
     gateButton.addEventListener('click', unlock);
     gateInput.addEventListener('keydown', (event) => {
@@ -1421,7 +1464,8 @@
     // ── i18n ──────────────────────────────────────────────────────────────────
     const t = {
       fr: {
-        'gate.sub':'Accès invités','gate.placeholder':"Code d'invitation",'gate.btn':'Entrer','gate.error':'Code incorrect.',
+        'gate.sub':'Accès invités','gate.placeholder':'Votre prénom','gate.btn':'Entrer','gate.error':'Prénom non reconnu.','gate.hint':'Tapez le prénom indiqué sur votre invitation',
+        'greet.hello':'Bonjour','greet.expected':'Vous êtes attendu(e) le','greet.fri':'vendredi 5 mai','greet.sat':'samedi 6 mai','greet.married':'Bienvenue sur votre propre site de mariage !',
         'hero.eyebrow':'Mariage de','hero.date':'Samedi 6 mai 2028','hero.countdown':'Compte à rebours',
         'cd.days':'Jours','cd.hours':'Heures','cd.min':'Min','cd.sec':'Sec',
         'story.eyebrow':'Depuis le début','story.title':'Notre histoire',
@@ -1439,9 +1483,8 @@
         'prog.poolparty.title':'Pool party','prog.poolparty.note':'Derniers moments ensemble autour des piscines avant le départ.',
         'prog.checkout.title':'Départ','prog.checkout.note':'Heure limite de check-out du domaine.',
         'time.after':'Après','time.evening':'Soir','time.night':'Nuit','time.morning':'Matin','time.afternoon':'Après-midi',
-        'arrival.eyebrow':'Qui arrive quand ?','arrival.title':'Liste des conviés',
-        'arrival.desc':"Certains invités sont attendus dès le vendredi pour le dîner d'arrivée. Tous les autres arrivent le samedi pour la cérémonie.",
-        'arrival.fri.small':'Dîner de retrouvailles, arrivée dès 16h','arrival.sat.small':'Cérémonie à 16h',
+        'arrival.eyebrow':'Qui arrive quand ?','arrival.title':'Un site personnalisé',
+        'arrival.desc':"En fonction de votre identité, votre invitation est personnalisée avec les dates et horaires qui vous sont propres, affichés juste après votre connexion, en haut de cette page.",
         'venue.eyebrow':'Où','venue.title':'Le lieu',
         'venue.link.site':'Site officiel','venue.link.maps':'Google Maps',
         'venue.how':'Comment venir :','venue.parking':'Parking :','venue.parking.desc':'Parking sur place, gratuit pour tous les invités.',
@@ -1451,11 +1494,11 @@
         'accom.eyebrow':'Sur place & à proximité','accom.title':'Hébergement',
         'accom.clos.desc':'30 couchages sont disponibles sur place, et les personnes suivantes sont invitées à y dormir. Si vous souhaitez séjourner dans un hôtel à proximité, faites-le nous savoir !',
         'accom.note':"Vous serez informé(e) individuellement de votre hébergement une fois la répartition finalisée.",
-        'dress.eyebrow':'Tenue','dress.title':'Code vestimentaire',
+        'dress.eyebrow':'Tenue','dress.title':'Suggestion de tenue',
         'dress.swatch.navy':'Bleu marine','dress.swatch.brown':'Brun terre','dress.swatch.forest':'Vert forêt','dress.swatch.olive':'Olive &amp; Sauge','dress.swatch.ivory':'Ivoire','dress.swatch.gold':'Doré','dress.swatch.cream':'Crème','dress.swatch.linen':'Lin',
         'honey.eyebrow':'Voyage de noces','honey.title':'Tirelire collective',
         'rsvp.eyebrow':'RSVP','rsvp.title':'Merci de répondre avant le 6 mai 2027',
-        'rsvp.name':'Nom et prénom','rsvp.attend':'Serez-vous présent(e) le samedi 6 mai ?',
+        'rsvp.name':'Nom et prénom','rsvp.attend':'Serez-vous présent(e) le samedi 6 mai ?','rsvp.attend.fri':'Serez-vous présent(e) au dîner de vendredi 5 mai ?',
         'rsvp.brunch':'Serez-vous présent(e) au brunch du dimanche 7 mai ?',
         'rsvp.party':'Nombre de personnes','rsvp.diet':'Allergies / régime alimentaire',
         'rsvp.msg':'Message (optionnel)','rsvp.submit':'Envoyer ma réponse',
@@ -1467,7 +1510,8 @@
         'footer':'Doune &amp; Grem, 6 mai 2028',
       },
       en: {
-        'gate.sub':'Guest Access','gate.placeholder':'Invitation code','gate.btn':'Enter','gate.error':'Incorrect code.',
+        'gate.sub':'Guest Access','gate.placeholder':'Your first name','gate.btn':'Enter','gate.error':'First name not recognized.','gate.hint':'Type the first name shown on your invitation',
+        'greet.hello':'Hello','greet.expected':"You're expected on",'greet.fri':'Friday, May 5th','greet.sat':'Saturday, May 6th','greet.married':'Welcome to your own wedding site!',
         'hero.eyebrow':'The wedding of','hero.date':'Saturday, May 6th, 2028','hero.countdown':'Countdown',
         'cd.days':'Days','cd.hours':'Hours','cd.min':'Min','cd.sec':'Sec',
         'story.eyebrow':'From the beginning','story.title':'Our story',
@@ -1485,9 +1529,8 @@
         'prog.poolparty.title':'Pool party','prog.poolparty.note':'One last moment together by the pools before we say goodbye.',
         'prog.checkout.title':'Departure','prog.checkout.note':'Check-out deadline from the estate.',
         'time.after':'After','time.evening':'Evening','time.night':'Night','time.morning':'Morning','time.afternoon':'Afternoon',
-        'arrival.eyebrow':'Who arrives when?','arrival.title':'Guest list',
-        'arrival.desc':'Some guests are expected on Friday for the welcome dinner. Everyone else arrives on Saturday for the ceremony.',
-        'arrival.fri.small':'Welcome dinner, arrival from 4pm','arrival.sat.small':'Ceremony at 4pm',
+        'arrival.eyebrow':'Who arrives when?','arrival.title':'A personalised site',
+        'arrival.desc':"Based on your identity, your invitation is personalised with the dates and times that are specific to you, shown right after you log in, at the top of this page.",
         'venue.eyebrow':'Where','venue.title':'The venue',
         'venue.link.site':'Official website','venue.link.maps':'Google Maps',
         'venue.how':'Getting there:','venue.parking':'Parking:','venue.parking.desc':'Free on-site parking for all guests.',
@@ -1497,11 +1540,11 @@
         'accom.eyebrow':'On-site & nearby','accom.title':'Accommodation',
         'accom.clos.desc':'30 beds are available on-site for the following guests. If you would prefer to stay at a nearby hotel, just let us know!',
         'accom.note':'You will be individually informed of your accommodation once the allocation is finalised.',
-        'dress.eyebrow':'Dress code','dress.title':'Dress code',
+        'dress.eyebrow':'Attire','dress.title':'Suggested attire',
         'dress.swatch.navy':'Navy','dress.swatch.brown':'Earth brown','dress.swatch.forest':'Forest green','dress.swatch.olive':'Olive &amp; Sage','dress.swatch.ivory':'Ivory','dress.swatch.gold':'Gold','dress.swatch.cream':'Cream','dress.swatch.linen':'Linen',
         'honey.eyebrow':'Honeymoon','honey.title':'Gift fund',
         'rsvp.eyebrow':'RSVP','rsvp.title':'Please reply by May 6th, 2027',
-        'rsvp.name':'Full name','rsvp.attend':'Will you join us on Saturday, May 6th?',
+        'rsvp.name':'Full name','rsvp.attend':'Will you join us on Saturday, May 6th?','rsvp.attend.fri':'Will you join the Friday, May 5th dinner?',
         'rsvp.brunch':'Will you join Sunday brunch on May 7th?',
         'rsvp.party':'Number of guests','rsvp.diet':'Dietary requirements / allergies',
         'rsvp.msg':'Message (optional)','rsvp.submit':'Send my reply',
@@ -1540,6 +1583,7 @@
       document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
       localStorage.setItem('lang', lang);
+      if (typeof currentGuest !== 'undefined' && currentGuest) renderPersonalGreeting();
     }
 
     if (currentLang === 'en') setLang('en');
