@@ -319,36 +319,54 @@
 
   .navy .eyebrow { color: var(--gold-soft); }
 
-  .prog-list {
+  .prog-columns {
     display: grid;
-    gap: 0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
     margin-top: 46px;
+    align-items: start;
   }
 
-  .prog-row {
-    display: grid;
-    grid-template-columns: 110px 1fr;
-    gap: 24px;
-    padding: 26px 0 24px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  .prog-column {
+    display: flex;
+    flex-direction: column;
   }
 
-  .prog-row:last-child { border-bottom: none; }
+  .prog-col-header {
+    text-align: center;
+    color: var(--gold-soft);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-family: 'Cormorant SC', serif;
+    padding-bottom: 16px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.22);
+  }
+
+  .prog-item {
+    padding: 18px 0 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    text-align: center;
+  }
+
+  .prog-item:last-child { border-bottom: none; }
 
   .time {
     color: #f0cc84;
     letter-spacing: 0.12em;
-    font-size: 1.05rem;
-    margin-top: 1px;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
   }
 
   .prog-title {
-    font-size: clamp(1.3rem, 2.4vw, 1.75rem);
-    margin-bottom: 10px;
+    font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+    margin-bottom: 8px;
   }
 
   .prog-note {
-    margin-top: 12px;
+    margin-top: 6px;
+    font-size: 0.98rem;
   }
 
   .card-grid {
@@ -631,6 +649,13 @@
     margin-top: -6px;
   }
 
+  .arrival-names {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
   .avoid-colors {
     display: flex;
     justify-content: center;
@@ -712,7 +737,8 @@
 
   @media (max-width: 860px) {
     .card-grid, .gallery-grid { grid-template-columns: 1fr; }
-    .prog-row { grid-template-columns: 1fr; gap: 8px; }
+    .prog-columns { grid-template-columns: 1fr; gap: 8px; }
+    .prog-column { margin-bottom: 12px; }
     .hero { min-height: auto; padding-top: 100px; padding-bottom: 100px; }
     .arrival-grid { grid-template-columns: 1fr; }
     #guest-map { height: 320px; }
@@ -758,7 +784,7 @@
     .venue-links { flex-direction: column; align-items: center; }
     .strip-tile { width: 90px; height: 90px; border-radius: 6px; }
     .strip-wrapper + .strip-wrapper { margin-top: 8px; }
-    .prog-row { padding: 16px 0; }
+    .prog-item { padding: 14px 0 16px; }
     .dress-moodboard-grid { grid-template-columns: 1fr !important; }
     .sat-grid { grid-template-columns: 1fr 1fr !important; }
   }
@@ -860,6 +886,7 @@
           <path d="M32 88c6-17 4-31 16-36" />
           <path d="M88 88c-6-17-4-31-16-36" />
         </svg>
+        <div class="eyebrow" data-i18n="hero.eyebrow">Mariage de</div>
         <h1 class="hero-name">Doune &amp; Grem</h1>
         <div class="hero-date" data-i18n="hero.date">Samedi 6 mai 2028</div>
         <div class="hero-place">Clos d'Hullias · Saint-Christol-de-Rodières, Gard</div>
@@ -888,66 +915,66 @@
           <div class="eyebrow" data-i18n="prog.eyebrow">Le week-end</div>
           <h2 class="title light" data-i18n="prog.title">Programme</h2>
         </div>
-        <div class="prog-list">
-          <div class="prog-day-header" data-i18n="prog.fri">Vendredi 5 mai</div>
-          <article class="prog-row">
-            <div class="time">16H00</div>
-            <div>
+        <div class="prog-columns">
+          <div class="prog-column">
+            <div class="prog-col-header" data-i18n="prog.fri">Vendredi 5 mai</div>
+            <article class="prog-item">
+              <div class="time">16H00</div>
               <h3 class="prog-title" data-i18n="prog.arrival.title">Arrivée &amp; installation</h3>
-              <p class="prog-note" data-i18n="prog.arrival.note">Découverte du domaine, temps libre, piscines ouvertes.</p>
-            </div>
-          </article>
-          <article class="prog-row">
-            <div class="time" data-i18n="time.evening">Soir</div>
-            <div>
+              <p class="prog-note" data-i18n="prog.arrival.note">Découverte du domaine, temps libre.</p>
+            </article>
+            <article class="prog-item">
+              <div class="time" data-i18n="time.evening">Soir</div>
               <h3 class="prog-title" data-i18n="prog.dinner-fri.title">Dîner de retrouvailles</h3>
               <p class="prog-note" data-i18n="prog.dinner-fri.note">Repas d'arrivée pré-mariage pour les invités présents dès le vendredi.</p>
-            </div>
-          </article>
-          <div class="prog-day-header" data-i18n="prog.sat">Samedi 6 mai</div>
-          <article class="prog-row">
-            <div class="time">16H00</div>
-            <div>
+            </article>
+          </div>
+          <div class="prog-column">
+            <div class="prog-col-header" data-i18n="prog.sat">Samedi 6 mai</div>
+            <article class="prog-item">
+              <div class="time">15H30</div>
+              <h3 class="prog-title" data-i18n="prog.guestarrival.title">Arrivée des invités</h3>
+              <p class="prog-note" data-i18n="prog.guestarrival.note">Installation avant le début de la cérémonie.</p>
+            </article>
+            <article class="prog-item">
+              <div class="time">16H00</div>
               <h3 class="prog-title" data-i18n="prog.ceremony.title">Cérémonie laïque</h3>
               <p class="prog-note" data-i18n="prog.ceremony.note">En plein air, dans le parc du domaine.</p>
-            </div>
-          </article>
-          <article class="prog-row">
-            <div class="time" data-i18n="time.after">Après</div>
-            <div>
+            </article>
+            <article class="prog-item">
+              <div class="time" data-i18n="time.after">Après</div>
               <h3 class="prog-title" data-i18n="prog.cocktail.title">Cocktail</h3>
               <p class="prog-note" data-i18n="prog.cocktail.note">Vin d'honneur dans le parc de cèdres, sur place.</p>
-            </div>
-          </article>
-          <article class="prog-row">
-            <div class="time" data-i18n="time.evening">Soir</div>
-            <div>
+            </article>
+            <article class="prog-item">
+              <div class="time" data-i18n="time.evening">Soir</div>
               <h3 class="prog-title" data-i18n="prog.dinner-sat.title">Dîner</h3>
               <p class="prog-note" data-i18n="prog.dinner-sat.note">Grillades &amp; plancha en extérieur.</p>
-            </div>
-          </article>
-          <article class="prog-row">
-            <div class="time" data-i18n="time.night">Nuit</div>
-            <div>
+            </article>
+            <article class="prog-item">
+              <div class="time" data-i18n="time.night">Nuit</div>
               <h3 class="prog-title" data-i18n="prog.party.title">Soirée dansante</h3>
-              <p class="prog-note" data-i18n="prog.party.note">Groupe de musique live en première partie, DJ jusqu'au bout de la nuit.</p>
-            </div>
-          </article>
-          <div class="prog-day-header" data-i18n="prog.sun">Dimanche 7 mai</div>
-          <article class="prog-row">
-            <div class="time" data-i18n="time.morning">Matin</div>
-            <div>
+              <p class="prog-note" data-i18n="prog.party.note"><a href="https://nuitblanchedj.com/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--gold-soft)">DJ Nuit Blanche</a> nous accompagnera toute la journée et une partie de la nuit. Soirée dansante jusqu'à 4h.</p>
+            </article>
+          </div>
+          <div class="prog-column">
+            <div class="prog-col-header" data-i18n="prog.sun">Dimanche 7 mai</div>
+            <article class="prog-item">
+              <div class="time" data-i18n="time.morning">Matin</div>
               <h3 class="prog-title" data-i18n="prog.brunch.title">Brunch</h3>
               <p class="prog-note" data-i18n="prog.brunch.note">Brunch en terrasse pour finir le week-end en douceur.</p>
-            </div>
-          </article>
-          <article class="prog-row">
-            <div class="time">16H00</div>
-            <div>
+            </article>
+            <article class="prog-item">
+              <div class="time" data-i18n="time.afternoon">Après-midi</div>
+              <h3 class="prog-title" data-i18n="prog.poolparty.title">Pool party</h3>
+              <p class="prog-note" data-i18n="prog.poolparty.note">Derniers moments ensemble autour des piscines avant le départ.</p>
+            </article>
+            <article class="prog-item">
+              <div class="time">16H00</div>
               <h3 class="prog-title" data-i18n="prog.checkout.title">Départ</h3>
               <p class="prog-note" data-i18n="prog.checkout.note">Heure limite de check-out du domaine.</p>
-            </div>
-          </article>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -967,7 +994,7 @@
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
             <div>
-              <div style="padding:12px 20px 8px;font-family:'Cormorant SC',serif;font-size:0.74rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-soft);opacity:0.8;border-bottom:1px solid rgba(255,255,255,0.1)">Côté Aude</div>
+              <div style="padding:12px 20px 8px;font-family:'Cormorant SC',serif;font-size:0.74rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-soft);opacity:0.8;border-bottom:1px solid rgba(255,255,255,0.1);text-align:center">Côté Aude</div>
               <ul class="arrival-names">
                 <li>Auriane &amp; Pierre <span style="opacity:0.55;font-size:0.85em">témoin Aude</span></li>
                 <li>Shems <span style="opacity:0.55;font-size:0.85em">témoin Charles</span></li>
@@ -985,7 +1012,7 @@
               </ul>
             </div>
             <div style="border-left:1px solid rgba(255,255,255,0.12)">
-              <div style="padding:12px 20px 8px;font-family:'Cormorant SC',serif;font-size:0.74rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-soft);opacity:0.8;border-bottom:1px solid rgba(255,255,255,0.1)">Côté Charles</div>
+              <div style="padding:12px 20px 8px;font-family:'Cormorant SC',serif;font-size:0.74rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-soft);opacity:0.8;border-bottom:1px solid rgba(255,255,255,0.1);text-align:center">Côté Charles</div>
               <ul class="arrival-names">
                 <li>Médéric <span style="opacity:0.55;font-size:0.85em">G.H.</span></li>
                 <li>Irvin <span style="opacity:0.55;font-size:0.85em">G.H.</span></li>
@@ -1089,7 +1116,6 @@
 
     <section class="section">
       <div class="section-inner content-block center">
-        <div class="eyebrow" data-i18n="venue.eyebrow">Où</div>
         <h2 class="title" data-i18n="venue.title">Le lieu</h2>
         <p class="content-copy" style="margin-top:14px;margin-bottom:0">
           <strong>Domaine du Clos d'Hullias</strong>, hameau provençal du XVII<sup>e</sup>&nbsp;siècle niché dans les vignobles du Gard, vue panoramique sur le Mont Ventoux, deux piscines et un parc de cèdres centenaires.
@@ -1130,7 +1156,7 @@
         <div class="card-grid" style="margin-top:32px;grid-template-columns:1fr">
           <article class="panel card" style="text-align:left">
             <h3>Clos d'Hullias</h3>
-            <p>30 couchages sont disponibles sur place, pour <a href="#" class="accom-link" onclick="openGuestList(); return false;">une partie des invités</a>. Si vous souhaitez séjourner dans un hôtel à proximité, faites-le nous savoir !</p>
+            <p>30 couchages sont disponibles sur place, pour <a href="#" class="accom-link" onclick="openGuestList(); return false;">une partie des invités</a>. Si vous préférez séjourner dans un hôtel à proximité, faites-le nous savoir !</p>
           </article>
         </div>
         <div class="panel full-card" style="margin-top:18px;text-align:left">
@@ -1178,7 +1204,6 @@
 
           </div>
         </div>
-        <p style="margin-top:24px;color:var(--gold);font-size:0.9rem;letter-spacing:0.05em"><span data-i18n="accom.note">Vous serez informé(e) individuellement de votre hébergement une fois la répartition finalisée.</span></p>
       </div>
     </section>
 
@@ -1187,17 +1212,12 @@
         <div class="eyebrow" data-i18n="dress.eyebrow">Tenue</div>
         <h2 class="title" data-i18n="dress.title">Code vestimentaire</h2>
         <p class="content-copy">
-          Pensez à la Provence de carte postale : lin froissé avec classe, soie sauvage, matières naturelles. Des silhouettes belles et décontractées, dans une palette de tons chauds et terreux. Le mariage se déroule en extérieur, pelouse, gravier, terrasses, préférez des chaussures confortables, les talons aiguilles sont déconseillés.
+          Pensez à la Provence de carte postale : lin froissé, soie sauvage, matières naturelles. Des silhouettes décontractées, dans une palette de tons chauds et terreux. Le mariage se déroule en extérieur, pelouse, gravier, terrasses, préférez des chaussures confortables, les talons aiguilles sont déconseillés.
         </p>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:36px;align-items:start" class="dress-moodboard-grid">
           <div>
             <div class="palette" style="justify-content:flex-start;gap:14px">
-              <div class="swatch">
-                <div class="swatch-color" style="background:#1e3a5f"></div>
-                <div class="swatch-name" data-i18n="dress.swatch.navy">Bleu marine</div>
-                <div class="swatch-hex">#1e3a5f</div>
-              </div>
               <div class="swatch">
                 <div class="swatch-color" style="background:#8C5430"></div>
                 <div class="swatch-name" data-i18n="dress.swatch.brown">Brun terre</div>
@@ -1210,13 +1230,8 @@
               </div>
               <div class="swatch">
                 <div class="swatch-color" style="background:#737840"></div>
-                <div class="swatch-name" data-i18n="dress.swatch.olive">Olive</div>
+                <div class="swatch-name" data-i18n="dress.swatch.olive">Olive &amp; Sauge</div>
                 <div class="swatch-hex">#737840</div>
-              </div>
-              <div class="swatch">
-                <div class="swatch-color" style="background:#8C9057"></div>
-                <div class="swatch-name" data-i18n="dress.swatch.sage">Sauge</div>
-                <div class="swatch-hex">#8C9057</div>
               </div>
               <div class="swatch">
                 <div class="swatch-color" style="background:#E6E2D0;border:1px solid rgba(0,0,0,0.08)"></div>
@@ -1243,15 +1258,15 @@
         <p class="content-copy">
           Votre présence est le plus beau des cadeaux. Si vous souhaitez tout de même participer à notre voyage de noces, une cagnotte en ligne est disponible, et une urne sera aussi présente le jour J.
         </p>
-        <p style="margin-top: 18px;"><a href="#" class="button button-outline">À COMPLÉTER : LIEN DE LA CAGNOTTE</a></p>
+        <p style="margin-top: 18px;"><span class="chip">Cagnotte en cours de création</span></p>
       </div>
     </section>
 
     <section class="section">
       <div class="section-inner content-block narrow">
         <div class="center">
-          <div class="eyebrow" data-i18n="rsvp.eyebrow">Merci de répondre avant le 6 mai 2027</div>
-          <h2 class="title" data-i18n="rsvp.title">RSVP</h2>
+          <div class="eyebrow" data-i18n="rsvp.eyebrow">RSVP</div>
+          <h2 class="title" data-i18n="rsvp.title">Merci de répondre avant le 6 mai 2027</h2>
         </div>
         <form class="rsvp-form" onsubmit="return false;">
           <label class="field">
@@ -1288,15 +1303,15 @@
     <section class="section">
       <div class="section-inner content-block narrow">
         <div class="center">
-          <div class="eyebrow" data-i18n="faq.eyebrow">Questions fréquentes</div>
-          <h2 class="title" data-i18n="faq.title">FAQ</h2>
+          <div class="eyebrow" data-i18n="faq.eyebrow">FAQ</div>
+          <h2 class="title" data-i18n="faq.title">Questions fréquentes</h2>
         </div>
         <div class="faq">
           <article class="faq-item">
             <span class="lang-fr"><h3>Pourquoi le week-end du 6 mai ?</h3><p>Le 8 mai est un jour férié en France (Victoire 1945), ce qui fait du week-end du 6 au 8 mai un long week-end de trois jours. Le mois de mai est aussi une période plus accessible que l'été pour les billets d'avion, et la Provence en mai est imbattable.<br><br>Nous savons que cette date ne conviendra pas à tout le monde. Nous avons fait de notre mieux pour vous permettre de venir dans les meilleures conditions possibles.</p></span><span class="lang-en" style="display:none"><h3>Why the May 6th weekend?</h3><p>May 8th is a public holiday in France (Victory Day 1945), making it a three-day long weekend. May is also far more affordable than summer for flights and accommodation, which mattered to us for guests travelling from abroad. And Provence in May is simply magical.<br><br>We know this date won't work for everyone, and we understand. We've done our best to make it as easy as possible to join us.</p></span>
           </article>
           <article class="faq-item">
-            <span class="lang-fr"><h3>Y a-t-il une cérémonie à la mairie ?</h3><p>La mairie aura bien eu lieu avant le 6 mai, mais nous n'avons pas encore de date ni de lieu confirmé. Vous en serez informé(e) en temps voulu. La cérémonie du samedi sera entièrement laïque.</p></span><span class="lang-en" style="display:none"><h3>Is there a civil ceremony?</h3><p>The civil ceremony will have taken place before May 6th, but we don't have a confirmed date or location yet. You'll be kept informed. Saturday's ceremony will be entirely secular.</p></span>
+            <span class="lang-fr"><h3>Y a-t-il une cérémonie à la mairie ?</h3><p>La mairie aura bien eu lieu avant le 6 mai, mais nous n'avons pas encore de date ni de lieu confirmé. Les convié(e)s seront informé(e)s en temps voulu. La cérémonie du samedi sera entièrement laïque.</p></span><span class="lang-en" style="display:none"><h3>Is there a civil ceremony?</h3><p>The civil ceremony will have taken place before May 6th, but we don't have a confirmed date or location yet. Guests will be informed in due time. Saturday's ceremony will be entirely secular.</p></span>
           </article>
           <article class="faq-item">
             <span class="lang-fr"><h3>Les enfants sont-ils les bienvenus ?</h3><p>Le mariage se déroule sans enfants, à l'exception du neveu et de la nièce des mariés.</p></span><span class="lang-en" style="display:none"><h3>Are children welcome?</h3><p>The wedding is child-free, with the exception of the couple's nephew and niece.</p></span>
@@ -1308,16 +1323,16 @@
             <span class="lang-fr"><h3>Comment venir sans voiture ?</h3><p>La gare TGV la plus proche est <strong>Avignon</strong> (1h de route). Des taxis locaux peuvent assurer le trajet. Pour les invités venant d'Amsterdam, l'aéroport de Lyon-Saint Exupéry est recommandé (2h10 de route).</p></span><span class="lang-en" style="display:none"><h3>How do I get there without a car?</h3><p>The nearest TGV train station is <strong>Avignon</strong> (1h drive). Local taxis can take you from there. For guests coming from Amsterdam, Lyon-Saint Exupéry airport is recommended (2h10 drive).</p></span>
           </article>
           <article class="faq-item">
-            <span class="lang-fr"><h3>Où se loger ?</h3><p>Le domaine propose 30 couchages sur place. Pour les autres invités, des hébergements sont disponibles dans les villages de Saint-Martin-d'Ardèche (4 km), Saint-Julien-de-Peyrolas et Aiguèze.</p></span><span class="lang-en" style="display:none"><h3>Where should I stay?</h3><p>The estate has 30 beds on-site. For other guests, accommodation is available in the nearby villages of Saint-Martin-d'Ardèche (4 km), Saint-Julien-de-Peyrolas and Aiguèze.</p></span>
+            <span class="lang-fr"><h3>Où se loger ?</h3><p>Le domaine propose 30 couchages sur place. Les personnes qui dorment sur place au Clos d'Hullias n'ont rien à payer pour leur logement, c'est notre cadeau. Pour les autres invités, des hébergements sont disponibles dans les villages de Saint-Martin-d'Ardèche (4 km), Saint-Julien-de-Peyrolas et Aiguèze.</p></span><span class="lang-en" style="display:none"><h3>Where should I stay?</h3><p>The estate has 30 beds on-site. Guests staying on-site at the Clos d'Hullias don't need to pay anything for accommodation, it's our gift. For other guests, accommodation is available in the nearby villages of Saint-Martin-d'Ardèche (4 km), Saint-Julien-de-Peyrolas and Aiguèze.</p></span>
           </article>
           <article class="faq-item">
-            <span class="lang-fr"><h3>Y a-t-il une piscine ?</h3><p>Oui, le domaine dispose de deux piscines. La baignade de nuit n'est pas autorisée.</p></span><span class="lang-en" style="display:none"><h3>Is there a pool?</h3><p>Yes, the estate has two swimming pools. Night swimming is not permitted.</p></span>
+            <span class="lang-fr"><h3>Y a-t-il une piscine ?</h3><p>Oui, le domaine dispose de deux piscines, prévoyez votre maillot de bain. La baignade de nuit n'est pas autorisée.</p></span><span class="lang-en" style="display:none"><h3>Is there a pool?</h3><p>Yes, the estate has two swimming pools, bring your swimsuit. Night swimming is not permitted.</p></span>
           </article>
           <article class="faq-item">
             <span class="lang-fr"><h3>Quel temps prévoir début mai ?</h3><p>Le climat est généralement doux et ensoleillé début mai dans le Gard, avec des soirées fraîches. Prévoyez une veste ou un châle.</p></span><span class="lang-en" style="display:none"><h3>What's the weather like in early May?</h3><p>Early May in the Gard is typically warm and sunny, though evenings can be cool. We recommend bringing a light jacket or wrap.</p></span>
           </article>
           <article class="faq-item">
-            <span class="lang-fr"><h3>Jusqu'à quelle heure dure la soirée ?</h3><p>La musique se poursuit tard dans la nuit. Groupe live en première partie, puis DJ jusqu'au bout.</p></span><span class="lang-en" style="display:none"><h3>How late does the party go?</h3><p>The music goes on until the early hours. Live band to open, then DJ until the end.</p></span>
+            <span class="lang-fr"><h3>Jusqu'à quelle heure dure la soirée ?</h3><p><a href="https://nuitblanchedj.com/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--gold)">DJ Nuit Blanche</a> nous accompagne toute la journée et une partie de la nuit. La soirée dansante se poursuit jusqu'à 4h.</p></span><span class="lang-en" style="display:none"><h3>How late does the party go?</h3><p><a href="https://nuitblanchedj.com/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--gold)">DJ Nuit Blanche</a> will be with us all day and into the night. Dancing continues until 4am.</p></span>
           </article>
           <article class="faq-item">
             <span class="lang-fr"><h3>Avez-vous une liste de mariage ?</h3><p>Pas de liste de mariage. Si vous souhaitez nous faire un cadeau, une cagnotte est disponible pour notre voyage de noces, et une urne sera présente le jour J.</p></span><span class="lang-en" style="display:none"><h3>Do you have a wedding list?</h3><p>No wedding list. If you'd like to give us a gift, a fund is available to contribute to our honeymoon, and a box will be on the day.</p></span>
@@ -1330,7 +1345,7 @@
       <div class="section-inner content-block center">
         <div class="eyebrow" data-i18n="map.eyebrow">Nos invités</div>
         <h2 class="title" data-i18n="map.title">Notre fête de mariage est internationale !</h2>
-        <p class="content-copy" style="margin-top:12px;margin-bottom:0" data-i18n="map.desc">80 invités se déplacent depuis 4 continents. Cliquez sur une ville pour voir comment rejoindre le domaine.</p>
+        <p class="content-copy" style="margin-top:12px;margin-bottom:0" data-i18n="map.desc">80 invités se déplacent depuis Amsterdam, New York, Montréal, Tahiti, La Réunion et bien d'autres villes. Cliquez sur une ville pour voir comment rejoindre le domaine.</p>
         <div id="guest-map" aria-label="Carte des invités"></div>
         <p class="map-hint" data-i18n="map.hint">Cliquez sur une ville pour voir l'itinéraire conseillé.</p>
       </div>
@@ -1357,12 +1372,12 @@
     <div class="modal-box">
       <button class="modal-close" onclick="closeGuestList()" aria-label="Fermer">&times;</button>
       <h3 style="margin-bottom:4px">Sur place au Clos d'Hullias</h3>
-      <p style="font-size:0.9rem;color:rgba(45,42,39,0.6);margin:0 0 18px">30 couchages disponibles</p>
+      <p style="font-size:0.9rem;color:rgba(45,42,39,0.6);margin:0 0 18px">Couchages disponibles</p>
       <ul class="modal-guest-list">
         <li>Aude</li><li>Charles</li><li>Dominique</li><li>Sabine</li><li>Noémie</li><li>Alix</li>
         <li>Solène</li><li>Adrien</li><li>Pablo</li><li>Auriane</li><li>Pierre</li><li>Shems</li>
         <li>Faustine</li><li>Margaux</li><li>Paul</li><li>Laurence</li><li>Lawrence</li><li>Livia</li>
-        <li>Sam</li><li>Dominique</li><li>Médéric</li><li>Irvin</li><li>Mewen</li><li>Lucas</li>
+        <li>Sam</li><li>Dominique VR</li><li>Médéric</li><li>Irvin</li><li>Mewen</li><li>Lucas</li>
         <li>Valentin</li><li>Aglaée</li><li>Ludwig</li><li>Lorelei</li><li>Mina</li><li>Carlos</li>
       </ul>
     </div>
@@ -1407,21 +1422,23 @@
     const t = {
       fr: {
         'gate.sub':'Accès invités','gate.placeholder':"Code d'invitation",'gate.btn':'Entrer','gate.error':'Code incorrect.',
-        'hero.date':'Samedi 6 mai 2028','hero.countdown':'Compte à rebours',
+        'hero.eyebrow':'Mariage de','hero.date':'Samedi 6 mai 2028','hero.countdown':'Compte à rebours',
         'cd.days':'Jours','cd.hours':'Heures','cd.min':'Min','cd.sec':'Sec',
         'story.eyebrow':'Depuis le début','story.title':'Notre histoire',
         'story.text':"C'est au bout de trois ans à distance et deux années à vivre ensemble que Charles prend son courage à deux mains. Il cache la bague dans le tiroir à chaussettes qu'Aude a ouvert toute la semaine sans jamais s'en rendre compte. Il finit par demander à Aude d'être sa femme sur un bateau à Amsterdam, en passant sous le pont des amoureux, le jour de leurs cinq ans ensemble.",
         'prog.eyebrow':'Le week-end','prog.title':'Programme',
         'prog.fri':'Vendredi 5 mai','prog.sat':'Samedi 6 mai','prog.sun':'Dimanche 7 mai',
-        'prog.arrival.title':'Arrivée & installation','prog.arrival.note':'Découverte du domaine, temps libre, piscines ouvertes.',
+        'prog.arrival.title':'Arrivée & installation','prog.arrival.note':'Découverte du domaine, temps libre.',
         'prog.dinner-fri.title':'Dîner de retrouvailles','prog.dinner-fri.note':"Repas d'arrivée pré-mariage pour les invités présents dès le vendredi.",
+        'prog.guestarrival.title':'Arrivée des invités','prog.guestarrival.note':'Installation avant le début de la cérémonie.',
         'prog.ceremony.title':'Cérémonie laïque','prog.ceremony.note':'En plein air, dans le parc du domaine.',
         'prog.cocktail.title':'Cocktail','prog.cocktail.note':"Vin d'honneur dans le parc de cèdres, sur place.",
         'prog.dinner-sat.title':'Dîner','prog.dinner-sat.note':'Grillades & plancha en extérieur.',
-        'prog.party.title':'Soirée dansante','prog.party.note':"Groupe de musique live en première partie, DJ jusqu'au bout de la nuit.",
+        'prog.party.title':'Soirée dansante','prog.party.note':"<a href='https://nuitblanchedj.com/' target='_blank' rel='noopener' style='color:inherit;text-decoration:underline;text-decoration-color:var(--gold-soft)'>DJ Nuit Blanche</a> nous accompagnera toute la journée et une partie de la nuit. Soirée dansante jusqu'à 4h.",
         'prog.brunch.title':'Brunch','prog.brunch.note':'Brunch en terrasse pour finir le week-end en douceur.',
+        'prog.poolparty.title':'Pool party','prog.poolparty.note':'Derniers moments ensemble autour des piscines avant le départ.',
         'prog.checkout.title':'Départ','prog.checkout.note':'Heure limite de check-out du domaine.',
-        'time.after':'Après','time.evening':'Soir','time.night':'Nuit','time.morning':'Matin',
+        'time.after':'Après','time.evening':'Soir','time.night':'Nuit','time.morning':'Matin','time.afternoon':'Après-midi',
         'arrival.eyebrow':'Qui arrive quand ?','arrival.title':'Liste des conviés',
         'arrival.desc':"Certains invités sont attendus dès le vendredi pour le dîner d'arrivée. Tous les autres arrivent le samedi pour la cérémonie.",
         'arrival.fri.small':'Dîner de retrouvailles, arrivée dès 16h','arrival.sat.small':'Cérémonie à 16h',
@@ -1435,37 +1452,39 @@
         'accom.clos.desc':'30 couchages sont disponibles sur place, et les personnes suivantes sont invitées à y dormir. Si vous souhaitez séjourner dans un hôtel à proximité, faites-le nous savoir !',
         'accom.note':"Vous serez informé(e) individuellement de votre hébergement une fois la répartition finalisée.",
         'dress.eyebrow':'Tenue','dress.title':'Code vestimentaire',
-        'dress.swatch.navy':'Bleu marine','dress.swatch.brown':'Brun terre','dress.swatch.forest':'Vert forêt','dress.swatch.olive':'Olive','dress.swatch.sage':'Sauge','dress.swatch.ivory':'Ivoire','dress.swatch.gold':'Doré','dress.swatch.cream':'Crème','dress.swatch.linen':'Lin',
+        'dress.swatch.navy':'Bleu marine','dress.swatch.brown':'Brun terre','dress.swatch.forest':'Vert forêt','dress.swatch.olive':'Olive &amp; Sauge','dress.swatch.ivory':'Ivoire','dress.swatch.gold':'Doré','dress.swatch.cream':'Crème','dress.swatch.linen':'Lin',
         'honey.eyebrow':'Voyage de noces','honey.title':'Tirelire collective',
-        'rsvp.eyebrow':'Merci de répondre avant le 6 mai 2027','rsvp.title':'RSVP',
+        'rsvp.eyebrow':'RSVP','rsvp.title':'Merci de répondre avant le 6 mai 2027',
         'rsvp.name':'Nom et prénom','rsvp.attend':'Serez-vous présent(e) le samedi 6 mai ?',
         'rsvp.brunch':'Serez-vous présent(e) au brunch du dimanche 7 mai ?',
         'rsvp.party':'Nombre de personnes','rsvp.diet':'Allergies / régime alimentaire',
         'rsvp.msg':'Message (optionnel)','rsvp.submit':'Envoyer ma réponse',
-        'faq.eyebrow':'Questions fréquentes','faq.title':'FAQ',
+        'faq.eyebrow':'FAQ','faq.title':'Questions fréquentes',
         'map.eyebrow':'Nos invités','map.title':'Notre fête de mariage est internationale !',
-        'map.desc':'80 invités se déplacent depuis 4 continents. Cliquez sur une ville pour voir comment rejoindre le domaine.',
+        'map.desc':"80 invités se déplacent depuis Amsterdam, New York, Montréal, Tahiti, La Réunion et bien d'autres villes. Cliquez sur une ville pour voir comment rejoindre le domaine.",
         'map.hint':"Cliquez sur une ville pour voir l'itinéraire conseillé.",
         'gallery.eyebrow':'En images','gallery.title':'Galerie',
         'footer':'Doune &amp; Grem, 6 mai 2028',
       },
       en: {
         'gate.sub':'Guest Access','gate.placeholder':'Invitation code','gate.btn':'Enter','gate.error':'Incorrect code.',
-        'hero.date':'Saturday, May 6th, 2028','hero.countdown':'Countdown',
+        'hero.eyebrow':'The wedding of','hero.date':'Saturday, May 6th, 2028','hero.countdown':'Countdown',
         'cd.days':'Days','cd.hours':'Hours','cd.min':'Min','cd.sec':'Sec',
         'story.eyebrow':'From the beginning','story.title':'Our story',
         'story.text':"After three years apart and two years living together, Charles finally plucks up the courage. He hides the ring in the sock drawer that Aude opens every single day without ever noticing. He then asks Aude to be his wife on a boat in Amsterdam, drifting under the Bridge of Lovers, on their five-year anniversary.",
         'prog.eyebrow':'The weekend','prog.title':'Schedule',
         'prog.fri':'Friday, May 5th','prog.sat':'Saturday, May 6th','prog.sun':'Sunday, May 7th',
-        'prog.arrival.title':'Arrival & check-in','prog.arrival.note':'Explore the estate, free time, pools open.',
+        'prog.arrival.title':'Arrival & check-in','prog.arrival.note':'Explore the estate, free time.',
         'prog.dinner-fri.title':'Welcome dinner','prog.dinner-fri.note':'Pre-wedding dinner for guests arriving on Friday.',
+        'prog.guestarrival.title':'Guest arrival','prog.guestarrival.note':'Settling in before the ceremony begins.',
         'prog.ceremony.title':'Ceremony','prog.ceremony.note':'Outdoors, in the estate grounds.',
         'prog.cocktail.title':'Cocktail hour','prog.cocktail.note':'Drinks in the cedar park.',
         'prog.dinner-sat.title':'Dinner','prog.dinner-sat.note':'BBQ & plancha under the stars.',
-        'prog.party.title':'Party','prog.party.note':'Live band to open, then DJ until the early hours.',
+        'prog.party.title':'Party','prog.party.note':"<a href='https://nuitblanchedj.com/' target='_blank' rel='noopener' style='color:inherit;text-decoration:underline;text-decoration-color:var(--gold-soft)'>DJ Nuit Blanche</a> will be with us all day and into the night. Dancing until 4am.",
         'prog.brunch.title':'Brunch','prog.brunch.note':'A lazy Sunday brunch on the terrace.',
+        'prog.poolparty.title':'Pool party','prog.poolparty.note':'One last moment together by the pools before we say goodbye.',
         'prog.checkout.title':'Departure','prog.checkout.note':'Check-out deadline from the estate.',
-        'time.after':'After','time.evening':'Evening','time.night':'Night','time.morning':'Morning',
+        'time.after':'After','time.evening':'Evening','time.night':'Night','time.morning':'Morning','time.afternoon':'Afternoon',
         'arrival.eyebrow':'Who arrives when?','arrival.title':'Guest list',
         'arrival.desc':'Some guests are expected on Friday for the welcome dinner. Everyone else arrives on Saturday for the ceremony.',
         'arrival.fri.small':'Welcome dinner, arrival from 4pm','arrival.sat.small':'Ceremony at 4pm',
@@ -1479,16 +1498,16 @@
         'accom.clos.desc':'30 beds are available on-site for the following guests. If you would prefer to stay at a nearby hotel, just let us know!',
         'accom.note':'You will be individually informed of your accommodation once the allocation is finalised.',
         'dress.eyebrow':'Dress code','dress.title':'Dress code',
-        'dress.swatch.navy':'Navy','dress.swatch.brown':'Earth brown','dress.swatch.forest':'Forest green','dress.swatch.olive':'Olive','dress.swatch.sage':'Sage','dress.swatch.ivory':'Ivory','dress.swatch.gold':'Gold','dress.swatch.cream':'Cream','dress.swatch.linen':'Linen',
+        'dress.swatch.navy':'Navy','dress.swatch.brown':'Earth brown','dress.swatch.forest':'Forest green','dress.swatch.olive':'Olive &amp; Sage','dress.swatch.ivory':'Ivory','dress.swatch.gold':'Gold','dress.swatch.cream':'Cream','dress.swatch.linen':'Linen',
         'honey.eyebrow':'Honeymoon','honey.title':'Gift fund',
-        'rsvp.eyebrow':'Please reply by May 6th, 2027','rsvp.title':'RSVP',
+        'rsvp.eyebrow':'RSVP','rsvp.title':'Please reply by May 6th, 2027',
         'rsvp.name':'Full name','rsvp.attend':'Will you join us on Saturday, May 6th?',
         'rsvp.brunch':'Will you join Sunday brunch on May 7th?',
         'rsvp.party':'Number of guests','rsvp.diet':'Dietary requirements / allergies',
         'rsvp.msg':'Message (optional)','rsvp.submit':'Send my reply',
-        'faq.eyebrow':'Frequently asked questions','faq.title':'FAQ',
+        'faq.eyebrow':'FAQ','faq.title':'Frequently asked questions',
         'map.eyebrow':'Our guests','map.title':'Our wedding is going international!',
-        'map.desc':'80 guests are travelling from 4 continents. Click a city to see how to get to the venue.',
+        'map.desc':'80 guests are travelling from Amsterdam, New York, Montreal, Tahiti, Reunion Island and many other cities. Click a city to see how to get to the venue.',
         'map.hint':'Click on a city to see the recommended route.',
         'gallery.eyebrow':'Photos','gallery.title':'Gallery',
         'footer':'Doune &amp; Grem, May 6th 2028',
