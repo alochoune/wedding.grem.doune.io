@@ -11,15 +11,15 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
   :root {
-    --cream: #F2EBD8;           /* ivoire chaud, comme le drapé du moodboard */
-    --cream-deep: #E6DCC5;      /* ivoire plus profond */
-    --navy: #2B3D1C;            /* vert forêt sombre, dominant du moodboard */
-    --navy-deep: #1C2A12;       /* forêt profond */
-    --gold: #9A8830;            /* or olive, moodboard palette */
-    --gold-soft: #B8A54C;       /* or olive clair */
-    --ink: #2E2318;             /* brun chocolat chaud */
+    --cream: #F2EBD8;
+    --cream-deep: #E6DCC5;
+    --navy: #2B3D1C;
+    --navy-deep: #1C2A12;
+    --gold: #9A8830;
+    --gold-soft: #B8A54C;
+    --ink: #2E2318;
     --line: rgba(100, 95, 28, 0.28);
-    --paper: #FDFAF0;           /* blanc ivoire */
+    --paper: #FDFAF0;
     --shadow: 0 18px 60px rgba(20, 28, 8, 0.09);
   }
 
@@ -431,7 +431,6 @@
     margin-bottom: 14px;
   }
 
-  /* ── Strip gallery ─────────────────────────────── */
   .strip-gallery-section {
     padding: 88px 0;
     background: var(--cream);
@@ -650,6 +649,67 @@
     text-decoration-color: rgba(180,50,50,0.6);
   }
 
+  /* ── Pop-up liste des invités sur place ─────────── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(28,42,18,0.72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .modal-overlay.hidden { display: none; }
+
+  .modal-box {
+    background: var(--paper);
+    border-radius: 12px;
+    max-width: 480px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 32px 28px;
+    position: relative;
+    box-shadow: var(--shadow);
+    text-align: left;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .modal-guest-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 20px;
+  }
+
+  .modal-guest-list li {
+    font-size: 1.05rem;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(188,141,62,0.18);
+  }
+
+  .accom-link {
+    color: var(--navy);
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    cursor: pointer;
+  }
+
   @media (max-width: 860px) {
     .card-grid, .gallery-grid { grid-template-columns: 1fr; }
     .prog-row { grid-template-columns: 1fr; gap: 8px; }
@@ -688,6 +748,8 @@
     .rsvp-form { gap: 16px; }
     .gate-card { padding: 24px 16px 22px; }
     .section-inner.narrow { padding: 0; }
+    .modal-guest-list { grid-template-columns: 1fr; }
+    .modal-box { padding: 24px 20px; }
   }
 
   @media (max-width: 420px) {
@@ -727,7 +789,6 @@
   }
   .lang-btn.active { background: var(--gold); color: #fff; }
 
-  /* ── Guest list accordions ─────────────────────── */
   .day-accordion {
     margin-top: 16px;
     border-radius: 10px;
@@ -1069,7 +1130,7 @@
         <div class="card-grid" style="margin-top:32px;grid-template-columns:1fr">
           <article class="panel card" style="text-align:left">
             <h3>Clos d'Hullias</h3>
-            <p><span data-i18n="accom.clos.desc">30 couchages sont disponibles sur place, et les personnes suivantes sont invitées à y dormir. Si vous souhaitez séjourner dans un hôtel à proximité, faites-le nous savoir !</span></p>
+            <p>30 couchages sont disponibles sur place, pour <a href="#" class="accom-link" onclick="openGuestList(); return false;">une partie des invités</a>. Si vous souhaitez séjourner dans un hôtel à proximité, faites-le nous savoir !</p>
           </article>
         </div>
         <div class="panel full-card" style="margin-top:18px;text-align:left">
@@ -1268,8 +1329,8 @@
     <section class="section">
       <div class="section-inner content-block center">
         <div class="eyebrow" data-i18n="map.eyebrow">Nos invités</div>
-        <h2 class="title" data-i18n="map.title">Vous venez de partout</h2>
-        <p class="content-copy" style="margin-top:12px;margin-bottom:0" data-i18n="map.desc">~80 invités, de 4 continents. Cliquez sur une ville pour voir comment rejoindre le domaine.</p>
+        <h2 class="title" data-i18n="map.title">Notre fête de mariage est internationale !</h2>
+        <p class="content-copy" style="margin-top:12px;margin-bottom:0" data-i18n="map.desc">80 invités se déplacent depuis 4 continents. Cliquez sur une ville pour voir comment rejoindre le domaine.</p>
         <div id="guest-map" aria-label="Carte des invités"></div>
         <p class="map-hint" data-i18n="map.hint">Cliquez sur une ville pour voir l'itinéraire conseillé.</p>
       </div>
@@ -1291,6 +1352,21 @@
 
     <footer class="footer" data-i18n="footer">Doune &amp; Grem, 6 mai 2028</footer>
   </main>
+
+  <div id="guestListModal" class="modal-overlay hidden" onclick="if(event.target===this) closeGuestList()">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeGuestList()" aria-label="Fermer">&times;</button>
+      <h3 style="margin-bottom:4px">Sur place au Clos d'Hullias</h3>
+      <p style="font-size:0.9rem;color:rgba(45,42,39,0.6);margin:0 0 18px">30 couchages disponibles</p>
+      <ul class="modal-guest-list">
+        <li>Aude</li><li>Charles</li><li>Dominique</li><li>Sabine</li><li>Noémie</li><li>Alix</li>
+        <li>Solène</li><li>Adrien</li><li>Pablo</li><li>Auriane</li><li>Pierre</li><li>Shems</li>
+        <li>Faustine</li><li>Margaux</li><li>Paul</li><li>Laurence</li><li>Lawrence</li><li>Livia</li>
+        <li>Sam</li><li>Dominique</li><li>Médéric</li><li>Irvin</li><li>Mewen</li><li>Lucas</li>
+        <li>Valentin</li><li>Aglaée</li><li>Ludwig</li><li>Lorelei</li><li>Mina</li><li>Carlos</li>
+      </ul>
+    </div>
+  </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
@@ -1318,6 +1394,13 @@
     gateInput.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') unlock();
     });
+
+    function openGuestList() {
+      document.getElementById('guestListModal').classList.remove('hidden');
+    }
+    function closeGuestList() {
+      document.getElementById('guestListModal').classList.add('hidden');
+    }
 
 
     // ── i18n ──────────────────────────────────────────────────────────────────
@@ -1360,8 +1443,8 @@
         'rsvp.party':'Nombre de personnes','rsvp.diet':'Allergies / régime alimentaire',
         'rsvp.msg':'Message (optionnel)','rsvp.submit':'Envoyer ma réponse',
         'faq.eyebrow':'Questions fréquentes','faq.title':'FAQ',
-        'map.eyebrow':'Nos invités','map.title':'Vous venez de partout',
-        'map.desc':'~80 invités, de 4 continents. Cliquez sur une ville pour voir comment rejoindre le domaine.',
+        'map.eyebrow':'Nos invités','map.title':'Notre fête de mariage est internationale !',
+        'map.desc':'80 invités se déplacent depuis 4 continents. Cliquez sur une ville pour voir comment rejoindre le domaine.',
         'map.hint':"Cliquez sur une ville pour voir l'itinéraire conseillé.",
         'gallery.eyebrow':'En images','gallery.title':'Galerie',
         'footer':'Doune &amp; Grem, 6 mai 2028',
@@ -1404,8 +1487,8 @@
         'rsvp.party':'Number of guests','rsvp.diet':'Dietary requirements / allergies',
         'rsvp.msg':'Message (optional)','rsvp.submit':'Send my reply',
         'faq.eyebrow':'Frequently asked questions','faq.title':'FAQ',
-        'map.eyebrow':'Our guests','map.title':"You're coming from everywhere",
-        'map.desc':'~80 guests from 4 continents. Click a city to see how to get to the venue.',
+        'map.eyebrow':'Our guests','map.title':'Our wedding is going international!',
+        'map.desc':'80 guests are travelling from 4 continents. Click a city to see how to get to the venue.',
         'map.hint':'Click on a city to see the recommended route.',
         'gallery.eyebrow':'Photos','gallery.title':'Gallery',
         'footer':'Doune &amp; Grem, May 6th 2028',
@@ -1433,7 +1516,6 @@
         const v = t[lang][el.dataset.i18nAria];
         if (v !== undefined) el.setAttribute('aria-label', v);
       });
-      // FAQ lang-fr/lang-en spans
       document.querySelectorAll('.lang-fr').forEach(el => el.style.display = lang === 'fr' ? '' : 'none');
       document.querySelectorAll('.lang-en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
       document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
@@ -1441,13 +1523,11 @@
       localStorage.setItem('lang', lang);
     }
 
-    // Apply saved/default lang on load
     if (currentLang === 'en') setLang('en');
 
     document.body.style.overflow = 'hidden';
 
-    // Live countdown to 6 mai 2028
-    const weddingDate = new Date('2028-05-06T16:00:00'); // cérémonie à 16h
+    const weddingDate = new Date('2028-05-06T16:00:00');
     const updateCountdown = () => {
       const now = new Date();
       let diff = weddingDate - now;
@@ -1464,60 +1544,6 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // ── Carousel ───────────────────────────────────────────────────────────────
-    (function() {
-      const track = document.getElementById('carouselTrack');
-      const dotsEl = document.getElementById('carouselDots');
-      const countEl = document.getElementById('carouselCount');
-      if (!track) return;
-      const slides = track.querySelectorAll('.carousel-slide');
-      const total = slides.length;
-      let current = 0, timer;
-
-      function buildDots() {
-        dotsEl.innerHTML = '';
-        slides.forEach((_, i) => {
-          const b = document.createElement('button');
-          b.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-          b.setAttribute('aria-label', 'Photo ' + (i + 1));
-          b.onclick = () => goTo(i);
-          dotsEl.appendChild(b);
-        });
-      }
-
-      function goTo(n) {
-        current = ((n % total) + total) % total;
-        track.style.transform = 'translateX(-' + (current * 100) + '%)';
-        dotsEl.querySelectorAll('.carousel-dot').forEach((d, i) => {
-          d.classList.toggle('active', i === current);
-        });
-        if (countEl) countEl.textContent = (current + 1) + ' / ' + total;
-        clearInterval(timer);
-        timer = setInterval(() => goTo(current + 1), 5000);
-      }
-
-      window.carouselMove = function(dir) { goTo(current + dir); };
-
-      // Keyboard navigation
-      document.addEventListener('keydown', e => {
-        if (e.key === 'ArrowLeft') goTo(current - 1);
-        if (e.key === 'ArrowRight') goTo(current + 1);
-      });
-
-      // Touch swipe
-      let touchX = 0;
-      track.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
-      track.addEventListener('touchend', e => {
-        const dx = e.changedTouches[0].clientX - touchX;
-        if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
-      });
-
-      buildDots();
-      timer = setInterval(() => goTo(current + 1), 5000);
-    })();
-
-
-    // Carte interactive des invités
     let guestMapInit = false;
     function initGuestMap() {
       if (guestMapInit) return;
