@@ -1158,9 +1158,38 @@
         <div class="eyebrow" data-i18n="honey.eyebrow">Voyage de noces</div>
         <h2 class="title" data-i18n="honey.title">Tirelire collective</h2>
         <p class="content-copy">
-          Votre présence est le plus beau des cadeaux. Si vous souhaitez tout de même participer à notre voyage de noces, une cagnotte en ligne est disponible, et une urne sera aussi présente le jour J.
+          Votre présence est le plus beau des cadeaux. Si vous souhaitez tout de même participer à notre voyage de noces, vous pouvez faire un virement directement, et une urne sera aussi présente le jour J.
         </p>
-        <p style="margin-top: 18px;"><span class="chip">Cagnotte en cours de création</span></p>
+        <div class="panel full-card" style="margin-top:28px;text-align:left;max-width:420px;margin-left:auto;margin-right:auto">
+          <div style="display:grid;gap:14px">
+            <div>
+              <div style="font-family:'Cormorant SC',serif;font-size:0.74rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:4px">IBAN</div>
+              <div style="font-size:1.05rem;letter-spacing:0.03em">FR76 1444 5004 0004 0801 9062 001</div>
+            </div>
+            <div>
+              <div style="font-family:'Cormorant SC',serif;font-size:0.74rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:4px">BIC</div>
+              <div style="font-size:1.05rem;letter-spacing:0.03em">CEPAFRPP444</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;padding-top:6px;border-top:1px solid rgba(188,141,62,0.22)">
+              <div>
+                <div style="font-family:'Cormorant SC',serif;font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:2px">Code banque</div>
+                <div style="font-size:0.92rem">14445</div>
+              </div>
+              <div>
+                <div style="font-family:'Cormorant SC',serif;font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:2px">Code guichet</div>
+                <div style="font-size:0.92rem">00400</div>
+              </div>
+              <div>
+                <div style="font-family:'Cormorant SC',serif;font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:2px">N° compte</div>
+                <div style="font-size:0.92rem">04080190620</div>
+              </div>
+              <div>
+                <div style="font-family:'Cormorant SC',serif;font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:2px">Clé RIB</div>
+                <div style="font-size:0.92rem">01</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1254,7 +1283,7 @@
     <section class="section">
       <div class="section-inner content-block center">
         <div class="eyebrow" data-i18n="map.eyebrow">Nos invités</div>
-        <h2 class="title" data-i18n="map.title">Notre fête de mariage est internationale !</h2>
+        <h2 class="title" data-i18n="map.title" style="font-size:clamp(1.5rem, 2.6vw, 2.1rem)">Notre fête de mariage est internationale !</h2>
         <p class="content-copy" style="margin-top:12px;margin-bottom:0" data-i18n="map.desc">80 invités se déplacent pour l'occasion.</p>
         <div id="guest-map" aria-label="Carte des invités"></div>
         <p class="map-hint" data-i18n="map.hint">Cliquez sur une ville pour voir l'itinéraire conseillé.</p>
@@ -1646,6 +1675,8 @@
         { city: 'Moraira', coords: [38.6826, 0.1290], count: 1, route: 'Voiture via AP-7/A7 (4h30).' },
         { city: 'Beaune', coords: [47.0260, 4.8357], count: 1, route: 'Voiture A6/A7 (3h). Ou train → Lyon → Avignon (2h30).' },
         { city: 'Lisieux', coords: [49.1455, 0.2276], count: 1, route: 'Train → Paris St-Lazare (1h30) + TGV → Avignon (2h40) + 1h de route.' },
+        { city: 'Mexico', coords: [19.4326, -99.1332], count: 1, route: 'Vol → Paris CDG ou Madrid (11-12h) + TGV/route → Avignon (2h40) + 1h de route.' },
+        { city: 'San Francisco', coords: [37.7749, -122.4194], count: 1, route: 'Vol → Paris CDG (11h) + TGV → Avignon (2h40) + 1h de route.' },
       ];
 
       guests.forEach(g => {
