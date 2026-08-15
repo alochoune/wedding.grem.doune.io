@@ -7,7 +7,7 @@
 <meta name="description" content="Doune &amp; Grem - mariage le 6 mai 2028">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Cormorant+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Cormorant+SC:wght@400;500;600;700&family=Italianno&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
   :root {
@@ -21,6 +21,8 @@
     --line: rgba(100, 95, 28, 0.28);
     --paper: #FDFAF0;
     --shadow: 0 18px 60px rgba(20, 28, 8, 0.09);
+    --heading-unified-size: clamp(1.55rem, 2.6vw, 2.2rem);
+    --hero-photo: url('https://plus.unsplash.com/premium_photo-1688114988405-5849e59e961b?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
   }
 
   * { box-sizing: border-box; }
@@ -89,9 +91,16 @@
   }
 
   .title {
-    font-size: clamp(2.1rem, 4vw, 3.2rem);
+    font-size: var(--heading-unified-size);
     color: var(--ink);
     margin-bottom: 18px;
+  }
+
+  .prog-title,
+  .card h3,
+  .faq-item h3,
+  .day-accordion summary h3 {
+    font-size: var(--heading-unified-size);
   }
 
   .title.light, .section.navy .title, .section.navy h3, .section.navy p, .section.navy li {
@@ -161,7 +170,10 @@
     display: grid;
     place-items: center;
     padding: 24px;
-    background: radial-gradient(circle at top, #2e4a1a, var(--navy) 60%, #111d0a 100%);
+    background:
+      linear-gradient(180deg, rgba(7, 13, 7, 0.45) 0%, rgba(7, 13, 7, 0.72) 100%),
+      var(--hero-photo) center 28% / cover no-repeat,
+      radial-gradient(circle at top, #2e4a1a, var(--navy) 60%, #111d0a 100%);
     transition: opacity 0.45s ease, visibility 0.45s ease;
   }
 
@@ -186,12 +198,14 @@
   }
 
   .script {
-    font-size: clamp(3rem, 7vw, 4.9rem);
-    font-style: italic;
-    font-weight: 600;
-    letter-spacing: 0;
+    font-family: 'Italianno', cursive;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.01em;
     margin: 0 0 18px;
     color: #fff;
+    text-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
   }
 
   .gate-sub {
@@ -254,71 +268,346 @@
     min-height: 100vh;
     display: grid;
     place-items: center;
-    text-align: center;
-    padding: 92px 24px 90px;
+    padding: 36px 18px 80px;
+    background: linear-gradient(180deg, #f6f3ec 0%, #f1ede3 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
     background:
-      radial-gradient(circle at center, rgba(255,255,255,0.8), transparent 58%),
-      linear-gradient(180deg, #ede5cf 0%, #e3d8ba 100%);
+      radial-gradient(circle at top left, rgba(255,255,255,0.95), transparent 26%),
+      radial-gradient(circle at bottom right, rgba(183, 165, 85, 0.08), transparent 35%);
+  }
+
+  .invitation-card {
+    width: min(1180px, 100%);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 28px 70px rgba(28, 29, 20, 0.28);
+    background: #0a0f07;
+    position: relative;
+    z-index: 1;
+  }
+
+  .invitation-top {
+    min-height: 560px;
+    position: relative;
+    display: grid;
+    place-items: center;
+    padding: 34px 36px 40px;
+    background:
+      linear-gradient(180deg, rgba(4, 7, 4, 0.46) 0%, rgba(6, 9, 6, 0.68) 100%),
+      var(--hero-photo) center center / cover no-repeat;
+  }
+
+  .invitation-top::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0.34) 0%, rgba(0, 0, 0, 0.06) 30%, rgba(0, 0, 0, 0) 55%),
+      radial-gradient(ellipse at center bottom, rgba(18, 32, 13, 0.34) 0%, rgba(0, 0, 0, 0) 45%),
+      linear-gradient(180deg, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 16px);
+    opacity: 0.62;
+  }
+
+  .invitation-top > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .invitation-nav {
+    position: absolute;
+    top: 22px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.56rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.72);
+    padding: 0 16px;
+  }
+
+  .invitation-nav a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+    padding: 6px 4px;
+    min-height: 30px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  #home,
+  #story,
+  #schedule,
+  #details,
+  #rsvp {
+    scroll-margin-top: 22px;
+  }
+
+  .invitation-nav a:hover,
+  .invitation-nav a:focus-visible {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.72);
+    outline: none;
+  }
+
+  .invitation-brand {
+    display: grid;
+    place-items: center;
+    gap: 10px;
+    text-align: center;
+    color: #fff;
+    margin-top: 18px;
+  }
+
+  .invitation-intro {
+    color: rgba(245, 241, 231, 0.88);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.96rem;
+    font-family: 'Cormorant SC', serif;
+    margin-bottom: 2px;
   }
 
   .hero-mark {
-    width: 118px;
-    height: 118px;
-    margin: 0 auto 22px;
-    color: var(--gold);
+    width: 64px;
+    height: 64px;
+    margin: 4px 0 2px;
+    color: #f8f1dd;
+    opacity: 1;
+    filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.55));
+    stroke-width: 2.3;
   }
 
   .hero-name {
-    font-size: clamp(3.4rem, 10vw, 7rem);
-    line-height: 0.95;
-    letter-spacing: -0.04em;
-    font-weight: 700;
-    background: linear-gradient(90deg, #7a6a20 0%, #c4a84e 40%, #756218 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    margin-bottom: 24px;
+    font-family: 'Italianno', cursive;
+    font-size: clamp(4.1rem, 7vw, 7rem);
+    line-height: 0.92;
+    letter-spacing: 0;
+    font-weight: 400;
+    color: #f5f1e7;
+    text-shadow:
+      0 0 2px rgba(255, 255, 255, 0.35),
+      0 12px 28px rgba(0, 0, 0, 0.72);
+    margin: 4px 0 0;
+    text-transform: none;
   }
 
-  .hero-date {
-    color: var(--navy);
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    font-size: 0.95rem;
-  }
-
-  .hero-place {
-    color: rgba(45, 42, 39, 0.84);
-    font-size: 1.2rem;
-    margin-bottom: 44px;
-  }
-
-  .countdown {
+  .invitation-meta {
+    margin-top: 6px;
     display: grid;
-    grid-template-columns: repeat(4, minmax(64px, 1fr));
-    gap: 18px;
-    width: min(420px, 100%);
-    margin: 0 auto;
-  }
-
-  .countdown-item {
-    text-align: center;
-  }
-
-  .countdown-num {
-    color: var(--navy);
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    line-height: 1;
-    font-weight: 700;
-  }
-
-  .countdown-label {
-    margin-top: 2px;
-    color: var(--gold);
-    letter-spacing: 0.3em;
+    gap: 2px;
+    color: rgba(245, 241, 231, 0.88);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    font-size: 0.68rem;
+    font-size: 0.74rem;
+    font-family: 'Cormorant SC', serif;
+  }
+
+  .invitation-meta a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(245, 241, 231, 0.45);
+    width: fit-content;
+    margin: 0 auto;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .invitation-meta a:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.9);
+  }
+
+  .invitation-tagline {
+    margin-top: 16px;
+    color: rgba(245, 241, 231, 0.78);
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+  }
+
+  .invitation-bottom {
+    min-height: 290px;
+    background: #57662e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+    padding: 38px 30px;
+    position: relative;
+    overflow: visible;
+  }
+
+  .invitation-ornament {
+    width: min(560px, 100%);
+    aspect-ratio: 1.2;
+    position: relative;
+    border-radius: 3px;
+    border: 1px solid rgba(222, 214, 199, 0.92);
+    box-shadow:
+      0 20px 36px rgba(20, 28, 8, 0.28),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.72);
+    display: grid;
+    place-items: center;
+    padding: 0;
+    background:
+      linear-gradient(135deg, rgba(236, 230, 221, 0.92) 0 50%, transparent 50%) left bottom / 50% 55% no-repeat,
+      linear-gradient(225deg, rgba(236, 230, 221, 0.92) 0 50%, transparent 50%) right bottom / 50% 55% no-repeat,
+      linear-gradient(180deg, #faf7f1 0%, #f4efe6 100%);
+    overflow: hidden;
+    perspective: 1000px;
+  }
+
+  .invitation-ornament::before,
+  .invitation-ornament::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .invitation-ornament::before {
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 57%;
+    background:
+      linear-gradient(180deg, #f7f2e8 0%, #eee6d8 100%);
+    clip-path: polygon(0 0, 100% 0, 50% 84%);
+    transform-origin: 50% 0%;
+    animation: envelopeFlapOpen 1200ms cubic-bezier(.22,.86,.3,1) 240ms forwards;
+    z-index: 3;
+  }
+
+  .invitation-ornament::after {
+    inset: auto 0 0 0;
+    height: 58%;
+    background:
+      radial-gradient(circle at 50% 70%, rgba(191, 198, 185, 0.95) 0 19px, rgba(126, 132, 123, 0.9) 20px, rgba(116, 122, 114, 0.85) 23px, transparent 24px),
+      radial-gradient(circle at 50% 70%, rgba(240, 245, 235, 0.9) 0 11px, rgba(152, 159, 150, 0.65) 12px, transparent 13px),
+      linear-gradient(180deg, rgba(240, 236, 229, 0.98) 0%, rgba(230, 222, 211, 0.98) 100%);
+    clip-path: polygon(0 0, 50% 47%, 100% 0, 100% 100%, 0 100%);
+    z-index: 1;
+  }
+
+  .invitation-ornament p {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    text-align: center;
+    color: #5e4b37;
+    font-family: 'Cormorant SC', serif;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    font-size: 0.92rem;
+    line-height: 1.56;
+    width: min(88%, 410px);
+  }
+
+  .chapter-copy {
+    position: relative;
+    isolation: isolate;
+    background: linear-gradient(180deg, #fdfbf8 0%, #f6efe3 100%);
+    border-radius: 2px;
+    border: 1px solid rgba(215, 206, 189, 0.9);
+    box-shadow: 0 9px 20px rgba(41, 29, 15, 0.2);
+    padding: 26px 24px 20px;
+    width: min(74%, 420px);
+    transform: translateY(52px);
+    opacity: 0;
+    animation: envelopeLetterUp 900ms cubic-bezier(.22,.85,.34,1) 420ms forwards;
+  }
+
+  .chapter-copy::before {
+    content: none;
+  }
+
+  .chapter-line {
+    display: block;
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .chapter-line + .chapter-line {
+    margin-top: 8px;
+  }
+
+  @keyframes envelopeFlapOpen {
+    from {
+      transform: rotateX(0deg);
+      opacity: 1;
+    }
+    to {
+      transform: rotateX(-168deg);
+      opacity: 0.94;
+    }
+  }
+
+  @keyframes envelopeLetterUp {
+    from {
+      transform: translateY(52px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(-16px);
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .chapter-line,
+    .chapter-copy::before {
+      animation: none;
+      transition: none;
+      transform: none;
+      opacity: 1;
+      filter: none;
+    }
+    .invitation-ornament::before,
+    .chapter-copy {
+      animation: none;
+      transform: none;
+      opacity: 1;
+    }
+  }
+
+
+  .hero .countdown,
+  .hero .hero-date,
+  .hero .hero-place {
+    display: none;
+  }
+
+  .personal-greeting {
+    display: inline-block;
+    margin: 0 auto 14px;
+    padding: 9px 18px;
+    border: 1px solid rgba(188, 141, 62, 0.55);
+    border-radius: 999px;
+    background: rgba(255, 248, 226, 0.92);
+    color: var(--navy);
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.84rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .personal-greeting.hidden {
+    display: none;
   }
 
   .content-block {
@@ -384,7 +673,6 @@
   }
 
   .prog-title {
-    font-size: clamp(1.15rem, 1.6vw, 1.4rem);
     margin-bottom: 8px;
   }
 
@@ -405,7 +693,6 @@
   }
 
   .card h3 {
-    font-size: 1.6rem;
     margin-bottom: 18px;
   }
 
@@ -459,24 +746,188 @@
 
   .faq {
     display: grid;
-    gap: 0;
-    margin-top: 32px;
+    gap: 12px;
+    margin-top: 0;
+  }
+
+  .faq-shell {
+    margin-top: 30px;
+    background: #f5efdf;
+    border: 8px solid #6f4a2d;
+    box-shadow: inset 0 0 0 2px rgba(111, 74, 45, 0.28);
+    display: grid;
+    grid-template-columns: 118px minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .faq-side-title {
+    border-right: 2px solid rgba(111, 74, 45, 0.42);
+    display: grid;
+    place-items: center;
+    color: #5c3820;
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(2.4rem, 5.1vw, 4rem);
+    letter-spacing: 0.08em;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    padding: 14px 0;
+  }
+
+  .faq-main {
+    padding: 24px 22px;
+  }
+
+  .faq-main-title {
+    margin: 0 0 18px;
+    color: #5c3820;
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(1.05rem, 1.55vw, 1.28rem);
+    letter-spacing: 0.04em;
+    text-align: left;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(111, 74, 45, 0.38);
   }
 
   .faq-item {
-    padding: 26px 0 24px;
-    border-bottom: 1px solid rgba(188, 141, 62, 0.22);
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid rgba(111, 74, 45, 0.24);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(20, 28, 8, 0.06);
+    overflow: hidden;
   }
 
-  .faq-item h3 {
-    font-size: 1.55rem;
-    margin-bottom: 14px;
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 16px 20px;
+    color: #5c3820;
+    user-select: none;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(0.98rem, 1.45vw, 1.12rem);
+    line-height: 1.35;
+    letter-spacing: 0.04em;
+    text-align: left;
+  }
+
+  .faq-chevron {
+    flex: 0 0 auto;
+    width: 14px;
+    height: 14px;
+    border-right: 2px solid rgba(92, 56, 32, 0.72);
+    border-bottom: 2px solid rgba(92, 56, 32, 0.72);
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+    margin-right: 4px;
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(225deg);
+    margin-top: 6px;
+  }
+
+  .faq-answer {
+    padding: 2px 20px 16px;
+    text-align: left;
+    border-top: 1px solid rgba(111, 74, 45, 0.18);
+  }
+
+  .faq-answer p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  #rsvp .eyebrow {
+    font-size: 1.06rem;
+    letter-spacing: 0.34em;
+    margin-bottom: 10px;
+  }
+
+  #rsvp.section {
+    padding-top: 44px;
   }
 
   .strip-gallery-section {
     padding: 88px 0;
     background: var(--cream);
     overflow: hidden;
+  }
+
+  .honeymoon-section {
+    position: relative;
+    background:
+      linear-gradient(180deg, rgba(32, 43, 24, 0.6) 0%, rgba(32, 43, 24, 0.72) 100%),
+      url('https://i.pinimg.com/736x/6b/92/dc/6b92dc06ee6730e8eb0c613377e39609.jpg') center / cover no-repeat;
+    color: #f7f3e8;
+    overflow: hidden;
+  }
+
+  .honeymoon-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 12% 18%, rgba(248, 242, 228, 0.2), transparent 34%),
+      radial-gradient(circle at 85% 82%, rgba(248, 242, 228, 0.12), transparent 36%);
+    pointer-events: none;
+  }
+
+  .honeymoon-section .section-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .honeymoon-section .eyebrow,
+  .honeymoon-section .title,
+  .honeymoon-section .content-copy {
+    color: #f7f3e8;
+  }
+
+  .honeymoon-section .panel {
+    background: rgba(20, 28, 8, 0.52);
+    border-color: rgba(247, 243, 232, 0.34);
+    box-shadow: 0 20px 46px rgba(8, 12, 6, 0.32);
+  }
+
+  .story-section {
+    position: relative;
+    background:
+      linear-gradient(180deg, rgba(20, 24, 14, 0.56) 0%, rgba(20, 24, 14, 0.68) 100%),
+      url('https://i.pinimg.com/736x/50/f8/d8/50f8d84b992dd7c4cc3c4cd3a22558ae.jpg') center / cover no-repeat;
+    overflow: hidden;
+  }
+
+  .story-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 16% 24%, rgba(246, 239, 225, 0.14), transparent 32%),
+      radial-gradient(circle at 84% 78%, rgba(246, 239, 225, 0.12), transparent 34%);
+    pointer-events: none;
+  }
+
+  .story-section .section-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .story-section .title,
+  .story-section .content-copy {
+    color: #f8f1df;
+    text-shadow: 0 3px 14px rgba(0, 0, 0, 0.35);
   }
 
   .strip-header {
@@ -763,7 +1214,23 @@
     .card-grid, .gallery-grid { grid-template-columns: 1fr; }
     .prog-columns { grid-template-columns: 1fr; gap: 8px; }
     .prog-column { margin-bottom: 12px; }
-    .hero { min-height: auto; padding-top: 100px; padding-bottom: 100px; }
+    .hero { min-height: auto; padding: 20px 12px 64px; }
+    .invitation-top { min-height: 460px; }
+    .invitation-nav {
+      gap: 14px;
+      font-size: 0.52rem;
+      letter-spacing: 0.18em;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 0 18px;
+    }
+    .invitation-nav::-webkit-scrollbar { display: none; }
+    .invitation-nav a { min-height: 34px; }
+    .invitation-bottom { min-height: 232px; padding: 30px 20px; }
+    .invitation-ornament { width: min(470px, 100%); }
     .arrival-grid { grid-template-columns: 1fr; }
     #guest-map { height: 320px; }
   }
@@ -771,13 +1238,22 @@
   @media (max-width: 640px) {
     body { font-size: 17px; }
     .section { padding: 60px 16px; }
+    #rsvp.section { padding-top: 34px; }
     .spacious { padding-top: 68px !important; padding-bottom: 68px !important; }
-    .hero { padding: 80px 16px 68px; }
-    .hero-name { letter-spacing: -0.05em; }
-    .hero-place { font-size: 1rem; }
-    .countdown { gap: 10px; }
-    .countdown-num { font-size: clamp(1.6rem, 8vw, 2.6rem); }
-    .title { font-size: clamp(1.8rem, 7vw, 2.6rem); margin-bottom: 14px; }
+    .hero { padding: 16px 10px 52px; }
+    .invitation-top { min-height: 390px; padding: 24px 18px; }
+    .invitation-nav { gap: 10px; font-size: 0.5rem; letter-spacing: 0.16em; padding: 0 14px; }
+    .hero-name { font-size: clamp(3rem, 12vw, 4.8rem); }
+    .invitation-intro { font-size: 0.8rem; letter-spacing: 0.14em; }
+    .invitation-meta { font-size: 0.66rem; letter-spacing: 0.11em; }
+    .invitation-bottom {
+      min-height: 180px;
+      padding: 24px 14px;
+      justify-content: center;
+    }
+    .invitation-ornament { width: min(350px, 100%); }
+    .invitation-ornament p { font-size: 0.9rem; width: 90%; }
+    .title { margin-bottom: 14px; }
     .content-copy { font-size: clamp(1.1rem, 4vw, 1.35rem); }
     .acces-grid { grid-template-columns: 1fr; }
     .venue-links { gap: 8px; }
@@ -794,8 +1270,27 @@
     .strip-header { padding-bottom: 36px; }
     .full-card { padding: 16px; }
     .card { padding: 18px 16px; }
-    .faq-item h3 { font-size: 1.25rem; }
+    .faq-shell {
+      grid-template-columns: 1fr;
+      border-width: 6px;
+    }
+    .faq-side-title {
+      writing-mode: horizontal-tb;
+      transform: none;
+      border-right: 0;
+      border-bottom: 2px solid rgba(111, 74, 45, 0.42);
+      font-size: 2rem;
+      padding: 10px 0 8px;
+    }
+    .faq-main {
+      padding: 16px 14px;
+    }
+    .faq-main-title {
+      margin-bottom: 14px;
+      font-size: 1.2rem;
+    }
     .rsvp-form { gap: 16px; }
+    #rsvp .eyebrow { font-size: 0.92rem; letter-spacing: 0.24em; }
     .gate-card { padding: 24px 16px 22px; }
     .section-inner.narrow { padding: 0; }
     .modal-guest-list { grid-template-columns: 1fr; }
@@ -803,8 +1298,7 @@
   }
 
   @media (max-width: 420px) {
-    .countdown { grid-template-columns: repeat(2, 1fr); gap: 16px; width: min(280px, 100%); }
-    .hero-name { font-size: clamp(2.6rem, 12vw, 4rem); }
+    .hero-name { font-size: clamp(2.8rem, 13vw, 4rem); }
     .venue-links { flex-direction: column; align-items: center; }
     .strip-tile { width: 90px; height: 90px; border-radius: 6px; }
     .strip-wrapper + .strip-wrapper { margin-top: 8px; }
@@ -860,7 +1354,7 @@
   .day-accordion summary::-webkit-details-marker { display: none; }
 
   .day-accordion summary .sum-left { display: flex; flex-direction: column; gap: 3px; }
-  .day-accordion summary h3 { color: #fff; font-size: 1.35rem; margin: 0; }
+  .day-accordion summary h3 { color: #fff; margin: 0; }
   .day-accordion summary small { color: var(--gold-soft); letter-spacing: 0.18em; font-size: 0.76rem; text-transform: uppercase; }
 
   .day-accordion summary .chevron {
@@ -895,7 +1389,6 @@
       <h1 class="script">Doune &amp; Grem</h1>
       <div class="gate-sub" data-i18n="gate.sub">Accès invités</div>
       <input id="gateInput" class="gate-input" type="text" placeholder="Votre prénom" autocomplete="off" aria-label="Votre prénom" data-i18n-placeholder="gate.placeholder">
-      <div class="gate-hint" data-i18n="gate.hint">Tapez le prénom indiqué sur votre invitation</div>
       <div style="margin-top:18px;">
         <button class="button button-outline" id="gateButton" type="button"><span data-i18n="gate.btn">Entrer</span></button>
       </div>
@@ -904,38 +1397,49 @@
   </div>
 
   <main id="site" class="wrap hidden">
-    <section class="hero">
-      <div class="section-inner narrow">
-        <svg class="hero-mark" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M20 100V54c0-26 18-44 40-44s40 18 40 44v46" />
-          <path d="M32 88c6-17 4-31 16-36" />
-          <path d="M88 88c-6-17-4-31-16-36" />
-        </svg>
-        <div class="eyebrow" data-i18n="hero.eyebrow">Mariage de</div>
-        <h1 class="hero-name">Doune &amp; Grem</h1>
-        <div class="hero-date" data-i18n="hero.date">Samedi 6 mai 2028</div>
-        <div class="hero-place">Clos d'Hullias · Saint-Christol-de-Rodières, Gard</div>
-        <div id="personalGreeting" class="personal-greeting hidden"></div>
-        <div class="countdown" data-i18n-aria="hero.countdown" aria-label="Compte à rebours">
-          <div class="countdown-item"><div class="countdown-num" id="days">663</div><div class="countdown-label" data-i18n="cd.days">Jours</div></div>
-          <div class="countdown-item"><div class="countdown-num" id="hours">16</div><div class="countdown-label" data-i18n="cd.hours">Heures</div></div>
-          <div class="countdown-item"><div class="countdown-num" id="minutes">17</div><div class="countdown-label" data-i18n="cd.min">Min</div></div>
-          <div class="countdown-item"><div class="countdown-num" id="seconds">02</div><div class="countdown-label" data-i18n="cd.sec">Sec</div></div>
+    <section class="hero" id="home">
+      <div class="invitation-card">
+        <div class="invitation-top">
+          <div id="personalGreeting" class="personal-greeting hidden" aria-live="polite"></div>
+          <div class="invitation-nav" aria-label="Navigation principale">
+            <a href="#story">Our story</a>
+            <a href="#details">Details</a>
+            <a href="#home">Home</a>
+            <a href="#rsvp">RSVP</a>
+            <a href="#schedule">Schedule</a>
+          </div>
+          <div class="invitation-brand">
+            <div class="invitation-intro">Vous êtes invité au mariage de</div>
+            <svg class="hero-mark" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 100V54c0-26 18-44 40-44s40 18 40 44v46" />
+              <path d="M32 88c6-17 4-31 16-36" />
+              <path d="M88 88c-6-17-4-31-16-36" />
+            </svg>
+            <h1 class="hero-name">Doune &amp; Grem</h1>
+            <div class="invitation-meta">
+              <span>Samedi 6 mai 2028</span>
+              <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x12b5a9b3c53c32bf:0x2e85cc8e52649dd0?sa=X&ved=1t:8290&ictx=111" target="_blank" rel="noopener noreferrer">Clos d'Hullias - Saint-Christol-de-Rodières, Gard</a>
+            </div>
+          </div>
+        </div>
+        <div class="invitation-bottom">
+          <div class="invitation-ornament">
+            <p class="chapter-copy"><span class="chapter-line">Rejoignez notre nouveau chapitre.</span><span class="chapter-line">Vous trouverez toutes les informations relatives à notre mariage sur ce site internet.</span></p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section story-section" id="story">
       <div class="section-inner content-block center">
-        <div class="eyebrow" data-i18n="story.eyebrow">Depuis le début</div>
         <h2 class="title" data-i18n="story.title">Notre histoire</h2>
         <p class="content-copy">
-          <span data-i18n-html="story.text">C'est au bout de trois ans à distance et deux années à vivre ensemble que Charles prend son courage à deux mains. Il cache la bague dans le tiroir à chaussettes qu'Aude a ouvert toute la semaine sans jamais s'en rendre compte. Il finit par demander à Aude d'être sa femme sur un bateau à Amsterdam, en passant sous le pont des amoureux, le jour de leurs cinq ans ensemble.</span>
+          <span data-i18n-html="story.text">C'est au bout de trois ans à distance et deux années à vivre ensemble que Charles prend son courage à deux mains. Il cache la bague dans le tiroir à chaussettes que Aude a ouvert toute la semaine sans jamais s'en rendre compte. Il finit par demander à Aude d'être sa femme sur un bateau à Amsterdam, en passant sous le pont des amoureux, le jour de leurs cinq ans ensemble.</span>
         </p>
       </div>
     </section>
 
-    <section class="section navy spacious">
+    <section class="section navy spacious" id="schedule">
       <div class="section-inner content-block">
         <div class="center">
           <div class="eyebrow" data-i18n="prog.eyebrow">Le week-end</div>
@@ -1005,18 +1509,7 @@
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-inner content-block center narrow">
-        <div class="eyebrow" data-i18n="arrival.eyebrow">Votre invitation</div>
-        <h2 class="title" data-i18n="arrival.title">Un site personnalisé</h2>
-        <p class="content-copy" style="margin-top:10px;margin-bottom:0">
-          <span data-i18n="arrival.desc">En fonction de votre identité, votre invitation est personnalisée avec les dates et horaires qui vous sont propres, affichés juste après votre connexion, en haut de cette page.</span>
-        </p>
-      </div>
-    </section>
-
-
-    <section class="section">
+    <section class="section" id="details">
       <div class="section-inner content-block center">
         <h2 class="title" data-i18n="venue.title">Le lieu</h2>
         <p class="content-copy" style="margin-top:14px;margin-bottom:0">
@@ -1038,6 +1531,8 @@
         </div>
         <div class="panel full-card" style="margin-top:26px;text-align:left">
           <p><strong>Adresse :</strong> 314 chemin d'Hullias, 30760 Saint-Christol-de-Rodières (Gard)</p>
+          <p style="margin-top:20px"><strong data-i18n="venue.parking">Parking :</strong> <span data-i18n="venue.parking.desc">Parking sur place, gratuit pour tous les invités.</span></p>
+          <p style="margin-top:12px">Vous trouverez toutes les informations relatives à notre mariage sur ce site internet.</p>
           <p style="margin-top:18px"><strong data-i18n="venue.how">Comment venir :</strong></p>
           <div class="acces-grid">
             <div class="acces-item"><strong>Avignon TGV</strong><span data-i18n="venue.avignon">1h de route, gare la plus proche</span></div>
@@ -1046,12 +1541,11 @@
             <div class="acces-item"><strong>Montpellier / Aix</strong><span data-i18n="venue.montpellier">1h30 de route</span></div>
             <div class="acces-item"><strong>Autoroute</strong><span data-i18n="venue.autoroute">25 min depuis la sortie la plus proche</span></div>
           </div>
-          <p style="margin-top:20px"><strong data-i18n="venue.parking">Parking :</strong> <span data-i18n="venue.parking.desc">Parking sur place, gratuit pour tous les invités.</span></p>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="rsvp">
       <div class="section-inner content-block center">
         <div class="eyebrow" data-i18n="accom.eyebrow">Sur place &amp; à proximité</div>
         <h2 class="title" data-i18n="accom.title">Hébergement</h2>
@@ -1117,46 +1611,16 @@
           Aucune obligation, mais si l'inspiration vous manque, voici quelques idées : la Provence de carte postale, lin froissé, soie sauvage, matières naturelles, des silhouettes décontractées, dans une palette de tons chauds et terreux. Le mariage se déroule en extérieur, pelouse, gravier, terrasses, les chaussures confortables sont recommandées, les talons aiguilles sont déconseillés.
         </p>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:36px;align-items:start" class="dress-moodboard-grid">
-          <div>
-            <div class="palette" style="justify-content:flex-start;gap:14px">
-              <div class="swatch">
-                <div class="swatch-color" style="background:#8C5430"></div>
-                <div class="swatch-name" data-i18n="dress.swatch.brown">Brun terre</div>
-                <div class="swatch-hex">#8C5430</div>
-              </div>
-              <div class="swatch">
-                <div class="swatch-color" style="background:#3F4A2D"></div>
-                <div class="swatch-name" data-i18n="dress.swatch.forest">Vert forêt</div>
-                <div class="swatch-hex">#3F4A2D</div>
-              </div>
-              <div class="swatch">
-                <div class="swatch-color" style="background:#737840"></div>
-                <div class="swatch-name" data-i18n="dress.swatch.olive">Olive &amp; Sauge</div>
-                <div class="swatch-hex">#737840</div>
-              </div>
-              <div class="swatch">
-                <div class="swatch-color" style="background:#E6E2D0;border:1px solid rgba(0,0,0,0.08)"></div>
-                <div class="swatch-name" data-i18n="dress.swatch.ivory">Ivoire</div>
-                <div class="swatch-hex">#E6E2D0</div>
-              </div>
-              <div class="swatch">
-                <div class="swatch-color" style="background-image:url('photos/gold-texture.png');background-size:cover;background-position:center"></div>
-                <div class="swatch-name" data-i18n="dress.swatch.gold">Doré</div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <img src="photos/moodboard.jpg" alt="Mood board" style="width:100%;border-radius:10px;box-shadow:var(--shadow);object-fit:cover;max-height:400px">
-          </div>
+        <div style="margin-top:36px;display:flex;justify-content:center">
+          <img src="2.WEDDING/📸/moodboard.png" alt="Mood board inspiration" style="width:min(760px,100%);border-radius:10px;box-shadow:var(--shadow);object-fit:contain;background:#f4efe2;max-height:620px">
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section honeymoon-section">
       <div class="section-inner content-block center narrow">
-        <div class="eyebrow" data-i18n="honey.eyebrow">Voyage de noces</div>
-        <h2 class="title" data-i18n="honey.title">Tirelire collective</h2>
+        <div class="eyebrow" data-i18n="honey.eyebrow">Contribution</div>
+        <h2 class="title" data-i18n="honey.title">Voyage de noces</h2>
         <p class="content-copy">
           Votre présence est le plus beau des cadeaux. Si vous souhaitez tout de même participer à notre voyage de noces, vous pouvez faire un virement directement, et une urne sera aussi présente le jour J.
         </p>
@@ -1201,11 +1665,11 @@
         </div>
         <form class="rsvp-form" onsubmit="return false;">
           <label class="field">
-            <span data-i18n="rsvp.name">Nom et prénom</span>
+            <span data-i18n="rsvp.name">Nom et prénom *</span>
             <input type="text" name="name" placeholder="" id="rsvpName">
           </label>
           <label class="field" id="rsvpFridayField" style="display:none">
-            <span data-i18n="rsvp.attend.fri">Serez-vous présent(e) au dîner de vendredi 5 mai ?</span>
+            <span data-i18n="rsvp.attend.fri">Serez-vous présent(e) au dîner de vendredi 5 mai ? *</span>
             <select name="attendanceFri">
               <option>—</option>
               <option>Oui</option>
@@ -1213,7 +1677,7 @@
             </select>
           </label>
           <label class="field">
-            <span data-i18n="rsvp.attend">Serez-vous présent(e) le samedi 6 mai ?</span>
+            <span data-i18n="rsvp.attend">Serez-vous présent(e) le samedi 6 mai ? *</span>
             <select name="attendance">
               <option>—</option>
               <option>Oui</option>
@@ -1221,7 +1685,7 @@
             </select>
           </label>
           <label class="field">
-            <span data-i18n="rsvp.party">Nombre de personnes</span>
+            <span data-i18n="rsvp.party">Nombre de personnes *</span>
             <input type="number" name="party" value="1" min="1">
           </label>
           <label class="field">
@@ -1229,7 +1693,7 @@
             <input type="text" name="diet">
           </label>
           <label class="field">
-            <span data-i18n="rsvp.msg">Message (optionnel)</span>
+            <span data-i18n="rsvp.msg">Message</span>
             <textarea name="message"></textarea>
           </label>
           <div>
@@ -1241,41 +1705,46 @@
 
     <section class="section">
       <div class="section-inner content-block narrow">
-        <div class="center">
-          <div class="eyebrow" data-i18n="faq.eyebrow">FAQ</div>
-          <h2 class="title" data-i18n="faq.title">Questions fréquentes</h2>
-        </div>
-        <div class="faq">
-          <article class="faq-item">
+        <div class="faq-shell">
+          <div class="faq-side-title">FAQ</div>
+          <div class="faq-main">
+            <h2 class="faq-main-title" data-i18n="faq.title">Questions fréquentes</h2>
+            <div class="faq">
+              <article class="faq-item">
             <span class="lang-fr"><h3>Pourquoi le week-end du 6 mai ?</h3><p>Le 8 mai est un jour férié en France (Victoire 1945), ce qui fait du week-end du 6 au 8 mai un long week-end de trois jours. Le mois de mai est aussi une période plus accessible que l'été pour les billets d'avion, et la Provence en mai est imbattable.<br><br>Nous savons que cette date ne conviendra pas à tout le monde. Nous avons fait de notre mieux pour vous permettre de venir dans les meilleures conditions possibles.</p></span><span class="lang-en" style="display:none"><h3>Why the May 6th weekend?</h3><p>May 8th is a public holiday in France (Victory Day 1945), making it a three-day long weekend. May is also far more affordable than summer for flights and accommodation, which mattered to us for guests travelling from abroad. And Provence in May is simply magical.<br><br>We know this date won't work for everyone, and we understand. We've done our best to make it as easy as possible to join us.</p></span>
-          </article>
-          <article class="faq-item">
+              </article>
+              <article class="faq-item">
+            <span class="lang-fr"><h3>Le site est-il personnalisé ?</h3><p>Oui. Après connexion, votre invitation reste personnalisée selon votre profil invité, avec les informations et horaires qui vous concernent.</p></span><span class="lang-en" style="display:none"><h3>Is the website personalized?</h3><p>Yes. After login, your invitation remains personalized to your guest profile, with information and timing relevant to you.</p></span>
+              </article>
+              <article class="faq-item">
             <span class="lang-fr"><h3>Y a-t-il une cérémonie à la mairie ?</h3><p>La mairie aura bien eu lieu avant le 6 mai, mais nous n'avons pas encore de date ni de lieu confirmé. Les convié(e)s seront informé(e)s en temps voulu. La cérémonie du samedi sera entièrement laïque.</p></span><span class="lang-en" style="display:none"><h3>Is there a civil ceremony?</h3><p>The civil ceremony will have taken place before May 6th, but we don't have a confirmed date or location yet. Guests will be informed in due time. Saturday's ceremony will be entirely secular.</p></span>
-          </article>
-          <article class="faq-item">
+              </article>
+              <article class="faq-item">
             <span class="lang-fr"><h3>Les enfants sont-ils les bienvenus ?</h3><p>Le mariage se déroule sans enfants, à l'exception du neveu et de la nièce des mariés.</p></span><span class="lang-en" style="display:none"><h3>Are children welcome?</h3><p>The wedding is child-free, with the exception of the couple's nephew and niece.</p></span>
-          </article>
-          <article class="faq-item">
+              </article>
+              <article class="faq-item">
             <span class="lang-fr"><h3>Puis-je venir accompagné(e) ?</h3><p>Les +1 invités ont reçu leur invitation personnelle. Malheureusement, nous ne pouvons pas accueillir des +1 supplémentaires et nous espérons que vous le comprendrez.</p></span><span class="lang-en" style="display:none"><h3>Can I bring a plus-one?</h3><p>Invited plus-ones have received their personal invitation. Unfortunately we cannot accommodate additional plus-ones, and we hope you understand.</p></span>
-          </article>
-          <article class="faq-item">
+              </article>
+              <article class="faq-item">
             <span class="lang-fr"><h3>Comment venir sans voiture ?</h3><p>La gare TGV la plus proche est <strong>Avignon</strong> (1h de route). Des taxis locaux peuvent assurer le trajet. Pour les invités venant d'Amsterdam, l'aéroport de Lyon-Saint Exupéry est recommandé (2h10 de route).</p></span><span class="lang-en" style="display:none"><h3>How do I get there without a car?</h3><p>The nearest TGV train station is <strong>Avignon</strong> (1h drive). Local taxis can take you from there. For guests coming from Amsterdam, Lyon-Saint Exupéry airport is recommended (2h10 drive).</p></span>
-          </article>
-          <article class="faq-item">
+              </article>
+              <article class="faq-item">
             <span class="lang-fr"><h3>Où se loger ?</h3><p>Le domaine propose 30 couchages sur place. Les personnes qui dorment sur place au Clos d'Hullias n'ont rien à payer pour leur logement, c'est notre cadeau. Pour les autres invités, des hébergements sont disponibles dans les villages de Saint-Martin-d'Ardèche (4 km), Saint-Julien-de-Peyrolas et Aiguèze.</p></span><span class="lang-en" style="display:none"><h3>Where should I stay?</h3><p>The estate has 30 beds on-site. Guests staying on-site at the Clos d'Hullias don't need to pay anything for accommodation, it's our gift. For other guests, accommodation is available in the nearby villages of Saint-Martin-d'Ardèche (4 km), Saint-Julien-de-Peyrolas and Aiguèze.</p></span>
-          </article>
-          <article class="faq-item">
+              </article>
+              <article class="faq-item">
             <span class="lang-fr"><h3>Y a-t-il une piscine ?</h3><p>Oui, le domaine dispose de deux piscines, prévoyez votre maillot de bain. La baignade de nuit n'est pas autorisée.</p></span><span class="lang-en" style="display:none"><h3>Is there a pool?</h3><p>Yes, the estate has two swimming pools, bring your swimsuit. Night swimming is not permitted.</p></span>
-          </article>
-          <article class="faq-item">
+              </article>
+              <article class="faq-item">
             <span class="lang-fr"><h3>Quel temps prévoir début mai ?</h3><p>Le climat est généralement doux et ensoleillé début mai dans le Gard, avec des soirées fraîches. Prévoyez une veste ou un châle.</p></span><span class="lang-en" style="display:none"><h3>What's the weather like in early May?</h3><p>Early May in the Gard is typically warm and sunny, though evenings can be cool. We recommend bringing a light jacket or wrap.</p></span>
-          </article>
-          <article class="faq-item">
+              </article>
+              <article class="faq-item">
             <span class="lang-fr"><h3>Jusqu'à quelle heure dure la soirée ?</h3><p><a href="https://nuitblanchedj.com/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--gold)">DJ Nuit Blanche</a> nous accompagne toute la journée et une partie de la nuit. La soirée dansante se poursuit jusqu'à 4h.</p></span><span class="lang-en" style="display:none"><h3>How late does the party go?</h3><p><a href="https://nuitblanchedj.com/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--gold)">DJ Nuit Blanche</a> will be with us all day and into the night. Dancing continues until 4am.</p></span>
-          </article>
-          <article class="faq-item">
+              </article>
+              <article class="faq-item">
             <span class="lang-fr"><h3>Avez-vous une liste de mariage ?</h3><p>Pas de liste de mariage. Si vous souhaitez nous faire un cadeau, une cagnotte est disponible pour notre voyage de noces, et une urne sera présente le jour J.</p></span><span class="lang-en" style="display:none"><h3>Do you have a wedding list?</h3><p>No wedding list. If you'd like to give us a gift, a fund is available to contribute to our honeymoon, and a box will be on the day.</p></span>
-          </article>
+              </article>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1283,7 +1752,7 @@
     <section class="section">
       <div class="section-inner content-block center">
         <div class="eyebrow" data-i18n="map.eyebrow">Nos invités</div>
-        <h2 class="title" data-i18n="map.title" style="font-size:clamp(1.5rem, 2.6vw, 2.1rem)">Notre fête de mariage est internationale !</h2>
+        <h2 class="title" data-i18n="map.title">Notre fête de mariage est internationale !</h2>
         <p class="content-copy" style="margin-top:12px;margin-bottom:0" data-i18n="map.desc">80 invités se déplacent pour l'occasion.</p>
         <div id="guest-map" aria-label="Carte des invités"></div>
         <p class="map-hint" data-i18n="map.hint">Cliquez sur une ville pour voir l'itinéraire conseillé.</p>
@@ -1489,16 +1958,57 @@
       document.getElementById('guestListModal').classList.add('hidden');
     }
 
+    function initFaqAccordion() {
+      document.querySelectorAll('.faq article.faq-item').forEach((item) => {
+        const frBlock = item.querySelector('.lang-fr');
+        const enBlock = item.querySelector('.lang-en');
+        const frTitle = frBlock?.querySelector('h3')?.textContent?.trim() || '';
+        const enTitle = enBlock?.querySelector('h3')?.textContent?.trim() || frTitle;
+
+        const frHeading = frBlock?.querySelector('h3');
+        const enHeading = enBlock?.querySelector('h3');
+        if (frHeading) frHeading.remove();
+        if (enHeading) enHeading.remove();
+
+        const details = document.createElement('details');
+        details.className = 'faq-item';
+
+        const summary = document.createElement('summary');
+        const frQuestion = document.createElement('span');
+        frQuestion.className = 'faq-question lang-fr';
+        frQuestion.textContent = frTitle;
+
+        const enQuestion = document.createElement('span');
+        enQuestion.className = 'faq-question lang-en';
+        enQuestion.textContent = enTitle;
+        enQuestion.style.display = 'none';
+
+        const chevron = document.createElement('span');
+        chevron.className = 'faq-chevron';
+        chevron.setAttribute('aria-hidden', 'true');
+
+        summary.append(frQuestion, enQuestion, chevron);
+
+        const answer = document.createElement('div');
+        answer.className = 'faq-answer';
+        if (frBlock) answer.appendChild(frBlock);
+        if (enBlock) answer.appendChild(enBlock);
+
+        details.append(summary, answer);
+        item.replaceWith(details);
+      });
+    }
+
 
     // ── i18n ──────────────────────────────────────────────────────────────────
     const t = {
       fr: {
         'gate.sub':'Accès invités','gate.placeholder':'Votre prénom','gate.btn':'Entrer','gate.error':'Prénom non reconnu.','gate.hint':'Tapez le prénom indiqué sur votre invitation',
-        'greet.hello':'Bonjour','greet.expected':'Vous êtes attendu(e) le','greet.fri':'vendredi 5 mai','greet.sat':'samedi 6 mai','greet.married':'Bienvenue sur votre propre site de mariage !',
+        'greet.hello':'Bonjour','greet.expected':'Vous êtes attendu(e)','greet.fri':'dès le vendredi 5 mai au soir','greet.sat':'le samedi 6 mai','greet.married':'Bienvenue sur votre propre site de mariage !',
         'hero.eyebrow':'Mariage de','hero.date':'Samedi 6 mai 2028','hero.countdown':'Compte à rebours',
         'cd.days':'Jours','cd.hours':'Heures','cd.min':'Min','cd.sec':'Sec',
         'story.eyebrow':'Depuis le début','story.title':'Notre histoire',
-        'story.text':"C'est au bout de trois ans à distance et deux années à vivre ensemble que Charles prend son courage à deux mains. Il cache la bague dans le tiroir à chaussettes qu'Aude a ouvert toute la semaine sans jamais s'en rendre compte. Il finit par demander à Aude d'être sa femme sur un bateau à Amsterdam, en passant sous le pont des amoureux, le jour de leurs cinq ans ensemble.",
+        'story.text':"C'est au bout de trois ans à distance et deux années à vivre ensemble que Charles prend son courage à deux mains. Il cache la bague dans le tiroir à chaussettes que Aude a ouvert toute la semaine sans jamais s'en rendre compte. Il finit par demander à Aude d'être sa femme sur un bateau à Amsterdam, en passant sous le pont des amoureux, le jour de leurs cinq ans ensemble.",
         'prog.eyebrow':'Le week-end','prog.title':'Programme',
         'prog.fri':'Vendredi 5 mai','prog.sat':'Samedi 6 mai','prog.sun':'Dimanche 7 mai',
         'prog.arrival.title':'Arrivée & installation','prog.arrival.note':'Découverte du domaine, temps libre.',
@@ -1524,8 +2034,8 @@
         'accom.clos.desc':'30 couchages sont disponibles sur place, et les personnes suivantes sont invitées à y dormir. Si vous souhaitez séjourner dans un hôtel à proximité, faites-le nous savoir !',
         'accom.note':"Vous serez informé(e) individuellement de votre hébergement une fois la répartition finalisée.",
         'dress.eyebrow':'Tenue','dress.title':'Suggestion de tenue',
-        'dress.swatch.navy':'Bleu marine','dress.swatch.brown':'Brun terre','dress.swatch.forest':'Vert forêt','dress.swatch.olive':'Olive &amp; Sauge','dress.swatch.ivory':'Ivoire','dress.swatch.gold':'Doré','dress.swatch.cream':'Crème','dress.swatch.linen':'Lin',
-        'honey.eyebrow':'Voyage de noces','honey.title':'Tirelire collective',
+        'dress.swatch.navy':'Bleu marine','dress.swatch.brown':'Brun chocolat','dress.swatch.forest':'Vert forêt','dress.swatch.olive':'Olive &amp; Sauge','dress.swatch.ivory':'Ivoire','dress.swatch.gold':'Doré','dress.swatch.cream':'Crème','dress.swatch.linen':'Lin',
+        'honey.eyebrow':'Contribution','honey.title':'Voyage de noces',
         'rsvp.eyebrow':'RSVP','rsvp.title':'Merci de répondre avant le 6 mai 2027',
         'rsvp.name':'Nom et prénom','rsvp.attend':'Serez-vous présent(e) le samedi 6 mai ?','rsvp.attend.fri':'Serez-vous présent(e) au dîner de vendredi 5 mai ?',
         'rsvp.brunch':'Serez-vous présent(e) au brunch du dimanche 7 mai ?',
@@ -1540,7 +2050,7 @@
       },
       en: {
         'gate.sub':'Guest Access','gate.placeholder':'Your first name','gate.btn':'Enter','gate.error':'First name not recognized.','gate.hint':'Type the first name shown on your invitation',
-        'greet.hello':'Hello','greet.expected':"You're expected on",'greet.fri':'Friday, May 5th','greet.sat':'Saturday, May 6th','greet.married':'Welcome to your own wedding site!',
+        'greet.hello':'Hello','greet.expected':"You're expected",'greet.fri':'from Friday evening, May 5th','greet.sat':'on Saturday, May 6th','greet.married':'Welcome to your own wedding site!',
         'hero.eyebrow':'The wedding of','hero.date':'Saturday, May 6th, 2028','hero.countdown':'Countdown',
         'cd.days':'Days','cd.hours':'Hours','cd.min':'Min','cd.sec':'Sec',
         'story.eyebrow':'From the beginning','story.title':'Our story',
@@ -1570,8 +2080,8 @@
         'accom.clos.desc':'30 beds are available on-site for the following guests. If you would prefer to stay at a nearby hotel, just let us know!',
         'accom.note':'You will be individually informed of your accommodation once the allocation is finalised.',
         'dress.eyebrow':'Attire','dress.title':'Suggested attire',
-        'dress.swatch.navy':'Navy','dress.swatch.brown':'Earth brown','dress.swatch.forest':'Forest green','dress.swatch.olive':'Olive &amp; Sage','dress.swatch.ivory':'Ivory','dress.swatch.gold':'Gold','dress.swatch.cream':'Cream','dress.swatch.linen':'Linen',
-        'honey.eyebrow':'Honeymoon','honey.title':'Gift fund',
+        'dress.swatch.navy':'Navy','dress.swatch.brown':'Chocolate brown','dress.swatch.forest':'Forest green','dress.swatch.olive':'Olive &amp; Sage','dress.swatch.ivory':'Ivory','dress.swatch.gold':'Gold','dress.swatch.cream':'Cream','dress.swatch.linen':'Linen',
+        'honey.eyebrow':'Contribution','honey.title':'Honeymoon',
         'rsvp.eyebrow':'RSVP','rsvp.title':'Please reply by May 6th, 2027',
         'rsvp.name':'Full name','rsvp.attend':'Will you join us on Saturday, May 6th?','rsvp.attend.fri':'Will you join the Friday, May 5th dinner?',
         'rsvp.brunch':'Will you join Sunday brunch on May 7th?',
@@ -1587,6 +2097,8 @@
     };
 
     let currentLang = localStorage.getItem('lang') || 'fr';
+
+    initFaqAccordion();
 
     function setLang(lang) {
       currentLang = lang;
@@ -1628,10 +2140,14 @@
       const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const s = Math.floor((diff % (1000 * 60)) / 1000);
-      document.getElementById('days').textContent = d;
-      document.getElementById('hours').textContent = String(h).padStart(2, '0');
-      document.getElementById('minutes').textContent = String(m).padStart(2, '0');
-      document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+      const daysEl = document.getElementById('days');
+      const hoursEl = document.getElementById('hours');
+      const minutesEl = document.getElementById('minutes');
+      const secondsEl = document.getElementById('seconds');
+      if (daysEl) daysEl.textContent = d;
+      if (hoursEl) hoursEl.textContent = String(h).padStart(2, '0');
+      if (minutesEl) minutesEl.textContent = String(m).padStart(2, '0');
+      if (secondsEl) secondsEl.textContent = String(s).padStart(2, '0');
     };
     updateCountdown();
     setInterval(updateCountdown, 1000);
