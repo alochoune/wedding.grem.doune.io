@@ -68,7 +68,7 @@
   }
 
   .section {
-    padding: 88px 24px;
+    padding: 70px 24px;
   }
 
   .section-inner {
@@ -199,7 +199,7 @@
 
   .script {
     font-family: 'Italianno', cursive;
-    font-size: clamp(3rem, 6vw, 5rem);
+    font-size: clamp(4.8rem, 10.5vw, 8.6rem);
     font-style: normal;
     font-weight: 400;
     letter-spacing: 0.01em;
@@ -249,13 +249,15 @@
   }
 
   .personal-greeting {
-    display: inline-block;
-    margin: 0 auto 18px;
-    padding: 8px 20px;
-    border: 1px solid rgba(188,141,62,0.5);
-    border-radius: 20px;
-    background: rgba(255,248,226,0.6);
-    color: var(--navy);
+    display: block;
+    margin: 0;
+    margin-top: 8px;
+    margin-bottom: 7px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
     font-family: 'Cormorant SC', serif;
     font-size: 0.82rem;
     letter-spacing: 0.06em;
@@ -266,10 +268,9 @@
 
   .hero {
     min-height: 100vh;
-    display: grid;
-    place-items: center;
-    padding: 36px 18px 80px;
-    background: linear-gradient(180deg, #f6f3ec 0%, #f1ede3 100%);
+    display: block;
+    padding: 0;
+    background: #0a0f07;
     position: relative;
     overflow: hidden;
   }
@@ -285,17 +286,18 @@
   }
 
   .invitation-card {
-    width: min(1180px, 100%);
-    border-radius: 22px;
+    width: 100%;
+    min-height: 100vh;
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: 0 28px 70px rgba(28, 29, 20, 0.28);
+    box-shadow: none;
     background: #0a0f07;
     position: relative;
     z-index: 1;
   }
 
   .invitation-top {
-    min-height: 560px;
+    min-height: 100vh;
     position: relative;
     display: grid;
     place-items: center;
@@ -321,11 +323,22 @@
     z-index: 1;
   }
 
-  .invitation-nav {
-    position: absolute;
-    top: 22px;
+  .site-sticky-nav {
+    position: fixed;
+    top: 0;
     left: 0;
     right: 0;
+    z-index: 70;
+    padding: 10px 16px 0;
+    pointer-events: none;
+  }
+
+  .site-sticky-nav .invitation-nav {
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+    pointer-events: auto;
     display: flex;
     justify-content: center;
     gap: 28px;
@@ -334,17 +347,22 @@
     font-size: 0.56rem;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.72);
-    padding: 0 16px;
+    color: #fff;
+    padding: 4px 18px;
+    border-radius: 999px;
+    background: rgba(91, 58, 41, 0.56);
+    border: none;
+    box-shadow: 0 10px 24px rgba(9, 16, 28, 0.28);
+    backdrop-filter: blur(10px);
   }
 
-  .invitation-nav a {
+  .site-sticky-nav .invitation-nav a {
     color: inherit;
     text-decoration: none;
-    border-bottom: 1px solid transparent;
+    border-bottom: none;
     transition: color 0.2s ease, border-color 0.2s ease;
     white-space: nowrap;
-    padding: 6px 4px;
+    padding: 7px 4px;
     min-height: 30px;
     display: inline-flex;
     align-items: center;
@@ -355,13 +373,13 @@
   #schedule,
   #details,
   #rsvp {
-    scroll-margin-top: 22px;
+    scroll-margin-top: 120px;
   }
 
-  .invitation-nav a:hover,
-  .invitation-nav a:focus-visible {
+  .site-sticky-nav .invitation-nav a:hover,
+  .site-sticky-nav .invitation-nav a:focus-visible {
     color: #fff;
-    border-color: rgba(255, 255, 255, 0.72);
+    border-color: transparent;
     outline: none;
   }
 
@@ -395,9 +413,9 @@
 
   .hero-name {
     font-family: 'Italianno', cursive;
-    font-size: clamp(4.1rem, 7vw, 7rem);
-    line-height: 0.92;
-    letter-spacing: 0;
+    font-size: clamp(4.6rem, 9vw, 8.2rem);
+    line-height: 0.88;
+    letter-spacing: 0.01em;
     font-weight: 400;
     color: #f5f1e7;
     text-shadow:
@@ -405,6 +423,17 @@
       0 12px 28px rgba(0, 0, 0, 0.72);
     margin: 4px 0 0;
     text-transform: none;
+    white-space: nowrap;
+  }
+
+  .hero-name .initial {
+    font-size: 1.32em;
+    letter-spacing: -0.015em;
+  }
+
+  .hero-name .amp {
+    font-size: 0.78em;
+    margin: 0 0.12em;
   }
 
   .invitation-meta {
@@ -440,152 +469,6 @@
     font-size: 0.72rem;
   }
 
-  .invitation-bottom {
-    min-height: 290px;
-    background: #57662e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 26px;
-    padding: 38px 30px;
-    position: relative;
-    overflow: visible;
-  }
-
-  .invitation-ornament {
-    width: min(560px, 100%);
-    aspect-ratio: 1.2;
-    position: relative;
-    border-radius: 3px;
-    border: 1px solid rgba(222, 214, 199, 0.92);
-    box-shadow:
-      0 20px 36px rgba(20, 28, 8, 0.28),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.72);
-    display: grid;
-    place-items: center;
-    padding: 0;
-    background:
-      linear-gradient(135deg, rgba(236, 230, 221, 0.92) 0 50%, transparent 50%) left bottom / 50% 55% no-repeat,
-      linear-gradient(225deg, rgba(236, 230, 221, 0.92) 0 50%, transparent 50%) right bottom / 50% 55% no-repeat,
-      linear-gradient(180deg, #faf7f1 0%, #f4efe6 100%);
-    overflow: hidden;
-    perspective: 1000px;
-  }
-
-  .invitation-ornament::before,
-  .invitation-ornament::after {
-    content: "";
-    position: absolute;
-    pointer-events: none;
-  }
-
-  .invitation-ornament::before {
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 57%;
-    background:
-      linear-gradient(180deg, #f7f2e8 0%, #eee6d8 100%);
-    clip-path: polygon(0 0, 100% 0, 50% 84%);
-    transform-origin: 50% 0%;
-    animation: envelopeFlapOpen 1200ms cubic-bezier(.22,.86,.3,1) 240ms forwards;
-    z-index: 3;
-  }
-
-  .invitation-ornament::after {
-    inset: auto 0 0 0;
-    height: 58%;
-    background:
-      radial-gradient(circle at 50% 70%, rgba(191, 198, 185, 0.95) 0 19px, rgba(126, 132, 123, 0.9) 20px, rgba(116, 122, 114, 0.85) 23px, transparent 24px),
-      radial-gradient(circle at 50% 70%, rgba(240, 245, 235, 0.9) 0 11px, rgba(152, 159, 150, 0.65) 12px, transparent 13px),
-      linear-gradient(180deg, rgba(240, 236, 229, 0.98) 0%, rgba(230, 222, 211, 0.98) 100%);
-    clip-path: polygon(0 0, 50% 47%, 100% 0, 100% 100%, 0 100%);
-    z-index: 1;
-  }
-
-  .invitation-ornament p {
-    position: relative;
-    z-index: 2;
-    margin: 0;
-    text-align: center;
-    color: #5e4b37;
-    font-family: 'Cormorant SC', serif;
-    letter-spacing: 0.04em;
-    text-transform: none;
-    font-size: 0.92rem;
-    line-height: 1.56;
-    width: min(88%, 410px);
-  }
-
-  .chapter-copy {
-    position: relative;
-    isolation: isolate;
-    background: linear-gradient(180deg, #fdfbf8 0%, #f6efe3 100%);
-    border-radius: 2px;
-    border: 1px solid rgba(215, 206, 189, 0.9);
-    box-shadow: 0 9px 20px rgba(41, 29, 15, 0.2);
-    padding: 26px 24px 20px;
-    width: min(74%, 420px);
-    transform: translateY(52px);
-    opacity: 0;
-    animation: envelopeLetterUp 900ms cubic-bezier(.22,.85,.34,1) 420ms forwards;
-  }
-
-  .chapter-copy::before {
-    content: none;
-  }
-
-  .chapter-line {
-    display: block;
-    opacity: 1;
-    transform: none;
-    animation: none;
-  }
-
-  .chapter-line + .chapter-line {
-    margin-top: 8px;
-  }
-
-  @keyframes envelopeFlapOpen {
-    from {
-      transform: rotateX(0deg);
-      opacity: 1;
-    }
-    to {
-      transform: rotateX(-168deg);
-      opacity: 0.94;
-    }
-  }
-
-  @keyframes envelopeLetterUp {
-    from {
-      transform: translateY(52px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(-16px);
-      opacity: 1;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .chapter-line,
-    .chapter-copy::before {
-      animation: none;
-      transition: none;
-      transform: none;
-      opacity: 1;
-      filter: none;
-    }
-    .invitation-ornament::before,
-    .chapter-copy {
-      animation: none;
-      transform: none;
-      opacity: 1;
-    }
-  }
-
-
   .hero .countdown,
   .hero .hero-date,
   .hero .hero-place {
@@ -593,13 +476,15 @@
   }
 
   .personal-greeting {
-    display: inline-block;
-    margin: 0 auto 14px;
-    padding: 9px 18px;
-    border: 1px solid rgba(188, 141, 62, 0.55);
-    border-radius: 999px;
-    background: rgba(255, 248, 226, 0.92);
-    color: var(--navy);
+    display: block;
+    margin: 0;
+    margin-top: 8px;
+    margin-bottom: 7px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
     font-family: 'Cormorant SC', serif;
     font-size: 0.84rem;
     letter-spacing: 0.07em;
@@ -621,8 +506,8 @@
   }
 
   .spacious {
-    padding-top: 110px;
-    padding-bottom: 110px;
+    padding-top: 88px;
+    padding-bottom: 88px;
   }
 
   .navy {
@@ -855,13 +740,17 @@
     margin-bottom: 10px;
   }
 
+  #story.section {
+    padding-top: 25px;
+  }
+
   #rsvp.section {
-    padding-top: 44px;
+    padding-top: 32px;
   }
 
   .strip-gallery-section {
-    padding: 88px 0;
-    background: var(--cream);
+    padding: 52px 0;
+    background: #3f2417;
     overflow: hidden;
   }
 
@@ -904,8 +793,8 @@
   .story-section {
     position: relative;
     background:
-      linear-gradient(180deg, rgba(20, 24, 14, 0.56) 0%, rgba(20, 24, 14, 0.68) 100%),
-      url('https://i.pinimg.com/736x/50/f8/d8/50f8d84b992dd7c4cc3c4cd3a22558ae.jpg') center / cover no-repeat;
+      linear-gradient(180deg, rgba(20, 24, 14, 0.34) 0%, rgba(20, 24, 14, 0.46) 100%),
+      url('https://i.pinimg.com/736x/e0/6e/8c/e06e8c4447180d9df440f71fda4374b5.jpg') center / cover no-repeat;
     overflow: hidden;
   }
 
@@ -930,9 +819,23 @@
     text-shadow: 0 3px 14px rgba(0, 0, 0, 0.35);
   }
 
+  .story-photo-wrap {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .story-photo {
+    width: min(1040px, 100%);
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+  }
+
   .strip-header {
     text-align: center;
-    padding: 0 24px 48px;
+    padding: 0 24px 20px;
   }
 
   .strip-wrapper {
@@ -981,10 +884,11 @@
   .strip-tile img:hover { filter: grayscale(0%); }
 
   .footer {
-    padding: 34px 24px 54px;
+    padding: 18px 24px 26px;
     text-align: center;
     letter-spacing: 0.18em;
     text-transform: uppercase;
+    background: #3f2417;
     color: var(--gold);
     font-size: 0.72rem;
   }
@@ -1091,6 +995,23 @@
     flex-wrap: wrap;
     gap: 18px;
     margin-top: 32px;
+  }
+
+  .dress-moodboard-grid {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: minmax(280px, 420px) minmax(280px, 1fr);
+    gap: 24px;
+    align-items: center;
+  }
+
+  .dress-moodboard-photo {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid rgba(188,141,62,0.24);
+    box-shadow: 0 10px 28px rgba(21, 21, 17, 0.18);
+    object-fit: cover;
+    display: block;
   }
 
   .swatch {
@@ -1214,9 +1135,12 @@
     .card-grid, .gallery-grid { grid-template-columns: 1fr; }
     .prog-columns { grid-template-columns: 1fr; gap: 8px; }
     .prog-column { margin-bottom: 12px; }
-    .hero { min-height: auto; padding: 20px 12px 64px; }
+    .hero { min-height: auto; padding: 0; }
     .invitation-top { min-height: 460px; }
-    .invitation-nav {
+    .site-sticky-nav {
+      top: 0;
+    }
+    .site-sticky-nav .invitation-nav {
       gap: 14px;
       font-size: 0.52rem;
       letter-spacing: 0.18em;
@@ -1227,32 +1151,24 @@
       scrollbar-width: none;
       padding: 0 18px;
     }
-    .invitation-nav::-webkit-scrollbar { display: none; }
-    .invitation-nav a { min-height: 34px; }
-    .invitation-bottom { min-height: 232px; padding: 30px 20px; }
-    .invitation-ornament { width: min(470px, 100%); }
+    .site-sticky-nav .invitation-nav::-webkit-scrollbar { display: none; }
+    .site-sticky-nav .invitation-nav a { min-height: 34px; }
     .arrival-grid { grid-template-columns: 1fr; }
     #guest-map { height: 320px; }
   }
 
   @media (max-width: 640px) {
     body { font-size: 17px; }
-    .section { padding: 60px 16px; }
-    #rsvp.section { padding-top: 34px; }
-    .spacious { padding-top: 68px !important; padding-bottom: 68px !important; }
-    .hero { padding: 16px 10px 52px; }
+    .section { padding: 46px 16px; }
+    #rsvp.section { padding-top: 24px; }
+    .spacious { padding-top: 56px !important; padding-bottom: 56px !important; }
+    .hero { padding: 0; }
     .invitation-top { min-height: 390px; padding: 24px 18px; }
-    .invitation-nav { gap: 10px; font-size: 0.5rem; letter-spacing: 0.16em; padding: 0 14px; }
-    .hero-name { font-size: clamp(3rem, 12vw, 4.8rem); }
+    .site-sticky-nav { top: 0; padding: 8px 10px 0; }
+    .site-sticky-nav .invitation-nav { gap: 10px; font-size: 0.5rem; letter-spacing: 0.16em; padding: 2px 14px; }
+    .hero-name { font-size: clamp(3.8rem, 14vw, 6.2rem); }
     .invitation-intro { font-size: 0.8rem; letter-spacing: 0.14em; }
     .invitation-meta { font-size: 0.66rem; letter-spacing: 0.11em; }
-    .invitation-bottom {
-      min-height: 180px;
-      padding: 24px 14px;
-      justify-content: center;
-    }
-    .invitation-ornament { width: min(350px, 100%); }
-    .invitation-ornament p { font-size: 0.9rem; width: 90%; }
     .title { margin-bottom: 14px; }
     .content-copy { font-size: clamp(1.1rem, 4vw, 1.35rem); }
     .acces-grid { grid-template-columns: 1fr; }
@@ -1266,8 +1182,8 @@
     .lang-toggle { top: 10px; right: 10px; }
     .lang-btn { padding: 5px 10px; font-size: 0.68rem; letter-spacing: 0.15em; }
     .strip-tile { width: 110px; height: 110px; }
-    .strip-gallery-section { padding: 60px 0; }
-    .strip-header { padding-bottom: 36px; }
+    .strip-gallery-section { padding: 40px 0; }
+    .strip-header { padding-bottom: 16px; }
     .full-card { padding: 16px; }
     .card { padding: 18px 16px; }
     .faq-shell {
@@ -1298,7 +1214,7 @@
   }
 
   @media (max-width: 420px) {
-    .hero-name { font-size: clamp(2.8rem, 13vw, 4rem); }
+    .hero-name { font-size: clamp(3.3rem, 15vw, 5.3rem); }
     .venue-links { flex-direction: column; align-items: center; }
     .strip-tile { width: 90px; height: 90px; border-radius: 6px; }
     .strip-wrapper + .strip-wrapper { margin-top: 8px; }
@@ -1315,10 +1231,10 @@
     display: flex;
     border-radius: 20px;
     overflow: hidden;
-    border: 1px solid rgba(188,141,62,0.55);
-    background: rgba(8,22,43,0.75);
+    border: none;
+    background: rgba(91, 58, 41, 0.56);
     backdrop-filter: blur(10px);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    box-shadow: none;
   }
   .lang-btn {
     padding: 6px 13px;
@@ -1328,10 +1244,10 @@
     border: none;
     background: transparent;
     cursor: pointer;
-    color: rgba(255,255,255,0.58);
+    color: rgba(255,255,255,0.78);
     transition: background 0.2s, color 0.2s;
   }
-  .lang-btn.active { background: var(--gold); color: #fff; }
+  .lang-btn.active { background: rgba(255,255,255,0.16); color: #fff; }
 
   .day-accordion {
     margin-top: 16px;
@@ -1397,34 +1313,32 @@
   </div>
 
   <main id="site" class="wrap hidden">
+    <div class="site-sticky-nav">
+      <div class="invitation-nav" aria-label="Navigation principale" data-i18n-aria="nav.aria">
+        <a href="#story" data-i18n="nav.story">A&amp;C</a>
+        <a href="#details" data-i18n="nav.details">Le lieu</a>
+        <a href="#home" data-i18n="nav.home">Accueil</a>
+        <a href="#rsvp" data-i18n="nav.rsvp">Hébergement</a>
+        <a href="#schedule" data-i18n="nav.schedule">Programme</a>
+      </div>
+    </div>
+
     <section class="hero" id="home">
       <div class="invitation-card">
         <div class="invitation-top">
-          <div id="personalGreeting" class="personal-greeting hidden" aria-live="polite"></div>
-          <div class="invitation-nav" aria-label="Navigation principale">
-            <a href="#story">Our story</a>
-            <a href="#details">Details</a>
-            <a href="#home">Home</a>
-            <a href="#rsvp">RSVP</a>
-            <a href="#schedule">Schedule</a>
-          </div>
           <div class="invitation-brand">
-            <div class="invitation-intro">Vous êtes invité au mariage de</div>
+            <div class="invitation-intro"><span data-i18n="hero.invite">Vous êtes invité au mariage de</span></div>
             <svg class="hero-mark" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M20 100V54c0-26 18-44 40-44s40 18 40 44v46" />
               <path d="M32 88c6-17 4-31 16-36" />
               <path d="M88 88c-6-17-4-31-16-36" />
             </svg>
-            <h1 class="hero-name">Doune &amp; Grem</h1>
+            <h1 class="hero-name"><span class="initial">D</span>oune <span class="amp">&amp;</span> <span class="initial">G</span>rem</h1>
             <div class="invitation-meta">
-              <span>Samedi 6 mai 2028</span>
-              <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x12b5a9b3c53c32bf:0x2e85cc8e52649dd0?sa=X&ved=1t:8290&ictx=111" target="_blank" rel="noopener noreferrer">Clos d'Hullias - Saint-Christol-de-Rodières, Gard</a>
+              <span id="personalGreeting" class="personal-greeting hidden" aria-live="polite"></span>
+              <span data-i18n="hero.date">Samedi 6 mai 2028</span>
+              <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x12b5a9b3c53c32bf:0x2e85cc8e52649dd0?sa=X&ved=1t:8290&ictx=111" target="_blank" rel="noopener noreferrer" data-i18n="hero.place">Clos d'Hullias - Saint-Christol-de-Rodières, Gard</a>
             </div>
-          </div>
-        </div>
-        <div class="invitation-bottom">
-          <div class="invitation-ornament">
-            <p class="chapter-copy"><span class="chapter-line">Rejoignez notre nouveau chapitre.</span><span class="chapter-line">Vous trouverez toutes les informations relatives à notre mariage sur ce site internet.</span></p>
           </div>
         </div>
       </div>
@@ -1432,10 +1346,13 @@
 
     <section class="section story-section" id="story">
       <div class="section-inner content-block center">
-        <h2 class="title" data-i18n="story.title">Notre histoire</h2>
+        <h2 class="title" data-i18n="story.title">A&amp;C</h2>
         <p class="content-copy">
-          <span data-i18n-html="story.text">C'est au bout de trois ans à distance et deux années à vivre ensemble que Charles prend son courage à deux mains. Il cache la bague dans le tiroir à chaussettes que Aude a ouvert toute la semaine sans jamais s'en rendre compte. Il finit par demander à Aude d'être sa femme sur un bateau à Amsterdam, en passant sous le pont des amoureux, le jour de leurs cinq ans ensemble.</span>
+          <span data-i18n-html="story.text">Après des mois à communiquer entre Tahiti et Nantes, le confinement prend un joli tournant lorsque Charles peut rentrer. Dès son deuxième jour en France, nous nous rencontrons sur les bords de l'Erdre, c'est le coup de foudre. Depuis, nous ne nous sommes jamais quittés. Quelques années plus tard, Charles cache la bague dans le tiroir à chaussettes qu'Aude ouvre pourtant toute la semaine sans jamais la voir. Puis il la demande en mariage sur un bateau à Amsterdam, sous le pont des amoureux.</span>
         </p>
+        <div class="story-photo-wrap">
+          <img class="story-photo" src="TaPhotoTabobine.png" alt="Photo ta bobine">
+        </div>
       </div>
     </section>
 
@@ -1512,7 +1429,7 @@
     <section class="section" id="details">
       <div class="section-inner content-block center">
         <h2 class="title" data-i18n="venue.title">Le lieu</h2>
-        <p class="content-copy" style="margin-top:14px;margin-bottom:0">
+        <p class="content-copy" style="margin-top:14px;margin-bottom:0" data-i18n-html="venue.summary">
           <strong>Domaine du Clos d'Hullias</strong>, hameau provençal du XVII<sup>e</sup>&nbsp;siècle niché dans les vignobles du Gard, vue panoramique sur le Mont Ventoux, deux piscines et un parc de cèdres centenaires.
         </p>
         <div class="venue-links">
@@ -1522,7 +1439,7 @@
           </a>
           <a class="venue-link" href="https://www.instagram.com/domaineduclosdhullias/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-            Instagram
+            <span data-i18n="venue.link.instagram">Instagram</span>
           </a>
           <a class="venue-link" href="https://www.google.com/maps/place/Clos+d'Hullias/@44.2432158,4.9208403,9z/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -1530,9 +1447,9 @@
           </a>
         </div>
         <div class="panel full-card" style="margin-top:26px;text-align:left">
-          <p><strong>Adresse :</strong> 314 chemin d'Hullias, 30760 Saint-Christol-de-Rodières (Gard)</p>
+          <p data-i18n-html="venue.address"><strong>Adresse :</strong> 314 chemin d'Hullias, 30760 Saint-Christol-de-Rodières (Gard)</p>
           <p style="margin-top:20px"><strong data-i18n="venue.parking">Parking :</strong> <span data-i18n="venue.parking.desc">Parking sur place, gratuit pour tous les invités.</span></p>
-          <p style="margin-top:12px">Vous trouverez toutes les informations relatives à notre mariage sur ce site internet.</p>
+          <p style="margin-top:12px" data-i18n="venue.info">Vous trouverez toutes les informations relatives à notre mariage sur ce site internet.</p>
           <p style="margin-top:18px"><strong data-i18n="venue.how">Comment venir :</strong></p>
           <div class="acces-grid">
             <div class="acces-item"><strong>Avignon TGV</strong><span data-i18n="venue.avignon">1h de route, gare la plus proche</span></div>
@@ -1552,7 +1469,10 @@
         <div class="card-grid" style="margin-top:32px;grid-template-columns:1fr">
           <article class="panel card" style="text-align:left">
             <h3>Clos d'Hullias</h3>
-            <p>30 couchages sont disponibles sur place, pour <a href="#" class="accom-link" onclick="openGuestList(); return false;">une partie des invités</a>. Si vous préférez séjourner dans un hôtel à proximité, faites-le nous savoir !</p>
+            <p>
+              <span class="lang-fr">30 couchages sont disponibles sur place, pour <a href="#" class="accom-link" onclick="openGuestList(); return false;">une partie des invités</a>. Si vous préférez séjourner dans un hôtel à proximité, faites-le nous savoir !</span>
+              <span class="lang-en" style="display:none">30 beds are available on-site, for <a href="#" class="accom-link" onclick="openGuestList(); return false;">some of the guests</a>. If you would prefer to stay at a nearby hotel, just let us know!</span>
+            </p>
           </article>
         </div>
         <div class="panel full-card" style="margin-top:18px;text-align:left">
@@ -1563,15 +1483,15 @@
               <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
                 <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                   <span style="font-size:1.05rem">Le Castélas <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Appart'hôtel avec piscine, cœur du village &middot; 04 66 82 18 76</span></span>
-                  <a href="https://www.aigueze.fr/tourisme/hotels" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Voir</a>
+                  <a href="https://www.aigueze.fr/tourisme/hotels" target="_blank" rel="noopener" data-i18n="accom.view" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Voir</a>
                 </li>
                 <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                   <span style="font-size:1.05rem">La Poussinière <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Chambre d'hôtes</span></span>
-                  <a href="https://www.booking.com/city/fr/aigueze.fr.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                  <a href="https://www.booking.com/city/fr/aigueze.fr.html" target="_blank" rel="noopener" data-i18n="accom.book" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
                 </li>
                 <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                   <span style="font-size:1.05rem">Le Château d'Aiguèze <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Villas avec piscine</span></span>
-                  <a href="https://www.cartesfrance.fr/carte-france-ville/hotel_30005_Aigueze.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                  <a href="https://www.cartesfrance.fr/carte-france-ville/hotel_30005_Aigueze.html" target="_blank" rel="noopener" data-i18n="accom.book" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
                 </li>
               </ul>
             </div>
@@ -1581,19 +1501,19 @@
               <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
                 <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                   <span style="font-size:1.05rem">Logis Hôtel Bellevue <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Piscine chauffée, restaurant, au bord de l'Ardèche</span></span>
-                  <a href="https://www.hotel-bellevue-restaurant.com/" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                  <a href="https://www.hotel-bellevue-restaurant.com/" target="_blank" rel="noopener" data-i18n="accom.book" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
                 </li>
                 <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                   <span style="font-size:1.05rem">Hôtel Les Petits Oreillers</span>
-                  <a href="https://www.booking.com/city/fr/aigueze.fr.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                  <a href="https://www.booking.com/city/fr/aigueze.fr.html" target="_blank" rel="noopener" data-i18n="accom.book" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
                 </li>
                 <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                   <span style="font-size:1.05rem">Château Saint Martin <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Gîtes avec piscine à débordement, vue Aiguèze &middot; gîtes «&nbsp;Aiguèze&nbsp;» et «&nbsp;Les Gorges de l'Ardèche&nbsp;»</span></span>
-                  <a href="https://locations-ardeche.e-monsite.com/" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                  <a href="https://locations-ardeche.e-monsite.com/" target="_blank" rel="noopener" data-i18n="accom.book" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
                 </li>
                 <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                   <span style="font-size:1.05rem">Le MARINE <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Appartements</span></span>
-                  <a href="https://www.cartesfrance.fr/carte-france-ville/hotel_30005_Aigueze.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                  <a href="https://www.cartesfrance.fr/carte-france-ville/hotel_30005_Aigueze.html" target="_blank" rel="noopener" data-i18n="accom.book" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
                 </li>
               </ul>
             </div>
@@ -1605,15 +1525,38 @@
 
     <section class="section">
       <div class="section-inner content-block center narrow">
-        <div class="eyebrow" data-i18n="dress.eyebrow">Tenue</div>
+        <div class="eyebrow" data-i18n="dress.eyebrow">Thème</div>
         <h2 class="title" data-i18n="dress.title">Suggestion de tenue</h2>
         <p class="content-copy">
           Aucune obligation, mais si l'inspiration vous manque, voici quelques idées : la Provence de carte postale, lin froissé, soie sauvage, matières naturelles, des silhouettes décontractées, dans une palette de tons chauds et terreux. Le mariage se déroule en extérieur, pelouse, gravier, terrasses, les chaussures confortables sont recommandées, les talons aiguilles sont déconseillés.
         </p>
 
-        <div style="margin-top:36px;display:flex;justify-content:center">
-          <img src="2.WEDDING/📸/moodboard.png" alt="Mood board inspiration" style="width:min(760px,100%);border-radius:10px;box-shadow:var(--shadow);object-fit:contain;background:#f4efe2;max-height:620px">
+        <div class="dress-moodboard-grid">
+          <img class="dress-moodboard-photo" src="2.WEDDING/site/photos/moodboard.jpg" alt="Moodboard tenue" loading="lazy">
+          <div class="palette" style="justify-content:center;gap:14px;margin-top:0">
+            <div class="swatch">
+              <div class="swatch-color" style="background:#5B3A29"></div>
+              <div class="swatch-name" data-i18n="dress.swatch.brown">Brun chocolat</div>
+              <div class="swatch-hex">#5B3A29</div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#3F4A2D"></div>
+              <div class="swatch-name" data-i18n="dress.swatch.forest">Vert forêt</div>
+              <div class="swatch-hex">#3F4A2D</div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#737840"></div>
+              <div class="swatch-name" data-i18n="dress.swatch.olive">Olive &amp; Sauge</div>
+              <div class="swatch-hex">#737840</div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#E6E2D0;border:1px solid rgba(0,0,0,0.08)"></div>
+              <div class="swatch-name" data-i18n="dress.swatch.ivory">Ivoire</div>
+              <div class="swatch-hex">#E6E2D0</div>
+            </div>
+          </div>
         </div>
+
       </div>
     </section>
 
@@ -1621,7 +1564,7 @@
       <div class="section-inner content-block center narrow">
         <div class="eyebrow" data-i18n="honey.eyebrow">Contribution</div>
         <h2 class="title" data-i18n="honey.title">Voyage de noces</h2>
-        <p class="content-copy">
+        <p class="content-copy" data-i18n="honey.desc">
           Votre présence est le plus beau des cadeaux. Si vous souhaitez tout de même participer à notre voyage de noces, vous pouvez faire un virement directement, et une urne sera aussi présente le jour J.
         </p>
         <div class="panel full-card" style="margin-top:28px;text-align:left;max-width:420px;margin-left:auto;margin-right:auto">
@@ -1763,13 +1706,12 @@
     <section class="strip-gallery-section">
       <div class="strip-header">
         <div class="eyebrow" data-i18n="gallery.eyebrow">En images</div>
-        <h2 class="title" data-i18n="gallery.title">Galerie</h2>
       </div>
       <div class="strip-wrapper">
-        <div class="strip-track"><div class="strip-tile"><img src="photos/01.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/02.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/03.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/04.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/05.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/06.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/07.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/08.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/09.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/10.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/11.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/12.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/13.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/14.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/15.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/16.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/17.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/18.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/01.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/02.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/03.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/04.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/05.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/06.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/07.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/08.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/09.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/10.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/11.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/12.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/13.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/14.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/15.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/16.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/17.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/18.jpeg" alt="Doune &amp; Grem" loading="lazy"></div></div>
+        <div class="strip-track"><div class="strip-tile"><img src="2.WEDDING/site/photos/01.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/02.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/03.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/04.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/05.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/06.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/07.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/08.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/09.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/10.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/11.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/12.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/13.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/14.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/15.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/16.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/17.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/18.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/01.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/02.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/03.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/04.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/05.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/06.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/07.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/08.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/09.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/10.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/11.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/12.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/13.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/14.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/15.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/16.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/17.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/18.jpg" alt="Doune &amp; Grem" loading="lazy"></div></div>
       </div>
       <div class="strip-wrapper strip-reverse">
-        <div class="strip-track"><div class="strip-tile"><img src="photos/01.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/02.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/03.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/04.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/05.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/06.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/07.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/08.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/09.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/10.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/11.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/12.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/13.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/14.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/15.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/16.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/17.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/18.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/01.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/02.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/03.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/04.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/05.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/06.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/07.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/08.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/09.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/10.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/11.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/12.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/13.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/14.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/15.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/16.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/17.jpeg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="photos/18.jpeg" alt="Doune &amp; Grem" loading="lazy"></div></div>
+        <div class="strip-track"><div class="strip-tile"><img src="2.WEDDING/site/photos/01.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/02.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/03.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/04.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/05.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/06.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/07.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/08.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/09.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/10.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/11.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/12.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/13.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/14.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/15.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/16.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/17.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/18.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/01.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/02.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/03.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/04.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/05.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/06.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/07.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/08.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/09.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/10.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/11.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/12.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/13.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/14.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/15.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/16.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/17.jpg" alt="Doune &amp; Grem" loading="lazy"></div><div class="strip-tile"><img src="2.WEDDING/site/photos/18.jpg" alt="Doune &amp; Grem" loading="lazy"></div></div>
       </div>
     </section>
 
@@ -1778,9 +1720,9 @@
 
   <div id="guestListModal" class="modal-overlay hidden" onclick="if(event.target===this) closeGuestList()">
     <div class="modal-box">
-      <button class="modal-close" onclick="closeGuestList()" aria-label="Fermer">&times;</button>
-      <h3 style="margin-bottom:4px">Sur place au Clos d'Hullias</h3>
-      <p style="font-size:0.9rem;color:rgba(45,42,39,0.6);margin:0 0 18px">Couchages disponibles</p>
+      <button class="modal-close" onclick="closeGuestList()" aria-label="Fermer" data-i18n-aria="modal.close">&times;</button>
+      <h3 style="margin-bottom:4px" data-i18n="modal.title">Sur place au Clos d'Hullias</h3>
+      <p style="font-size:0.9rem;color:rgba(45,42,39,0.6);margin:0 0 18px" data-i18n="modal.subtitle">Couchages disponibles</p>
       <ul class="modal-guest-list">
         <li>Aude</li><li>Charles</li><li>Dominique Chalot</li><li>Sabine</li><li>Noémie</li><li>Alix</li>
         <li>Solène</li><li>Adrien</li><li>Pablo</li><li>Auriane</li><li>Pierre</li><li>Shems</li>
@@ -1924,15 +1866,9 @@
       const el = document.getElementById('personalGreeting');
       if (!el || !currentGuest) return;
       const lang = t[currentLang];
-      let dayText;
-      if (currentGuest.day === 'Vendredi') dayText = lang['greet.fri'];
-      else if (currentGuest.day === 'Samedi') dayText = lang['greet.sat'];
-
-      if (currentGuest.day === 'Mariee') {
-        el.textContent = lang['greet.married'];
-      } else {
-        el.textContent = `${lang['greet.hello']} ${currentGuest.name} — ${lang['greet.expected']} ${dayText}.`;
-      }
+      const getsFullWeekend = currentGuest.day === 'Vendredi' || currentGuest.day === 'Mariee';
+      const dayText = getsFullWeekend ? lang['greet.days.full'] : lang['greet.days.partial'];
+      el.textContent = `${lang['greet.expected']} ${dayText}.`;
       el.classList.remove('hidden');
 
       // Personnalisation du formulaire RSVP
@@ -2004,11 +1940,12 @@
     const t = {
       fr: {
         'gate.sub':'Accès invités','gate.placeholder':'Votre prénom','gate.btn':'Entrer','gate.error':'Prénom non reconnu.','gate.hint':'Tapez le prénom indiqué sur votre invitation',
-        'greet.hello':'Bonjour','greet.expected':'Vous êtes attendu(e)','greet.fri':'dès le vendredi 5 mai au soir','greet.sat':'le samedi 6 mai','greet.married':'Bienvenue sur votre propre site de mariage !',
-        'hero.eyebrow':'Mariage de','hero.date':'Samedi 6 mai 2028','hero.countdown':'Compte à rebours',
+        'nav.aria':'Navigation principale','nav.story':'A&amp;C','nav.details':'Le lieu','nav.home':'Accueil','nav.rsvp':'Hébergement','nav.schedule':'Programme',
+        'greet.hello':'Bonjour','greet.expected':'Et vous êtes attendu pour','greet.days.full':'vendredi, samedi et dimanche','greet.days.partial':'samedi et dimanche',
+        'hero.eyebrow':'Mariage de','hero.invite':'Vous êtes invité au mariage de','hero.date':'Samedi 6 mai 2028','hero.place':"Clos d'Hullias - Saint-Christol-de-Rodières, Gard",'hero.countdown':'Compte à rebours',
         'cd.days':'Jours','cd.hours':'Heures','cd.min':'Min','cd.sec':'Sec',
-        'story.eyebrow':'Depuis le début','story.title':'Notre histoire',
-        'story.text':"C'est au bout de trois ans à distance et deux années à vivre ensemble que Charles prend son courage à deux mains. Il cache la bague dans le tiroir à chaussettes que Aude a ouvert toute la semaine sans jamais s'en rendre compte. Il finit par demander à Aude d'être sa femme sur un bateau à Amsterdam, en passant sous le pont des amoureux, le jour de leurs cinq ans ensemble.",
+        'story.eyebrow':'Depuis le début','story.title':'A&amp;C',
+        'story.text':"Après des mois à communiquer entre Tahiti et Nantes, le confinement prend un joli tournant lorsque Charles peut rentrer. Dès son deuxième jour en France, nous nous rencontrons sur les bords de l'Erdre, c'est le coup de foudre. Depuis, nous ne nous sommes jamais quittés. Quelques années plus tard, Charles cache la bague dans le tiroir à chaussettes qu'Aude ouvre pourtant toute la semaine sans jamais la voir. Puis il la demande en mariage sur un bateau à Amsterdam, sous le pont des amoureux.",
         'prog.eyebrow':'Le week-end','prog.title':'Programme',
         'prog.fri':'Vendredi 5 mai','prog.sat':'Samedi 6 mai','prog.sun':'Dimanche 7 mai',
         'prog.arrival.title':'Arrivée & installation','prog.arrival.note':'Découverte du domaine, temps libre.',
@@ -2025,17 +1962,21 @@
         'arrival.eyebrow':'Votre invitation','arrival.title':'Un site personnalisé',
         'arrival.desc':"En fonction de votre identité, votre invitation est personnalisée avec les dates et horaires qui vous sont propres, affichés juste après votre connexion, en haut de cette page.",
         'venue.eyebrow':'Où','venue.title':'Le lieu',
-        'venue.link.site':'Site officiel','venue.link.maps':'Google Maps',
+        'venue.link.site':'Site officiel','venue.link.instagram':'Instagram','venue.link.maps':'Google Maps',
+        'venue.summary':"<strong>Domaine du Clos d'Hullias</strong>, hameau provençal du XVII<sup>e</sup>&nbsp;siècle niché dans les vignobles du Gard, vue panoramique sur le Mont Ventoux, deux piscines et un parc de cèdres centenaires.",
+        'venue.address':"<strong>Adresse :</strong> 314 chemin d'Hullias, 30760 Saint-Christol-de-Rodières (Gard)",
+        'venue.info':'Vous trouverez toutes les informations relatives à notre mariage sur ce site internet.',
         'venue.how':'Comment venir :','venue.parking':'Parking :','venue.parking.desc':'Parking sur place, gratuit pour tous les invités.',
         'venue.avignon':'1h de route, gare la plus proche','venue.marseille':'2h de route',
         'venue.lyon':'2h10 de route, recommandé depuis Amsterdam','venue.montpellier':'1h30 de route',
         'venue.autoroute':'25 min depuis la sortie la plus proche',
         'accom.eyebrow':'Sur place & à proximité','accom.title':'Hébergement',
-        'accom.clos.desc':'30 couchages sont disponibles sur place, et les personnes suivantes sont invitées à y dormir. Si vous souhaitez séjourner dans un hôtel à proximité, faites-le nous savoir !',
+        'accom.clos.desc':'30 couchages sont disponibles sur place, pour <a href="#" class="accom-link" onclick="openGuestList(); return false;">une partie des invités</a>. Si vous préférez séjourner dans un hôtel à proximité, faites-le nous savoir !',
+        'accom.view':'Voir','accom.book':'Réserver',
         'accom.note':"Vous serez informé(e) individuellement de votre hébergement une fois la répartition finalisée.",
-        'dress.eyebrow':'Tenue','dress.title':'Suggestion de tenue',
+        'dress.eyebrow':'Thème','dress.title':'Suggestion de tenue',
         'dress.swatch.navy':'Bleu marine','dress.swatch.brown':'Brun chocolat','dress.swatch.forest':'Vert forêt','dress.swatch.olive':'Olive &amp; Sauge','dress.swatch.ivory':'Ivoire','dress.swatch.gold':'Doré','dress.swatch.cream':'Crème','dress.swatch.linen':'Lin',
-        'honey.eyebrow':'Contribution','honey.title':'Voyage de noces',
+        'honey.eyebrow':'Contribution','honey.title':'Voyage de noces','honey.desc':'Votre présence est le plus beau des cadeaux. Si vous souhaitez tout de même participer à notre voyage de noces, vous pouvez faire un virement directement, et une urne sera aussi présente le jour J.',
         'rsvp.eyebrow':'RSVP','rsvp.title':'Merci de répondre avant le 6 mai 2027',
         'rsvp.name':'Nom et prénom','rsvp.attend':'Serez-vous présent(e) le samedi 6 mai ?','rsvp.attend.fri':'Serez-vous présent(e) au dîner de vendredi 5 mai ?',
         'rsvp.brunch':'Serez-vous présent(e) au brunch du dimanche 7 mai ?',
@@ -2046,15 +1987,17 @@
         'map.desc':"80 invités se déplacent pour l'occasion.",
         'map.hint':"Cliquez sur une ville pour voir l'itinéraire conseillé.",
         'gallery.eyebrow':'En images','gallery.title':'Galerie',
+        'modal.close':'Fermer','modal.title':"Sur place au Clos d'Hullias",'modal.subtitle':'Couchages disponibles',
         'footer':'Doune &amp; Grem, 6 mai 2028',
       },
       en: {
         'gate.sub':'Guest Access','gate.placeholder':'Your first name','gate.btn':'Enter','gate.error':'First name not recognized.','gate.hint':'Type the first name shown on your invitation',
-        'greet.hello':'Hello','greet.expected':"You're expected",'greet.fri':'from Friday evening, May 5th','greet.sat':'on Saturday, May 6th','greet.married':'Welcome to your own wedding site!',
-        'hero.eyebrow':'The wedding of','hero.date':'Saturday, May 6th, 2028','hero.countdown':'Countdown',
+        'nav.aria':'Main navigation','nav.story':'A&amp;C','nav.details':'Details','nav.home':'Home','nav.rsvp':'Accommodation','nav.schedule':'Schedule',
+        'greet.hello':'Hello','greet.expected':'You are expected to join us on','greet.days.full':'Friday, Saturday and Sunday','greet.days.partial':'Saturday and Sunday',
+        'hero.eyebrow':'The wedding of','hero.invite':'You are invited to the wedding of','hero.date':'Saturday, May 6th, 2028','hero.place':"Clos d'Hullias - Saint-Christol-de-Rodières, Gard",'hero.countdown':'Countdown',
         'cd.days':'Days','cd.hours':'Hours','cd.min':'Min','cd.sec':'Sec',
-        'story.eyebrow':'From the beginning','story.title':'Our story',
-        'story.text':"After three years apart and two years living together, Charles finally plucks up the courage. He hides the ring in the sock drawer that Aude opens every single day without ever noticing. He then asks Aude to be his wife on a boat in Amsterdam, drifting under the Bridge of Lovers, on their five-year anniversary.",
+        'story.eyebrow':'From the beginning','story.title':'A&amp;C',
+        'story.text':"After months of talking between Tahiti and Nantes, lockdown took a beautiful turn when Charles was finally able to come back. On his second day in France, we met by the Erdre river, and it was love at first sight. Since then, we have never been apart. A few years later, Charles hid the ring in the sock drawer that Aude opened all week without ever noticing it. Then he proposed on a boat in Amsterdam, under the Lovers' Bridge.",
         'prog.eyebrow':'The weekend','prog.title':'Schedule',
         'prog.fri':'Friday, May 5th','prog.sat':'Saturday, May 6th','prog.sun':'Sunday, May 7th',
         'prog.arrival.title':'Arrival & check-in','prog.arrival.note':'Explore the estate, free time.',
@@ -2071,17 +2014,21 @@
         'arrival.eyebrow':'Your invitation','arrival.title':'A personalised site',
         'arrival.desc':"Based on your identity, your invitation is personalised with the dates and times that are specific to you, shown right after you log in, at the top of this page.",
         'venue.eyebrow':'Where','venue.title':'The venue',
-        'venue.link.site':'Official website','venue.link.maps':'Google Maps',
+        'venue.link.site':'Official website','venue.link.instagram':'Instagram','venue.link.maps':'Google Maps',
+        'venue.summary':"<strong>Domaine du Clos d'Hullias</strong>, a 17th-century Provençal hamlet nestled in the vineyards of the Gard, with panoramic views of Mont Ventoux, two swimming pools, and a park of century-old cedar trees.",
+        'venue.address':"<strong>Address:</strong> 314 chemin d'Hullias, 30760 Saint-Christol-de-Rodières (Gard)",
+        'venue.info':'You will find all the information about our wedding on this website.',
         'venue.how':'Getting there:','venue.parking':'Parking:','venue.parking.desc':'Free on-site parking for all guests.',
         'venue.avignon':'1h drive, nearest TGV station','venue.marseille':'2h drive',
         'venue.lyon':'2h10 drive, recommended from Amsterdam','venue.montpellier':'1h30 drive',
         'venue.autoroute':'25 min from the nearest motorway exit',
         'accom.eyebrow':'On-site & nearby','accom.title':'Accommodation',
-        'accom.clos.desc':'30 beds are available on-site for the following guests. If you would prefer to stay at a nearby hotel, just let us know!',
+        'accom.clos.desc':'30 beds are available on-site, for <a href="#" class="accom-link" onclick="openGuestList(); return false;">some of the guests</a>. If you would prefer to stay at a nearby hotel, just let us know!',
+        'accom.view':'View','accom.book':'Book',
         'accom.note':'You will be individually informed of your accommodation once the allocation is finalised.',
-        'dress.eyebrow':'Attire','dress.title':'Suggested attire',
+        'dress.eyebrow':'Theme','dress.title':'Suggested attire',
         'dress.swatch.navy':'Navy','dress.swatch.brown':'Chocolate brown','dress.swatch.forest':'Forest green','dress.swatch.olive':'Olive &amp; Sage','dress.swatch.ivory':'Ivory','dress.swatch.gold':'Gold','dress.swatch.cream':'Cream','dress.swatch.linen':'Linen',
-        'honey.eyebrow':'Contribution','honey.title':'Honeymoon',
+        'honey.eyebrow':'Contribution','honey.title':'Honeymoon','honey.desc':'Your presence is the greatest gift. If you would still like to contribute to our honeymoon, you can make a bank transfer directly, and a gift box will also be available on the day.',
         'rsvp.eyebrow':'RSVP','rsvp.title':'Please reply by May 6th, 2027',
         'rsvp.name':'Full name','rsvp.attend':'Will you join us on Saturday, May 6th?','rsvp.attend.fri':'Will you join the Friday, May 5th dinner?',
         'rsvp.brunch':'Will you join Sunday brunch on May 7th?',
@@ -2091,7 +2038,8 @@
         'map.eyebrow':'Our guests','map.title':'Our wedding is going international!',
         'map.desc':'80 guests are travelling for the occasion.',
         'map.hint':'Click on a city to see the recommended route.',
-        'gallery.eyebrow':'Photos','gallery.title':'Gallery',
+        'gallery.eyebrow':'memories before becoming Mr. & Mrs. Grem','gallery.title':'Gallery',
+        'modal.close':'Close','modal.title':"On-site at Clos d'Hullias",'modal.subtitle':'Available beds',
         'footer':'Doune &amp; Grem, May 6th 2028',
       }
     };
