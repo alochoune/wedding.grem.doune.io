@@ -266,10 +266,9 @@
 
   .hero {
     min-height: 100vh;
-    display: grid;
-    place-items: center;
+    display: block;
     padding: 0;
-    background: #0a0f07;
+    background: transparent;
     position: relative;
     overflow: hidden;
   }
@@ -286,16 +285,17 @@
 
   .invitation-card {
     width: 100%;
+    min-height: 100vh;
     border-radius: 0;
     overflow: hidden;
     box-shadow: none;
-    background: #0a0f07;
+    background: transparent;
     position: relative;
     z-index: 1;
   }
 
   .invitation-top {
-    min-height: 560px;
+    min-height: 100vh;
     position: relative;
     display: grid;
     place-items: center;
@@ -1885,6 +1885,54 @@
     function closeGuestList() {
       document.getElementById('guestListModal').classList.add('hidden');
     }
+
+    function bindImagePathFallback() {
+      const candidates = document.querySelectorAll('img[src*="photos/"]');
+      candidates.forEach((img) => {
+        const originalSrc = img.getAttribute('src') || '';
+        const options = [];
+
+        const withAltExt = (src) => {
+          if (src.endsWith('.jpg')) return src.replace(/\.jpg$/, '.jpeg');
+          if (src.endsWith('.jpeg')) return src.replace(/\.jpeg$/, '.jpg');
+          return src;
+        };
+
+        const withAltBase = (src) => {
+          if (src.startsWith('photos/')) return src.replace(/^photos\//, '2.WEDDING/site/photos/');
+          if (src.startsWith('2.WEDDING/site/photos/')) return src.replace(/^2\.WEDDING\/site\/photos\//, 'photos/');
+          return src;
+        };
+
+        const pushUnique = (src) => {
+          if (src && !options.includes(src)) options.push(src);
+        };
+
+        pushUnique(originalSrc);
+        pushUnique(withAltExt(originalSrc));
+        const altBase = withAltBase(originalSrc);
+        pushUnique(altBase);
+        pushUnique(withAltExt(altBase));
+
+        img.dataset.fallbackOptions = JSON.stringify(options);
+        img.dataset.fallbackIndex = '0';
+
+        img.addEventListener('error', () => {
+          let list;
+          try {
+            list = JSON.parse(img.dataset.fallbackOptions || '[]');
+          } catch (_) {
+            list = [];
+          }
+          const idx = Number(img.dataset.fallbackIndex || '0') + 1;
+          if (idx >= list.length) return;
+          img.dataset.fallbackIndex = String(idx);
+          img.setAttribute('src', list[idx]);
+        });
+      });
+    }
+
+    bindImagePathFallback();
 
     function initFaqAccordion() {
       document.querySelectorAll('.faq article.faq-item').forEach((item) => {
