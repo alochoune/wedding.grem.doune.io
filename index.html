@@ -249,10 +249,8 @@
   }
 
   .personal-greeting {
-    display: block;
+    display: inline;
     margin: 0;
-    margin-top: 8px;
-    margin-bottom: 7px;
     padding: 0;
     border: 0;
     border-radius: 0;
@@ -268,7 +266,8 @@
 
   .hero {
     min-height: 100vh;
-    display: block;
+    display: grid;
+    place-items: center;
     padding: 0;
     background: #0a0f07;
     position: relative;
@@ -287,7 +286,6 @@
 
   .invitation-card {
     width: 100%;
-    min-height: 100vh;
     border-radius: 0;
     overflow: hidden;
     box-shadow: none;
@@ -297,7 +295,7 @@
   }
 
   .invitation-top {
-    min-height: 100vh;
+    min-height: 560px;
     position: relative;
     display: grid;
     place-items: center;
@@ -359,7 +357,7 @@
   .site-sticky-nav .invitation-nav a {
     color: inherit;
     text-decoration: none;
-    border-bottom: none;
+    border-bottom: 1px solid transparent;
     transition: color 0.2s ease, border-color 0.2s ease;
     white-space: nowrap;
     padding: 7px 4px;
@@ -379,7 +377,7 @@
   .site-sticky-nav .invitation-nav a:hover,
   .site-sticky-nav .invitation-nav a:focus-visible {
     color: #fff;
-    border-color: transparent;
+    border-color: rgba(255, 255, 255, 0.72);
     outline: none;
   }
 
@@ -476,10 +474,8 @@
   }
 
   .personal-greeting {
-    display: block;
+    display: inline;
     margin: 0;
-    margin-top: 8px;
-    margin-bottom: 7px;
     padding: 0;
     border: 0;
     border-radius: 0;
@@ -749,7 +745,7 @@
   }
 
   .strip-gallery-section {
-    padding: 52px 0;
+    padding: 88px 0;
     background: #3f2417;
     overflow: hidden;
   }
@@ -819,23 +815,9 @@
     text-shadow: 0 3px 14px rgba(0, 0, 0, 0.35);
   }
 
-  .story-photo-wrap {
-    margin-top: 24px;
-    display: flex;
-    justify-content: center;
-  }
-
-  .story-photo {
-    width: min(1040px, 100%);
-    height: auto;
-    border-radius: 8px;
-    display: block;
-    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
-  }
-
   .strip-header {
     text-align: center;
-    padding: 0 24px 20px;
+    padding: 0 24px 48px;
   }
 
   .strip-wrapper {
@@ -884,7 +866,7 @@
   .strip-tile img:hover { filter: grayscale(0%); }
 
   .footer {
-    padding: 18px 24px 26px;
+    padding: 34px 24px 54px;
     text-align: center;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -1182,8 +1164,8 @@
     .lang-toggle { top: 10px; right: 10px; }
     .lang-btn { padding: 5px 10px; font-size: 0.68rem; letter-spacing: 0.15em; }
     .strip-tile { width: 110px; height: 110px; }
-    .strip-gallery-section { padding: 40px 0; }
-    .strip-header { padding-bottom: 16px; }
+    .strip-gallery-section { padding: 60px 0; }
+    .strip-header { padding-bottom: 36px; }
     .full-card { padding: 16px; }
     .card { padding: 18px 16px; }
     .faq-shell {
@@ -1327,7 +1309,7 @@
       <div class="invitation-card">
         <div class="invitation-top">
           <div class="invitation-brand">
-            <div class="invitation-intro"><span data-i18n="hero.invite">Vous êtes invité au mariage de</span></div>
+            <div class="invitation-intro">Vous êtes invité au mariage de <span id="personalGreeting" class="personal-greeting hidden" aria-live="polite"></span></div>
             <svg class="hero-mark" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M20 100V54c0-26 18-44 40-44s40 18 40 44v46" />
               <path d="M32 88c6-17 4-31 16-36" />
@@ -1335,9 +1317,8 @@
             </svg>
             <h1 class="hero-name"><span class="initial">D</span>oune <span class="amp">&amp;</span> <span class="initial">G</span>rem</h1>
             <div class="invitation-meta">
-              <span id="personalGreeting" class="personal-greeting hidden" aria-live="polite"></span>
-              <span data-i18n="hero.date">Samedi 6 mai 2028</span>
-              <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x12b5a9b3c53c32bf:0x2e85cc8e52649dd0?sa=X&ved=1t:8290&ictx=111" target="_blank" rel="noopener noreferrer" data-i18n="hero.place">Clos d'Hullias - Saint-Christol-de-Rodières, Gard</a>
+              <span>Samedi 6 mai 2028</span>
+              <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x12b5a9b3c53c32bf:0x2e85cc8e52649dd0?sa=X&ved=1t:8290&ictx=111" target="_blank" rel="noopener noreferrer">Clos d'Hullias - Saint-Christol-de-Rodières, Gard</a>
             </div>
           </div>
         </div>
@@ -1348,11 +1329,8 @@
       <div class="section-inner content-block center">
         <h2 class="title" data-i18n="story.title">A&amp;C</h2>
         <p class="content-copy">
-          <span data-i18n-html="story.text">Après des mois à communiquer entre Tahiti et Nantes, le confinement prend un joli tournant lorsque Charles peut rentrer. Dès son deuxième jour en France, nous nous rencontrons sur les bords de l'Erdre, c'est le coup de foudre. Depuis, nous ne nous sommes jamais quittés. Quelques années plus tard, Charles cache la bague dans le tiroir à chaussettes qu'Aude ouvre pourtant toute la semaine sans jamais la voir. Puis il la demande en mariage sur un bateau à Amsterdam, sous le pont des amoureux.</span>
+          <span data-i18n-html="story.text">Après des mois à communiquer entre Tahiti et Nantes, le confinement prend un joli tournant lorsque Charles peut rentrer. Dès son deuxième jour en France, nous nous rencontrons sur les bords de l'Erdre, c'est le coup de foudre. Depuis, nous ne nous sommes jamais quittés.</span>
         </p>
-        <div class="story-photo-wrap">
-          <img class="story-photo" src="TaPhotoTabobine.png" alt="Photo ta bobine">
-        </div>
       </div>
     </section>
 
@@ -1429,7 +1407,7 @@
     <section class="section" id="details">
       <div class="section-inner content-block center">
         <h2 class="title" data-i18n="venue.title">Le lieu</h2>
-        <p class="content-copy" style="margin-top:14px;margin-bottom:0" data-i18n-html="venue.summary">
+        <p class="content-copy" style="margin-top:14px;margin-bottom:0">
           <strong>Domaine du Clos d'Hullias</strong>, hameau provençal du XVII<sup>e</sup>&nbsp;siècle niché dans les vignobles du Gard, vue panoramique sur le Mont Ventoux, deux piscines et un parc de cèdres centenaires.
         </p>
         <div class="venue-links">
@@ -1439,7 +1417,7 @@
           </a>
           <a class="venue-link" href="https://www.instagram.com/domaineduclosdhullias/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-            <span data-i18n="venue.link.instagram">Instagram</span>
+            Instagram
           </a>
           <a class="venue-link" href="https://www.google.com/maps/place/Clos+d'Hullias/@44.2432158,4.9208403,9z/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -1447,9 +1425,9 @@
           </a>
         </div>
         <div class="panel full-card" style="margin-top:26px;text-align:left">
-          <p data-i18n-html="venue.address"><strong>Adresse :</strong> 314 chemin d'Hullias, 30760 Saint-Christol-de-Rodières (Gard)</p>
+          <p><strong>Adresse :</strong> 314 chemin d'Hullias, 30760 Saint-Christol-de-Rodières (Gard)</p>
           <p style="margin-top:20px"><strong data-i18n="venue.parking">Parking :</strong> <span data-i18n="venue.parking.desc">Parking sur place, gratuit pour tous les invités.</span></p>
-          <p style="margin-top:12px" data-i18n="venue.info">Vous trouverez toutes les informations relatives à notre mariage sur ce site internet.</p>
+          <p style="margin-top:12px">Vous trouverez toutes les informations relatives à notre mariage sur ce site internet.</p>
           <p style="margin-top:18px"><strong data-i18n="venue.how">Comment venir :</strong></p>
           <div class="acces-grid">
             <div class="acces-item"><strong>Avignon TGV</strong><span data-i18n="venue.avignon">1h de route, gare la plus proche</span></div>
@@ -1469,10 +1447,7 @@
         <div class="card-grid" style="margin-top:32px;grid-template-columns:1fr">
           <article class="panel card" style="text-align:left">
             <h3>Clos d'Hullias</h3>
-            <p>
-              <span class="lang-fr">30 couchages sont disponibles sur place, pour <a href="#" class="accom-link" onclick="openGuestList(); return false;">une partie des invités</a>. Si vous préférez séjourner dans un hôtel à proximité, faites-le nous savoir !</span>
-              <span class="lang-en" style="display:none">30 beds are available on-site, for <a href="#" class="accom-link" onclick="openGuestList(); return false;">some of the guests</a>. If you would prefer to stay at a nearby hotel, just let us know!</span>
-            </p>
+            <p>30 couchages sont disponibles sur place, pour <a href="#" class="accom-link" onclick="openGuestList(); return false;">une partie des invités</a>. Si vous préférez séjourner dans un hôtel à proximité, faites-le nous savoir !</p>
           </article>
         </div>
         <div class="panel full-card" style="margin-top:18px;text-align:left">
@@ -1483,15 +1458,15 @@
               <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
                 <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                   <span style="font-size:1.05rem">Le Castélas <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Appart'hôtel avec piscine, cœur du village &middot; 04 66 82 18 76</span></span>
-                  <a href="https://www.aigueze.fr/tourisme/hotels" target="_blank" rel="noopener" data-i18n="accom.view" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Voir</a>
+                  <a href="https://www.aigueze.fr/tourisme/hotels" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Voir</a>
                 </li>
                 <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                   <span style="font-size:1.05rem">La Poussinière <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Chambre d'hôtes</span></span>
-                  <a href="https://www.booking.com/city/fr/aigueze.fr.html" target="_blank" rel="noopener" data-i18n="accom.book" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                  <a href="https://www.booking.com/city/fr/aigueze.fr.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
                 </li>
                 <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                   <span style="font-size:1.05rem">Le Château d'Aiguèze <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Villas avec piscine</span></span>
-                  <a href="https://www.cartesfrance.fr/carte-france-ville/hotel_30005_Aigueze.html" target="_blank" rel="noopener" data-i18n="accom.book" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                  <a href="https://www.cartesfrance.fr/carte-france-ville/hotel_30005_Aigueze.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
                 </li>
               </ul>
             </div>
@@ -1501,19 +1476,19 @@
               <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
                 <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                   <span style="font-size:1.05rem">Logis Hôtel Bellevue <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Piscine chauffée, restaurant, au bord de l'Ardèche</span></span>
-                  <a href="https://www.hotel-bellevue-restaurant.com/" target="_blank" rel="noopener" data-i18n="accom.book" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                  <a href="https://www.hotel-bellevue-restaurant.com/" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
                 </li>
                 <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                   <span style="font-size:1.05rem">Hôtel Les Petits Oreillers</span>
-                  <a href="https://www.booking.com/city/fr/aigueze.fr.html" target="_blank" rel="noopener" data-i18n="accom.book" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                  <a href="https://www.booking.com/city/fr/aigueze.fr.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
                 </li>
                 <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                   <span style="font-size:1.05rem">Château Saint Martin <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Gîtes avec piscine à débordement, vue Aiguèze &middot; gîtes «&nbsp;Aiguèze&nbsp;» et «&nbsp;Les Gorges de l'Ardèche&nbsp;»</span></span>
-                  <a href="https://locations-ardeche.e-monsite.com/" target="_blank" rel="noopener" data-i18n="accom.book" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                  <a href="https://locations-ardeche.e-monsite.com/" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
                 </li>
                 <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                   <span style="font-size:1.05rem">Le MARINE <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Appartements</span></span>
-                  <a href="https://www.cartesfrance.fr/carte-france-ville/hotel_30005_Aigueze.html" target="_blank" rel="noopener" data-i18n="accom.book" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                  <a href="https://www.cartesfrance.fr/carte-france-ville/hotel_30005_Aigueze.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
                 </li>
               </ul>
             </div>
@@ -1564,7 +1539,7 @@
       <div class="section-inner content-block center narrow">
         <div class="eyebrow" data-i18n="honey.eyebrow">Contribution</div>
         <h2 class="title" data-i18n="honey.title">Voyage de noces</h2>
-        <p class="content-copy" data-i18n="honey.desc">
+        <p class="content-copy">
           Votre présence est le plus beau des cadeaux. Si vous souhaitez tout de même participer à notre voyage de noces, vous pouvez faire un virement directement, et une urne sera aussi présente le jour J.
         </p>
         <div class="panel full-card" style="margin-top:28px;text-align:left;max-width:420px;margin-left:auto;margin-right:auto">
@@ -1720,9 +1695,9 @@
 
   <div id="guestListModal" class="modal-overlay hidden" onclick="if(event.target===this) closeGuestList()">
     <div class="modal-box">
-      <button class="modal-close" onclick="closeGuestList()" aria-label="Fermer" data-i18n-aria="modal.close">&times;</button>
-      <h3 style="margin-bottom:4px" data-i18n="modal.title">Sur place au Clos d'Hullias</h3>
-      <p style="font-size:0.9rem;color:rgba(45,42,39,0.6);margin:0 0 18px" data-i18n="modal.subtitle">Couchages disponibles</p>
+      <button class="modal-close" onclick="closeGuestList()" aria-label="Fermer">&times;</button>
+      <h3 style="margin-bottom:4px">Sur place au Clos d'Hullias</h3>
+      <p style="font-size:0.9rem;color:rgba(45,42,39,0.6);margin:0 0 18px">Couchages disponibles</p>
       <ul class="modal-guest-list">
         <li>Aude</li><li>Charles</li><li>Dominique Chalot</li><li>Sabine</li><li>Noémie</li><li>Alix</li>
         <li>Solène</li><li>Adrien</li><li>Pablo</li><li>Auriane</li><li>Pierre</li><li>Shems</li>
@@ -1866,9 +1841,15 @@
       const el = document.getElementById('personalGreeting');
       if (!el || !currentGuest) return;
       const lang = t[currentLang];
-      const getsFullWeekend = currentGuest.day === 'Vendredi' || currentGuest.day === 'Mariee';
-      const dayText = getsFullWeekend ? lang['greet.days.full'] : lang['greet.days.partial'];
-      el.textContent = `${lang['greet.expected']} ${dayText}.`;
+      let dayText;
+      if (currentGuest.day === 'Vendredi') dayText = lang['greet.fri'];
+      else if (currentGuest.day === 'Samedi') dayText = lang['greet.sat'];
+
+      if (currentGuest.day === 'Mariee') {
+        el.textContent = ` ${lang['greet.married']}.`;
+      } else {
+        el.textContent = ` ${lang['greet.expected']} ${dayText}.`;
+      }
       el.classList.remove('hidden');
 
       // Personnalisation du formulaire RSVP
@@ -1941,11 +1922,11 @@
       fr: {
         'gate.sub':'Accès invités','gate.placeholder':'Votre prénom','gate.btn':'Entrer','gate.error':'Prénom non reconnu.','gate.hint':'Tapez le prénom indiqué sur votre invitation',
         'nav.aria':'Navigation principale','nav.story':'A&amp;C','nav.details':'Le lieu','nav.home':'Accueil','nav.rsvp':'Hébergement','nav.schedule':'Programme',
-        'greet.hello':'Bonjour','greet.expected':'Et vous êtes attendu pour','greet.days.full':'vendredi, samedi et dimanche','greet.days.partial':'samedi et dimanche',
-        'hero.eyebrow':'Mariage de','hero.invite':'Vous êtes invité au mariage de','hero.date':'Samedi 6 mai 2028','hero.place':"Clos d'Hullias - Saint-Christol-de-Rodières, Gard",'hero.countdown':'Compte à rebours',
+        'greet.hello':'Bonjour','greet.expected':'Et vous êtes attendu le','greet.fri':'vendredi 5 mai au soir','greet.sat':'samedi 6 mai','greet.married':'Et vous êtes attendu toute la journée',
+        'hero.eyebrow':'Mariage de','hero.date':'Samedi 6 mai 2028','hero.countdown':'Compte à rebours',
         'cd.days':'Jours','cd.hours':'Heures','cd.min':'Min','cd.sec':'Sec',
         'story.eyebrow':'Depuis le début','story.title':'A&amp;C',
-        'story.text':"Après des mois à communiquer entre Tahiti et Nantes, le confinement prend un joli tournant lorsque Charles peut rentrer. Dès son deuxième jour en France, nous nous rencontrons sur les bords de l'Erdre, c'est le coup de foudre. Depuis, nous ne nous sommes jamais quittés. Quelques années plus tard, Charles cache la bague dans le tiroir à chaussettes qu'Aude ouvre pourtant toute la semaine sans jamais la voir. Puis il la demande en mariage sur un bateau à Amsterdam, sous le pont des amoureux.",
+        'story.text':"Après des mois à communiquer entre Tahiti et Nantes, le confinement prend un joli tournant lorsque Charles peut rentrer. Dès son deuxième jour en France, nous nous rencontrons sur les bords de l'Erdre, c'est le coup de foudre. Depuis, nous ne nous sommes jamais quittés.",
         'prog.eyebrow':'Le week-end','prog.title':'Programme',
         'prog.fri':'Vendredi 5 mai','prog.sat':'Samedi 6 mai','prog.sun':'Dimanche 7 mai',
         'prog.arrival.title':'Arrivée & installation','prog.arrival.note':'Découverte du domaine, temps libre.',
@@ -1962,21 +1943,17 @@
         'arrival.eyebrow':'Votre invitation','arrival.title':'Un site personnalisé',
         'arrival.desc':"En fonction de votre identité, votre invitation est personnalisée avec les dates et horaires qui vous sont propres, affichés juste après votre connexion, en haut de cette page.",
         'venue.eyebrow':'Où','venue.title':'Le lieu',
-        'venue.link.site':'Site officiel','venue.link.instagram':'Instagram','venue.link.maps':'Google Maps',
-        'venue.summary':"<strong>Domaine du Clos d'Hullias</strong>, hameau provençal du XVII<sup>e</sup>&nbsp;siècle niché dans les vignobles du Gard, vue panoramique sur le Mont Ventoux, deux piscines et un parc de cèdres centenaires.",
-        'venue.address':"<strong>Adresse :</strong> 314 chemin d'Hullias, 30760 Saint-Christol-de-Rodières (Gard)",
-        'venue.info':'Vous trouverez toutes les informations relatives à notre mariage sur ce site internet.',
+        'venue.link.site':'Site officiel','venue.link.maps':'Google Maps',
         'venue.how':'Comment venir :','venue.parking':'Parking :','venue.parking.desc':'Parking sur place, gratuit pour tous les invités.',
         'venue.avignon':'1h de route, gare la plus proche','venue.marseille':'2h de route',
         'venue.lyon':'2h10 de route, recommandé depuis Amsterdam','venue.montpellier':'1h30 de route',
         'venue.autoroute':'25 min depuis la sortie la plus proche',
         'accom.eyebrow':'Sur place & à proximité','accom.title':'Hébergement',
-        'accom.clos.desc':'30 couchages sont disponibles sur place, pour <a href="#" class="accom-link" onclick="openGuestList(); return false;">une partie des invités</a>. Si vous préférez séjourner dans un hôtel à proximité, faites-le nous savoir !',
-        'accom.view':'Voir','accom.book':'Réserver',
+        'accom.clos.desc':'30 couchages sont disponibles sur place, et les personnes suivantes sont invitées à y dormir. Si vous souhaitez séjourner dans un hôtel à proximité, faites-le nous savoir !',
         'accom.note':"Vous serez informé(e) individuellement de votre hébergement une fois la répartition finalisée.",
         'dress.eyebrow':'Thème','dress.title':'Suggestion de tenue',
         'dress.swatch.navy':'Bleu marine','dress.swatch.brown':'Brun chocolat','dress.swatch.forest':'Vert forêt','dress.swatch.olive':'Olive &amp; Sauge','dress.swatch.ivory':'Ivoire','dress.swatch.gold':'Doré','dress.swatch.cream':'Crème','dress.swatch.linen':'Lin',
-        'honey.eyebrow':'Contribution','honey.title':'Voyage de noces','honey.desc':'Votre présence est le plus beau des cadeaux. Si vous souhaitez tout de même participer à notre voyage de noces, vous pouvez faire un virement directement, et une urne sera aussi présente le jour J.',
+        'honey.eyebrow':'Contribution','honey.title':'Voyage de noces',
         'rsvp.eyebrow':'RSVP','rsvp.title':'Merci de répondre avant le 6 mai 2027',
         'rsvp.name':'Nom et prénom','rsvp.attend':'Serez-vous présent(e) le samedi 6 mai ?','rsvp.attend.fri':'Serez-vous présent(e) au dîner de vendredi 5 mai ?',
         'rsvp.brunch':'Serez-vous présent(e) au brunch du dimanche 7 mai ?',
@@ -1987,17 +1964,16 @@
         'map.desc':"80 invités se déplacent pour l'occasion.",
         'map.hint':"Cliquez sur une ville pour voir l'itinéraire conseillé.",
         'gallery.eyebrow':'En images','gallery.title':'Galerie',
-        'modal.close':'Fermer','modal.title':"Sur place au Clos d'Hullias",'modal.subtitle':'Couchages disponibles',
         'footer':'Doune &amp; Grem, 6 mai 2028',
       },
       en: {
         'gate.sub':'Guest Access','gate.placeholder':'Your first name','gate.btn':'Enter','gate.error':'First name not recognized.','gate.hint':'Type the first name shown on your invitation',
         'nav.aria':'Main navigation','nav.story':'A&amp;C','nav.details':'Details','nav.home':'Home','nav.rsvp':'Accommodation','nav.schedule':'Schedule',
-        'greet.hello':'Hello','greet.expected':'You are expected to join us on','greet.days.full':'Friday, Saturday and Sunday','greet.days.partial':'Saturday and Sunday',
-        'hero.eyebrow':'The wedding of','hero.invite':'You are invited to the wedding of','hero.date':'Saturday, May 6th, 2028','hero.place':"Clos d'Hullias - Saint-Christol-de-Rodières, Gard",'hero.countdown':'Countdown',
+        'greet.hello':'Hello','greet.expected':'And you are expected on','greet.fri':'Friday evening, May 5th','greet.sat':'Saturday, May 6th','greet.married':'And you are expected all day',
+        'hero.eyebrow':'The wedding of','hero.date':'Saturday, May 6th, 2028','hero.countdown':'Countdown',
         'cd.days':'Days','cd.hours':'Hours','cd.min':'Min','cd.sec':'Sec',
         'story.eyebrow':'From the beginning','story.title':'A&amp;C',
-        'story.text':"After months of talking between Tahiti and Nantes, lockdown took a beautiful turn when Charles was finally able to come back. On his second day in France, we met by the Erdre river, and it was love at first sight. Since then, we have never been apart. A few years later, Charles hid the ring in the sock drawer that Aude opened all week without ever noticing it. Then he proposed on a boat in Amsterdam, under the Lovers' Bridge.",
+        'story.text':"After months of talking between Tahiti and Nantes, lockdown took a beautiful turn when Charles was finally able to come back. On his second day in France, we met by the Erdre river, and it was love at first sight. Since then, we have never been apart.",
         'prog.eyebrow':'The weekend','prog.title':'Schedule',
         'prog.fri':'Friday, May 5th','prog.sat':'Saturday, May 6th','prog.sun':'Sunday, May 7th',
         'prog.arrival.title':'Arrival & check-in','prog.arrival.note':'Explore the estate, free time.',
@@ -2014,21 +1990,17 @@
         'arrival.eyebrow':'Your invitation','arrival.title':'A personalised site',
         'arrival.desc':"Based on your identity, your invitation is personalised with the dates and times that are specific to you, shown right after you log in, at the top of this page.",
         'venue.eyebrow':'Where','venue.title':'The venue',
-        'venue.link.site':'Official website','venue.link.instagram':'Instagram','venue.link.maps':'Google Maps',
-        'venue.summary':"<strong>Domaine du Clos d'Hullias</strong>, a 17th-century Provençal hamlet nestled in the vineyards of the Gard, with panoramic views of Mont Ventoux, two swimming pools, and a park of century-old cedar trees.",
-        'venue.address':"<strong>Address:</strong> 314 chemin d'Hullias, 30760 Saint-Christol-de-Rodières (Gard)",
-        'venue.info':'You will find all the information about our wedding on this website.',
+        'venue.link.site':'Official website','venue.link.maps':'Google Maps',
         'venue.how':'Getting there:','venue.parking':'Parking:','venue.parking.desc':'Free on-site parking for all guests.',
         'venue.avignon':'1h drive, nearest TGV station','venue.marseille':'2h drive',
         'venue.lyon':'2h10 drive, recommended from Amsterdam','venue.montpellier':'1h30 drive',
         'venue.autoroute':'25 min from the nearest motorway exit',
         'accom.eyebrow':'On-site & nearby','accom.title':'Accommodation',
-        'accom.clos.desc':'30 beds are available on-site, for <a href="#" class="accom-link" onclick="openGuestList(); return false;">some of the guests</a>. If you would prefer to stay at a nearby hotel, just let us know!',
-        'accom.view':'View','accom.book':'Book',
+        'accom.clos.desc':'30 beds are available on-site for the following guests. If you would prefer to stay at a nearby hotel, just let us know!',
         'accom.note':'You will be individually informed of your accommodation once the allocation is finalised.',
         'dress.eyebrow':'Theme','dress.title':'Suggested attire',
         'dress.swatch.navy':'Navy','dress.swatch.brown':'Chocolate brown','dress.swatch.forest':'Forest green','dress.swatch.olive':'Olive &amp; Sage','dress.swatch.ivory':'Ivory','dress.swatch.gold':'Gold','dress.swatch.cream':'Cream','dress.swatch.linen':'Linen',
-        'honey.eyebrow':'Contribution','honey.title':'Honeymoon','honey.desc':'Your presence is the greatest gift. If you would still like to contribute to our honeymoon, you can make a bank transfer directly, and a gift box will also be available on the day.',
+        'honey.eyebrow':'Contribution','honey.title':'Honeymoon',
         'rsvp.eyebrow':'RSVP','rsvp.title':'Please reply by May 6th, 2027',
         'rsvp.name':'Full name','rsvp.attend':'Will you join us on Saturday, May 6th?','rsvp.attend.fri':'Will you join the Friday, May 5th dinner?',
         'rsvp.brunch':'Will you join Sunday brunch on May 7th?',
@@ -2038,8 +2010,7 @@
         'map.eyebrow':'Our guests','map.title':'Our wedding is going international!',
         'map.desc':'80 guests are travelling for the occasion.',
         'map.hint':'Click on a city to see the recommended route.',
-        'gallery.eyebrow':'memories before becoming Mr. & Mrs. Grem','gallery.title':'Gallery',
-        'modal.close':'Close','modal.title':"On-site at Clos d'Hullias",'modal.subtitle':'Available beds',
+        'gallery.eyebrow':'Photos','gallery.title':'Gallery',
         'footer':'Doune &amp; Grem, May 6th 2028',
       }
     };
