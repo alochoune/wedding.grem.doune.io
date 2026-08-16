@@ -381,6 +381,45 @@
     outline: none;
   }
 
+  .mobile-nav-toggle {
+    display: none;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(91, 58, 41, 0.72);
+    box-shadow: 0 10px 24px rgba(9, 16, 28, 0.28);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    flex-direction: column;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  .mobile-nav-toggle span {
+    width: 16px;
+    height: 1.8px;
+    border-radius: 999px;
+    background: currentColor;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .site-sticky-nav.menu-open .mobile-nav-toggle span:nth-child(1) {
+    transform: translateY(6.8px) rotate(45deg);
+  }
+
+  .site-sticky-nav.menu-open .mobile-nav-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .site-sticky-nav.menu-open .mobile-nav-toggle span:nth-child(3) {
+    transform: translateY(-6.8px) rotate(-45deg);
+  }
+
   .invitation-brand {
     display: grid;
     place-items: center;
@@ -1127,28 +1166,69 @@
     cursor: pointer;
   }
 
+  @media (max-width: 1024px) {
+    .site-sticky-nav {
+      top: 0;
+      padding: 10px 12px 0;
+      display: flex;
+      justify-content: flex-end;
+      pointer-events: auto;
+    }
+
+    .mobile-nav-toggle {
+      display: inline-flex;
+    }
+
+    .site-sticky-nav .invitation-nav {
+      position: absolute;
+      top: 56px;
+      right: 12px;
+      width: min(280px, calc(100vw - 24px));
+      margin: 0;
+      border-radius: 14px;
+      padding: 8px;
+      display: grid;
+      gap: 2px;
+      justify-content: stretch;
+      background: rgba(91, 58, 41, 0.92);
+      box-shadow: 0 14px 32px rgba(9, 16, 28, 0.34);
+      transform: translateY(-6px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: transform 0.2s ease, opacity 0.2s ease, visibility 0.2s ease;
+    }
+
+    .site-sticky-nav .invitation-nav a {
+      min-height: 38px;
+      width: 100%;
+      border-bottom: none;
+      border-radius: 8px;
+      padding: 10px;
+      justify-content: flex-start;
+      letter-spacing: 0.16em;
+    }
+
+    .site-sticky-nav .invitation-nav a:hover,
+    .site-sticky-nav .invitation-nav a:focus-visible {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: transparent;
+    }
+
+    .site-sticky-nav.menu-open .invitation-nav {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+  }
+
   @media (max-width: 860px) {
     .card-grid, .gallery-grid { grid-template-columns: 1fr; }
     .prog-columns { grid-template-columns: 1fr; gap: 8px; }
     .prog-column { margin-bottom: 12px; }
     .hero { min-height: auto; padding: 0; }
     .invitation-top { min-height: 460px; }
-    .site-sticky-nav {
-      top: 0;
-    }
-    .site-sticky-nav .invitation-nav {
-      gap: 14px;
-      font-size: 0.52rem;
-      letter-spacing: 0.18em;
-      flex-wrap: nowrap;
-      justify-content: flex-start;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding: 0 18px;
-    }
-    .site-sticky-nav .invitation-nav::-webkit-scrollbar { display: none; }
-    .site-sticky-nav .invitation-nav a { min-height: 34px; }
     .arrival-grid { grid-template-columns: 1fr; }
     #guest-map { height: 320px; }
   }
@@ -1160,8 +1240,8 @@
     .spacious { padding-top: 56px !important; padding-bottom: 56px !important; }
     .hero { padding: 0; }
     .invitation-top { min-height: 390px; padding: 24px 18px; }
-    .site-sticky-nav { top: 0; padding: 8px 10px 0; }
-    .site-sticky-nav .invitation-nav { gap: 10px; font-size: 0.5rem; letter-spacing: 0.16em; padding: 2px 14px; }
+    .site-sticky-nav { padding: 8px 10px 0; }
+    .site-sticky-nav .invitation-nav a { font-size: 0.52rem; }
     .hero-name { font-size: clamp(3.8rem, 14vw, 6.2rem); }
     .invitation-intro { font-size: 0.8rem; letter-spacing: 0.14em; }
     .invitation-meta { font-size: 0.66rem; letter-spacing: 0.11em; }
@@ -1310,7 +1390,12 @@
 
   <main id="site" class="wrap hidden">
     <div class="site-sticky-nav">
-      <div class="invitation-nav" aria-label="Navigation principale" data-i18n-aria="nav.aria">
+      <button class="mobile-nav-toggle" id="mobileNavToggle" type="button" aria-label="Open menu" aria-controls="mobileNavPanel" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="invitation-nav" id="mobileNavPanel" aria-label="Navigation principale" data-i18n-aria="nav.aria">
         <a href="#story" data-i18n="nav.story">A&amp;C</a>
         <a href="#details" data-i18n="nav.details">Le lieu</a>
         <a href="#home" data-i18n="nav.home">Accueil</a>
@@ -1733,6 +1818,37 @@
     const gateInput = document.getElementById('gateInput');
     const gateButton = document.getElementById('gateButton');
     const gateError = document.getElementById('gateError');
+    const stickyNav = document.querySelector('.site-sticky-nav');
+    const mobileNavToggle = document.getElementById('mobileNavToggle');
+    const mobileNavPanel = document.getElementById('mobileNavPanel');
+
+    function closeMobileNav() {
+      if (!stickyNav || !mobileNavToggle) return;
+      stickyNav.classList.remove('menu-open');
+      mobileNavToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    function toggleMobileNav() {
+      if (!stickyNav || !mobileNavToggle) return;
+      const isOpen = stickyNav.classList.toggle('menu-open');
+      mobileNavToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+
+    if (mobileNavToggle && stickyNav && mobileNavPanel) {
+      mobileNavToggle.addEventListener('click', toggleMobileNav);
+
+      mobileNavPanel.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMobileNav);
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!stickyNav.contains(event.target)) closeMobileNav();
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 1024) closeMobileNav();
+      });
+    }
 
     // Base d'invités : prénom (ou prénom+nom si homonyme) → jour d'arrivée
     const GUESTS = [
