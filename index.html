@@ -1167,12 +1167,19 @@
   }
 
   @media (max-width: 1024px) {
+    .hero,
+    .invitation-card,
+    .invitation-top {
+      min-height: auto;
+    }
+
     .site-sticky-nav {
       top: 0;
       padding: 10px 12px 0;
       display: flex;
       justify-content: flex-end;
       pointer-events: auto;
+      background: transparent;
     }
 
     .mobile-nav-toggle {
@@ -1193,11 +1200,8 @@
       background: rgba(20, 42, 18, 1);
       box-shadow: 0 14px 32px rgba(9, 16, 28, 0.34);
       backdrop-filter: blur(2px);
-      transform: translateY(-6px);
-      opacity: 0;
-      visibility: hidden;
+      display: none;
       pointer-events: none;
-      transition: transform 0.2s ease, opacity 0.2s ease, visibility 0.2s ease;
     }
 
     .site-sticky-nav .invitation-nav a {
@@ -1217,10 +1221,13 @@
     }
 
     .site-sticky-nav.menu-open .invitation-nav {
-      transform: translateY(0);
-      opacity: 1;
-      visibility: visible;
+      display: grid;
       pointer-events: auto;
+    }
+
+    .lang-toggle {
+      background: rgba(20, 42, 18, 1);
+      backdrop-filter: blur(2px);
     }
   }
 
@@ -1229,7 +1236,8 @@
     .prog-columns { grid-template-columns: 1fr; gap: 8px; }
     .prog-column { margin-bottom: 12px; }
     .hero { min-height: auto; padding: 0; }
-    .invitation-top { min-height: 460px; }
+    .invitation-card { min-height: auto; }
+    .invitation-top { min-height: auto; }
     .arrival-grid { grid-template-columns: 1fr; }
     #guest-map { height: 320px; }
   }
@@ -1240,7 +1248,7 @@
     #rsvp.section { padding-top: 24px; }
     .spacious { padding-top: 56px !important; padding-bottom: 56px !important; }
     .hero { padding: 0; }
-    .invitation-top { min-height: 390px; padding: 24px 18px; }
+    .invitation-top { min-height: auto; padding: 24px 18px; }
     .site-sticky-nav { padding: 8px 10px 0; }
     .site-sticky-nav .invitation-nav a { font-size: 0.52rem; }
     .hero-name { font-size: clamp(3.8rem, 14vw, 6.2rem); }
