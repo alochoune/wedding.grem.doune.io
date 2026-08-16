@@ -1475,15 +1475,15 @@
         <div class="invitation-top">
           <div class="invitation-brand">
             <div class="invitation-intro" data-i18n="greet.invite">Vous êtes invité au mariage de</div>
-            <div id="personalGreeting" class="personal-greeting hidden" aria-live="polite"></div>
             <svg class="hero-mark" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M20 100V54c0-26 18-44 40-44s40 18 40 44v46" />
               <path d="M32 88c6-17 4-31 16-36" />
               <path d="M88 88c-6-17-4-31-16-36" />
             </svg>
             <h1 class="hero-name"><span class="initial">D</span>oune <span class="amp">&amp;</span> <span class="initial">G</span>rem</h1>
+            <div id="personalGreeting" class="personal-greeting hidden" aria-live="polite"></div>
             <div class="invitation-meta">
-              <span>Samedi 6 mai 2028</span>
+              <span data-i18n="hero.ceremonyline">Cérémonie laïque · Samedi 6 mai 2028</span>
               <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x12b5a9b3c53c32bf:0x2e85cc8e52649dd0?sa=X&ved=1t:8290&ictx=111" target="_blank" rel="noopener noreferrer">Clos d'Hullias - Saint-Christol-de-Rodières, Gard</a>
             </div>
           </div>
@@ -2023,6 +2023,7 @@
     });
 
     let currentGuest = null;
+    let hasUnlocked = false;
 
     const unlock = () => {
       const entered = normalize(gateInput.value);
@@ -2035,6 +2036,7 @@
       }
 
       currentGuest = match;
+      hasUnlocked = true;
       gate.classList.add('hidden');
       site.classList.remove('hidden');
       document.body.style.overflow = 'auto';
@@ -2050,7 +2052,7 @@
 
     function renderPersonalGreeting() {
       const el = document.getElementById('personalGreeting');
-      if (!el || !currentGuest) return;
+      if (!el || !currentGuest || !hasUnlocked) return;
       const lang = t[currentLang];
       const getsFullWeekend = currentGuest.day === 'Vendredi' || currentGuest.day === 'Mariee';
       const dayText = getsFullWeekend ? lang['greet.days.full'] : lang['greet.days.partial'];
@@ -2176,7 +2178,7 @@
         'gate.sub':'Accès invités','gate.placeholder':'Votre prénom','gate.btn':'Entrer','gate.error':'Prénom non reconnu.','gate.hint':'Tapez le prénom indiqué sur votre invitation',
         'nav.aria':'Navigation principale','nav.story':'A&amp;C','nav.details':'Le lieu','nav.home':'Accueil','nav.rsvp':'Hébergement','nav.schedule':'Programme',
         'greet.hello':'Bonjour','greet.invite':'Vous êtes invité au mariage de','greet.expected':'Et vous êtes attendu pour','greet.days.full':'vendredi, samedi et dimanche','greet.days.partial':'samedi et dimanche',
-        'hero.eyebrow':'Mariage de','hero.date':'Samedi 6 mai 2028','hero.countdown':'Compte à rebours',
+        'hero.eyebrow':'Mariage de','hero.date':'Samedi 6 mai 2028','hero.ceremonyline':'Cérémonie laïque · Samedi 6 mai 2028','hero.countdown':'Compte à rebours',
         'cd.days':'Jours','cd.hours':'Heures','cd.min':'Min','cd.sec':'Sec',
         'story.eyebrow':'Depuis le début','story.title':'A&amp;C',
         'story.text':"Après des mois à communiquer entre Tahiti et Nantes, le confinement prend un joli tournant lorsque Charles peut rentrer. Dès son deuxième jour en France, nous nous rencontrons sur les bords de l'Erdre, c'est le coup de foudre. Depuis, nous ne nous sommes jamais quittés. Quelques années plus tard, Charles cache la bague dans le tiroir à chaussettes qu'Aude ouvre pourtant toute la semaine sans jamais la voir. Puis il la demande en mariage sur un bateau à Amsterdam, sous le pont des amoureux.",
@@ -2188,13 +2190,13 @@
         'prog.ceremony.title':'Cérémonie laïque','prog.ceremony.note':'En plein air, dans le parc du domaine.',
         'prog.cocktail.title':'Cocktail','prog.cocktail.note':"Vin d'honneur dans le parc de cèdres, sur place.",
         'prog.dinner-sat.title':'Dîner','prog.dinner-sat.note':'Grillades & plancha en extérieur.',
-        'prog.party.title':'Soirée dansante','prog.party.note':"<a href='https://nuitblanchedj.com/' target='_blank' rel='noopener' style='color:inherit;text-decoration:underline;text-decoration-color:var(--gold-soft)'>DJ Nuit Blanche</a> nous accompagnera toute la journée et une partie de la nuit. Soirée dansante jusqu'à 4h.",
+        'prog.party.title':'Soirée dansante','prog.party.note':"<a href='https://nuitblanchedj.com/' target='_blank' rel='noopener' style='color:inherit;text-decoration:underline;text-decoration-color:var(--gold-soft)'>DJ Nuit Blanche</a> nous accompagnera toute la journée et une partie de la nuit. Soirée dansante jusqu'à 4 h.",
         'prog.brunch.title':'Brunch','prog.brunch.note':'Brunch en terrasse pour finir le week-end en douceur.',
         'prog.poolparty.title':'Pool party','prog.poolparty.note':'Derniers moments ensemble autour des piscines avant le départ.',
         'prog.checkout.title':'Départ','prog.checkout.note':'Heure limite de check-out du domaine.',
         'time.after':'Après','time.evening':'Soir','time.night':'Nuit','time.morning':'Matin','time.afternoon':'Après-midi',
         'arrival.eyebrow':'Votre invitation','arrival.title':'Un site personnalisé',
-        'arrival.desc':"En fonction de votre identité, votre invitation est personnalisée avec les dates et horaires qui vous sont propres, affichés juste après votre connexion, en haut de cette page.",
+        'arrival.desc':"En fonction de votre identité, votre invitation est personnalisée avec les dates et horaires qui vous sont propres, affichées juste après votre connexion, en haut de cette page.",
         'venue.eyebrow':'Où','venue.title':'Le lieu',
         'venue.link.site':'Site officiel','venue.link.maps':'Google Maps',
         'venue.how':'Comment venir :','venue.parking':'Parking :','venue.parking.desc':'Parking sur place, gratuit pour tous les invités.',
@@ -2222,8 +2224,8 @@
       en: {
         'gate.sub':'Guest Access','gate.placeholder':'Your first name','gate.btn':'Enter','gate.error':'First name not recognized.','gate.hint':'Type the first name shown on your invitation',
         'nav.aria':'Main navigation','nav.story':'A&amp;C','nav.details':'Details','nav.home':'Home','nav.rsvp':'Accommodation','nav.schedule':'Schedule',
-        'greet.hello':'Hello','greet.invite':'You are invited to the wedding of','greet.expected':'You are expected to join us on','greet.days.full':'Friday, Saturday and Sunday','greet.days.partial':'Saturday and Sunday',
-        'hero.eyebrow':'The wedding of','hero.date':'Saturday, May 6th, 2028','hero.countdown':'Countdown',
+        'greet.hello':'Hello','greet.invite':'You are invited to the wedding of','greet.expected':'You are expected to join us on','greet.days.full':'Friday, Saturday, and Sunday','greet.days.partial':'Saturday and Sunday',
+        'hero.eyebrow':'The wedding of','hero.date':'Saturday, May 6, 2028','hero.ceremonyline':'Secular ceremony · Saturday, May 6, 2028','hero.countdown':'Countdown',
         'cd.days':'Days','cd.hours':'Hours','cd.min':'Min','cd.sec':'Sec',
         'story.eyebrow':'From the beginning','story.title':'A&amp;C',
         'story.text':"After months of talking between Tahiti and Nantes, lockdown took a beautiful turn when Charles was finally able to come back. On his second day in France, we met by the Erdre river, and it was love at first sight. Since then, we have never been apart. A few years later, Charles hid the ring in the sock drawer that Aude opened all week without ever noticing it. Then he proposed on a boat in Amsterdam, under the Lovers' Bridge.",
@@ -2235,13 +2237,13 @@
         'prog.ceremony.title':'Ceremony','prog.ceremony.note':'Outdoors, in the estate grounds.',
         'prog.cocktail.title':'Cocktail hour','prog.cocktail.note':'Drinks in the cedar park.',
         'prog.dinner-sat.title':'Dinner','prog.dinner-sat.note':'BBQ & plancha under the stars.',
-        'prog.party.title':'Party','prog.party.note':"<a href='https://nuitblanchedj.com/' target='_blank' rel='noopener' style='color:inherit;text-decoration:underline;text-decoration-color:var(--gold-soft)'>DJ Nuit Blanche</a> will be with us all day and into the night. Dancing until 4am.",
+        'prog.party.title':'Party','prog.party.note':"<a href='https://nuitblanchedj.com/' target='_blank' rel='noopener' style='color:inherit;text-decoration:underline;text-decoration-color:var(--gold-soft)'>DJ Nuit Blanche</a> will be with us all day and into the night. Dancing until 4 a.m.",
         'prog.brunch.title':'Brunch','prog.brunch.note':'A lazy Sunday brunch on the terrace.',
         'prog.poolparty.title':'Pool party','prog.poolparty.note':'One last moment together by the pools before we say goodbye.',
         'prog.checkout.title':'Departure','prog.checkout.note':'Check-out deadline from the estate.',
         'time.after':'After','time.evening':'Evening','time.night':'Night','time.morning':'Morning','time.afternoon':'Afternoon',
-        'arrival.eyebrow':'Your invitation','arrival.title':'A personalised site',
-        'arrival.desc':"Based on your identity, your invitation is personalised with the dates and times that are specific to you, shown right after you log in, at the top of this page.",
+        'arrival.eyebrow':'Your invitation','arrival.title':'A personalised website',
+        'arrival.desc':"Based on your identity, your invitation is personalised with the dates and times specific to you, displayed right after you log in at the top of this page.",
         'venue.eyebrow':'Where','venue.title':'The venue',
         'venue.link.site':'Official website','venue.link.maps':'Google Maps',
         'venue.how':'Getting there:','venue.parking':'Parking:','venue.parking.desc':'Free on-site parking for all guests.',
@@ -2260,8 +2262,8 @@
         'rsvp.party':'Number of guests','rsvp.diet':'Dietary requirements / allergies',
         'rsvp.msg':'Message (optional)','rsvp.submit':'Send my reply',
         'faq.eyebrow':'FAQ','faq.title':'Frequently asked questions',
-        'map.eyebrow':'Our lovely guests','map.title':'Our wedding is going international!',
-        'map.desc':'80 guests are travelling for the occasion.',
+        'map.eyebrow':'Our lovely guests','map.title':'Our wedding celebration is international!',
+        'map.desc':'80 guests are travelling for the celebration.',
         'map.hint':'Click on a city to see the recommended route.',
         'gallery.eyebrow':'Photos','gallery.title':'Gallery',
         'footer':'Doune &amp; Grem, May 6th 2028',
