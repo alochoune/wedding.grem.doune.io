@@ -421,13 +421,20 @@
   }
 
   .invitation-brand {
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
     text-align: center;
     color: #fff;
     margin-top: 18px;
   }
+
+  .invitation-intro { order: 1; }
+  .hero-mark { order: 2; }
+  .hero-name { order: 3; }
+  .personal-greeting { order: 4; }
+  .invitation-meta { order: 5; }
 
   .invitation-intro {
     color: rgba(245, 241, 231, 0.88);
