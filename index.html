@@ -301,7 +301,7 @@
     place-items: center;
     padding: 34px 36px 40px;
     background:
-      linear-gradient(180deg, rgba(4, 7, 4, 0.18) 0%, rgba(6, 9, 6, 0.38) 100%),
+      linear-gradient(180deg, rgba(4, 7, 4, 0.24) 0%, rgba(6, 9, 6, 0.46) 100%),
       var(--hero-photo) center center / cover no-repeat;
   }
 
@@ -310,10 +310,10 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.03) 30%, rgba(0, 0, 0, 0) 55%),
-      radial-gradient(ellipse at center bottom, rgba(18, 32, 13, 0.16) 0%, rgba(0, 0, 0, 0) 45%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.05) 30%, rgba(0, 0, 0, 0) 55%),
+      radial-gradient(ellipse at center bottom, rgba(18, 32, 13, 0.2) 0%, rgba(0, 0, 0, 0) 45%),
       linear-gradient(180deg, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 16px);
-    opacity: 0.42;
+    opacity: 0.5;
   }
 
   .invitation-top > * {
@@ -783,8 +783,12 @@
     padding-top: 32px;
   }
 
+  #rsvp + .section {
+    padding-top: 28px;
+  }
+
   .strip-gallery-section {
-    padding: 88px 0;
+    padding: 42px 0 24px;
     background: #3f2417;
     overflow: hidden;
   }
@@ -823,6 +827,58 @@
     background: rgba(20, 28, 8, 0.52);
     border-color: rgba(247, 243, 232, 0.34);
     box-shadow: 0 20px 46px rgba(8, 12, 6, 0.32);
+  }
+
+  .iban-dropdown {
+    margin-top: 28px;
+    text-align: left;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+  }
+
+  .iban-toggle {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.76rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    padding: 8px 2px;
+    user-select: none;
+  }
+
+  .iban-toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .iban-chevron {
+    width: 11px;
+    height: 11px;
+    border-right: 1.6px solid currentColor;
+    border-bottom: 1.6px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+    opacity: 0.9;
+    flex-shrink: 0;
+    margin-top: -2px;
+  }
+
+  .iban-dropdown[open] .iban-chevron {
+    transform: rotate(225deg);
+    margin-top: 2px;
+  }
+
+  .iban-content {
+    display: grid;
+    gap: 14px;
+    margin-top: 8px;
   }
 
   .story-section {
@@ -866,7 +922,7 @@
 
   .strip-header {
     text-align: center;
-    padding: 0 24px 48px;
+    padding: 0 24px 22px;
   }
 
   .strip-wrapper {
@@ -906,13 +962,17 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center center;
     filter: grayscale(100%) contrast(1.06);
     display: block;
-    transition: filter 0.4s;
+    transform: scale(1.08);
+    transition: filter 0.4s, transform 0.4s;
   }
 
-  .strip-tile img:hover { filter: grayscale(0%); }
+  .strip-tile img:hover {
+    filter: grayscale(0%);
+    transform: scale(1.12);
+  }
 
   .footer {
     padding: 34px 24px 54px;
@@ -1263,8 +1323,8 @@
     .lang-toggle { top: 10px; right: 10px; }
     .lang-btn { padding: 5px 10px; font-size: 0.68rem; letter-spacing: 0.15em; }
     .strip-tile { width: 110px; height: 110px; }
-    .strip-gallery-section { padding: 60px 0; }
-    .strip-header { padding-bottom: 36px; }
+    .strip-gallery-section { padding: 34px 0 16px; }
+    .strip-header { padding-bottom: 16px; }
     .full-card { padding: 16px; }
     .card { padding: 18px 16px; }
     .faq-shell {
@@ -1292,6 +1352,7 @@
     .section-inner.narrow { padding: 0; }
     .modal-guest-list { grid-template-columns: 1fr; }
     .modal-box { padding: 24px 20px; }
+    #rsvp + .section { padding-top: 18px; }
   }
 
   @media (max-width: 420px) {
@@ -1650,8 +1711,13 @@
         <p class="content-copy">
           Votre présence est le plus beau des cadeaux. Si vous souhaitez tout de même participer à notre voyage de noces, vous pouvez faire un virement directement, et une urne sera aussi présente le jour J.
         </p>
-        <div class="panel full-card" style="margin-top:28px;text-align:left;max-width:420px;margin-left:auto;margin-right:auto">
-          <div style="display:grid;gap:14px">
+        <details class="panel full-card iban-dropdown">
+          <summary class="iban-toggle">
+            <span class="lang-fr">Coordonnées bancaires</span>
+            <span class="lang-en" style="display:none">Bank details</span>
+            <span class="iban-chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="iban-content">
             <div>
               <div style="font-family:'Cormorant SC',serif;font-size:0.74rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:4px">IBAN</div>
               <div style="font-size:1.05rem;letter-spacing:0.03em">FR76 1444 5004 0004 0801 9062 001</div>
@@ -1679,7 +1745,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </details>
       </div>
     </section>
 
@@ -2194,7 +2260,7 @@
         'rsvp.party':'Number of guests','rsvp.diet':'Dietary requirements / allergies',
         'rsvp.msg':'Message (optional)','rsvp.submit':'Send my reply',
         'faq.eyebrow':'FAQ','faq.title':'Frequently asked questions',
-        'map.eyebrow':'Our guests','map.title':'Our wedding is going international!',
+        'map.eyebrow':'Our lovely guests','map.title':'Our wedding is going international!',
         'map.desc':'80 guests are travelling for the occasion.',
         'map.hint':'Click on a city to see the recommended route.',
         'gallery.eyebrow':'Photos','gallery.title':'Gallery',
