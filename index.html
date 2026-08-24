@@ -147,13 +147,13 @@
   .button:hover { transform: translateY(-1px); background: var(--navy-deep); }
 
   .button-outline {
-    background: transparent;
-    color: var(--gold-soft);
-    border-color: var(--gold-soft);
+    background: rgba(184, 165, 76, 0.08);
+    color: #fef6de;
+    border-color: rgba(184, 165, 76, 0.82);
   }
 
   .button-outline:hover {
-    background: rgba(215, 176, 109, 0.08);
+    background: rgba(184, 165, 76, 0.14);
   }
 
   .panel {
@@ -171,9 +171,8 @@
     place-items: center;
     padding: 24px;
     background:
-      linear-gradient(180deg, rgba(7, 13, 7, 0.2) 0%, rgba(7, 13, 7, 0.4) 100%),
-      var(--hero-photo) center 28% / cover no-repeat,
-      radial-gradient(circle at top, #2e4a1a, var(--navy) 60%, #111d0a 100%);
+      linear-gradient(180deg, rgba(8, 12, 8, 0.10) 0%, rgba(8, 12, 8, 0.18) 100%),
+      var(--hero-photo) center 28% / cover no-repeat;
     transition: opacity 0.45s ease, visibility 0.45s ease;
   }
 
@@ -188,6 +187,10 @@
     text-align: center;
     color: #fff;
     padding: 30px 24px 28px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    backdrop-filter: none;
   }
 
   .gate-mark {
@@ -199,20 +202,26 @@
 
   .script {
     font-family: 'Italianno', cursive;
-    font-size: clamp(4.8rem, 10.5vw, 8.6rem);
+    font-size: clamp(5.6rem, 10vw, 9.4rem);
     font-style: normal;
     font-weight: 400;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.02em;
+    line-height: 0.76;
     margin: 0 0 18px;
-    color: #fff;
-    text-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    color: rgba(255, 246, 232, 0.99);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.14);
+    transform: translateY(-2px);
+    width: 100%;
+    max-width: 900px;
   }
 
   .gate-sub {
-    color: var(--gold-soft);
-    letter-spacing: 0.32em;
-    font-size: 0.82rem;
-    margin-bottom: 26px;
+    color: rgba(251, 240, 212, 0.96);
+    letter-spacing: 0.18em;
+    font-size: 0.72rem;
+    margin-bottom: 22px;
+    font-weight: 500;
+    text-transform: uppercase;
   }
 
   .gate-input {
@@ -220,17 +229,19 @@
     margin: 0 auto 10px;
     background: transparent;
     border: none;
-    border-bottom: 1px solid rgba(215, 176, 109, 0.75);
+    border-bottom: 1px solid rgba(255, 248, 234, 0.7);
     color: #fff;
     outline: none;
     text-align: center;
-    font-size: 1.15rem;
-    padding: 10px 8px 12px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-size: 1.05rem;
+    padding: 10px 8px 11px;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
   }
 
-  .gate-input::placeholder { color: rgba(255, 255, 255, 0.42); }
+  .gate-input::placeholder { color: rgba(255, 248, 234, 0.75); }
 
   .gate-error {
     min-height: 1.4em;
@@ -339,19 +350,19 @@
     pointer-events: auto;
     display: flex;
     justify-content: center;
-    gap: 28px;
+    gap: 26px;
     flex-wrap: wrap;
     font-family: 'Cormorant SC', serif;
-    font-size: 0.56rem;
-    letter-spacing: 0.24em;
+    font-size: 0.52rem;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: #fff;
+    color: rgba(255, 249, 239, 0.94);
     padding: 4px 18px;
     border-radius: 999px;
-    background: rgba(91, 58, 41, 0.56);
-    border: none;
-    box-shadow: 0 10px 24px rgba(9, 16, 28, 0.28);
-    backdrop-filter: blur(10px);
+    background: rgba(24, 28, 18, 0.12);
+    border: 1px solid rgba(255, 249, 239, 0.18);
+    box-shadow: none;
+    backdrop-filter: blur(3px);
   }
 
   .site-sticky-nav .invitation-nav a {
@@ -424,10 +435,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
     text-align: center;
     color: #fff;
     margin-top: 18px;
+    width: min(1100px, 100%);
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .invitation-intro { order: 1; }
@@ -457,17 +471,19 @@
 
   .hero-name {
     font-family: 'Italianno', cursive;
-    font-size: clamp(4.6rem, 9vw, 8.2rem);
-    line-height: 0.88;
-    letter-spacing: 0.01em;
+    font-size: clamp(7rem, 13vw, 11.5rem);
+    line-height: 0.7;
+    letter-spacing: 0.02em;
     font-weight: 400;
-    color: #f5f1e7;
-    text-shadow:
-      0 0 2px rgba(255, 255, 255, 0.35),
-      0 12px 28px rgba(0, 0, 0, 0.72);
-    margin: 4px 0 0;
+    color: rgba(255, 248, 236, 0.99);
+    text-shadow: 0 1px 0 rgba(255,255,255,0.12), 0 10px 22px rgba(0, 0, 0, 0.18);
+    margin: 2px auto 0;
     text-transform: none;
-    white-space: nowrap;
+    white-space: normal;
+    width: min(100%, 1100px);
+    display: block;
+    filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.2));
+    transform: translateY(-2px);
   }
 
   .hero-name .initial {
@@ -606,6 +622,53 @@
   .prog-note {
     margin-top: 6px;
     font-size: 0.98rem;
+  }
+
+  .prog-download-card {
+    margin-top: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    text-decoration: none;
+    padding: 16px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .prog-download-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .prog-download-text {
+    display: grid;
+    gap: 4px;
+  }
+
+  .prog-download-title {
+    font-family: 'Cormorant SC', serif;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.82rem;
+    color: var(--gold-soft);
+  }
+
+  .prog-download-cta {
+    font-size: 1.08rem;
+    letter-spacing: 0.02em;
+  }
+
+  .prog-download-icon {
+    width: 30px;
+    height: 30px;
+    color: var(--gold-soft);
+    flex-shrink: 0;
+    opacity: 0.95;
   }
 
   .card-grid {
@@ -1577,19 +1640,33 @@
             </article>
           </div>
         </div>
+        <a class="prog-download-card" href="photos/faire-part-digital.jpg" download="faire-part-doune-grem.jpg" aria-label="Télécharger le faire-part digital">
+          <div class="prog-download-text">
+            <span class="prog-download-title" data-i18n="prog.invite.title">Faire-part digital</span>
+            <span class="prog-download-cta" data-i18n="prog.invite.cta">Télécharger le faire-part</span>
+          </div>
+          <svg class="prog-download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 6h18v12H3z" />
+            <path d="m3 7 9 7 9-7" />
+          </svg>
+        </a>
       </div>
     </section>
 
     <section class="section" id="details">
       <div class="section-inner content-block center">
         <h2 class="title" data-i18n="venue.title">Le lieu</h2>
-        <p class="content-copy" style="margin-top:14px;margin-bottom:0">
+        <span class="lang-fr"><p class="content-copy" style="margin-top:14px;margin-bottom:0">
           <strong>Domaine du Clos d'Hullias</strong>, hameau provençal du XVII<sup>e</sup>&nbsp;siècle niché dans les vignobles du Gard, vue panoramique sur le Mont Ventoux, deux piscines et un parc de cèdres centenaires.
-        </p>
+        </p></span>
+        <span class="lang-en" style="display:none"><p class="content-copy" style="margin-top:14px;margin-bottom:0">
+          <strong>Clos d'Hullias Estate</strong>, a Provençal hamlet from the XVII<sup>th</sup> century tucked into the vineyards of the Gard, with panoramic views over Mont Ventoux, two swimming pools, and an ancient cedar park.
+        </p></span>
         <div class="venue-links">
           <a class="venue-link" href="https://www.hullias.com/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            <span data-i18n="venue.link.site">Site officiel</span>
+            <span class="lang-fr" data-i18n="venue.link.site">Site officiel</span>
+            <span class="lang-en" style="display:none">Official website</span>
           </a>
           <a class="venue-link" href="https://www.instagram.com/domaineduclosdhullias/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
@@ -1601,9 +1678,11 @@
           </a>
         </div>
         <div class="panel full-card" style="margin-top:26px;text-align:left">
-          <p><strong>Adresse :</strong> 314 chemin d'Hullias, 30760 Saint-Christol-de-Rodières (Gard)</p>
+          <span class="lang-fr"><p><strong>Adresse :</strong> 314 chemin d'Hullias, 30760 Saint-Christol-de-Rodières (Gard)</p></span>
+          <span class="lang-en" style="display:none"><p><strong>Address:</strong> 314 chemin d'Hullias, 30760 Saint-Christol-de-Rodières (Gard)</p></span>
           <p style="margin-top:20px"><strong data-i18n="venue.parking">Parking :</strong> <span data-i18n="venue.parking.desc">Parking sur place, gratuit pour tous les invités.</span></p>
-          <p style="margin-top:12px">Vous trouverez toutes les informations relatives à notre mariage sur ce site internet.</p>
+          <span class="lang-fr"><p style="margin-top:12px">Vous trouverez toutes les informations relatives à notre mariage sur ce site internet.</p></span>
+          <span class="lang-en" style="display:none"><p style="margin-top:12px">You will find all the information about our wedding on this website.</p></span>
           <p style="margin-top:18px"><strong data-i18n="venue.how">Comment venir :</strong></p>
           <div class="acces-grid">
             <div class="acces-item"><strong>Avignon TGV</strong><span data-i18n="venue.avignon">1h de route, gare la plus proche</span></div>
@@ -1623,51 +1702,101 @@
         <div class="card-grid" style="margin-top:32px;grid-template-columns:1fr">
           <article class="panel card" style="text-align:left">
             <h3>Clos d'Hullias</h3>
-            <p>30 couchages sont disponibles sur place, pour <a href="#" class="accom-link" onclick="openGuestList(); return false;">une partie des invités</a>. Si vous préférez séjourner dans un hôtel à proximité, faites-le nous savoir !</p>
+            <span class="lang-fr"><p>30 couchages sont disponibles sur place, pour <a href="#" class="accom-link" onclick="openGuestList(); return false;">une partie des invités</a>. Si vous préférez séjourner dans un hôtel à proximité, faites-le nous savoir !</p></span>
+            <span class="lang-en" style="display:none"><p>30 beds are available on site, for <a href="#" class="accom-link" onclick="openGuestList(); return false;">part of our guests</a>. If you would prefer to stay in a nearby hotel, please let us know!</p></span>
           </article>
         </div>
         <div class="panel full-card" style="margin-top:18px;text-align:left">
           <div style="display:grid;gap:24px">
 
-            <div>
-              <p style="margin:0 0 12px;font-family:'Cormorant SC',serif;font-size:1rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--navy)">Aiguèze <span style="font-family:'Cormorant Garamond',serif;text-transform:none;letter-spacing:0;font-size:0.9rem;color:var(--gold)">— 10 min, village classé "Plus beaux villages de France"</span></p>
-              <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
-                <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-                  <span style="font-size:1.05rem">Le Castélas <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Appart'hôtel avec piscine, cœur du village &middot; 04 66 82 18 76</span></span>
-                  <a href="https://www.aigueze.fr/tourisme/hotels" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Voir</a>
-                </li>
-                <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-                  <span style="font-size:1.05rem">La Poussinière <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Chambre d'hôtes</span></span>
-                  <a href="https://www.booking.com/city/fr/aigueze.fr.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
-                </li>
-                <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-                  <span style="font-size:1.05rem">Le Château d'Aiguèze <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Villas avec piscine</span></span>
-                  <a href="https://www.cartesfrance.fr/carte-france-ville/hotel_30005_Aigueze.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
-                </li>
-              </ul>
-            </div>
+            <span class="lang-fr">
+              <div>
+                <p style="margin:0 0 12px;font-family:'Cormorant SC',serif;font-size:1rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--navy)">Aiguèze <span style="font-family:'Cormorant Garamond',serif;text-transform:none;letter-spacing:0;font-size:0.9rem;color:var(--gold)">— 10 min, village classé "Plus beaux villages de France"</span></p>
+                <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
+                  <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                    <span style="font-size:1.05rem">Le Castélas <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Appart'hôtel avec piscine, cœur du village &middot; 04 66 82 18 76</span></span>
+                    <a href="https://www.aigueze.fr/tourisme/hotels" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Voir</a>
+                  </li>
+                  <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                    <span style="font-size:1.05rem">La Poussinière <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Chambre d'hôtes</span></span>
+                    <a href="https://www.booking.com/city/fr/aigueze.fr.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                  </li>
+                  <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                    <span style="font-size:1.05rem">Le Château d'Aiguèze <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Villas avec piscine</span></span>
+                    <a href="https://www.cartesfrance.fr/carte-france-ville/hotel_30005_Aigueze.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                  </li>
+                </ul>
+              </div>
+            </span>
 
-            <div>
-              <p style="margin:0 0 12px;font-family:'Cormorant SC',serif;font-size:1rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--navy)">Saint-Martin-d'Ardèche <span style="font-family:'Cormorant Garamond',serif;text-transform:none;letter-spacing:0;font-size:0.9rem;color:var(--gold)">— 10 à 15 min, au bord de la rivière</span></p>
-              <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
-                <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-                  <span style="font-size:1.05rem">Logis Hôtel Bellevue <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Piscine chauffée, restaurant, au bord de l'Ardèche</span></span>
-                  <a href="https://www.hotel-bellevue-restaurant.com/" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
-                </li>
-                <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-                  <span style="font-size:1.05rem">Hôtel Les Petits Oreillers</span>
-                  <a href="https://www.booking.com/city/fr/aigueze.fr.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
-                </li>
-                <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-                  <span style="font-size:1.05rem">Château Saint Martin <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Gîtes avec piscine à débordement, vue Aiguèze &middot; gîtes «&nbsp;Aiguèze&nbsp;» et «&nbsp;Les Gorges de l'Ardèche&nbsp;»</span></span>
-                  <a href="https://locations-ardeche.e-monsite.com/" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
-                </li>
-                <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-                  <span style="font-size:1.05rem">Le MARINE <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Appartements</span></span>
-                  <a href="https://www.cartesfrance.fr/carte-france-ville/hotel_30005_Aigueze.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
-                </li>
-              </ul>
-            </div>
+            <span class="lang-en" style="display:none">
+              <div>
+                <p style="margin:0 0 12px;font-family:'Cormorant SC',serif;font-size:1rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--navy)">Aiguèze <span style="font-family:'Cormorant Garamond',serif;text-transform:none;letter-spacing:0;font-size:0.9rem;color:var(--gold)">— 10 minutes away, a village listed as "One of the Most Beautiful Villages of France"</span></p>
+                <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
+                  <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                    <span style="font-size:1.05rem">Le Castélas <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Apartment-hotel with pool, heart of the village &middot; +33 4 66 82 18 76</span></span>
+                    <a href="https://www.aigueze.fr/tourisme/hotels" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">View</a>
+                  </li>
+                  <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                    <span style="font-size:1.05rem">La Poussinière <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Guesthouse</span></span>
+                    <a href="https://www.booking.com/city/fr/aigueze.fr.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Book</a>
+                  </li>
+                  <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                    <span style="font-size:1.05rem">Le Château d'Aiguèze <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Pool villas</span></span>
+                    <a href="https://www.cartesfrance.fr/carte-france-ville/hotel_30005_Aigueze.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Book</a>
+                  </li>
+                </ul>
+              </div>
+            </span>
+
+            <span class="lang-fr">
+              <div>
+                <p style="margin:0 0 12px;font-family:'Cormorant SC',serif;font-size:1rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--navy)">Saint-Martin-d'Ardèche <span style="font-family:'Cormorant Garamond',serif;text-transform:none;letter-spacing:0;font-size:0.9rem;color:var(--gold)">— 10 à 15 min, au bord de la rivière</span></p>
+                <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
+                  <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                    <span style="font-size:1.05rem">Logis Hôtel Bellevue <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Piscine chauffée, restaurant, au bord de l'Ardèche</span></span>
+                    <a href="https://www.hotel-bellevue-restaurant.com/" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                  </li>
+                  <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                    <span style="font-size:1.05rem">Hôtel Les Petits Oreillers</span>
+                    <a href="https://www.booking.com/city/fr/aigueze.fr.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                  </li>
+                  <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                    <span style="font-size:1.05rem">Château Saint Martin <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Gîtes avec piscine à débordement, vue Aiguèze &middot; gîtes «&nbsp;Aiguèze&nbsp;» et «&nbsp;Les Gorges de l'Ardèche&nbsp;»</span></span>
+                    <a href="https://locations-ardeche.e-monsite.com/" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                  </li>
+                  <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                    <span style="font-size:1.05rem">Le MARINE <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Appartements</span></span>
+                    <a href="https://www.cartesfrance.fr/carte-france-ville/hotel_30005_Aigueze.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                  </li>
+                </ul>
+              </div>
+            </span>
+
+            <span class="lang-en" style="display:none">
+              <div>
+                <p style="margin:0 0 12px;font-family:'Cormorant SC',serif;font-size:1rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--navy)">Saint-Martin-d'Ardèche <span style="font-family:'Cormorant Garamond',serif;text-transform:none;letter-spacing:0;font-size:0.9rem;color:var(--gold)">— 10 to 15 minutes away, by the river</span></p>
+                <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
+                  <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                    <span style="font-size:1.05rem">Logis Hôtel Bellevue <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Heated pool, restaurant, by the Ardèche river</span></span>
+                    <a href="https://www.hotel-bellevue-restaurant.com/" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Book</a>
+                  </li>
+                  <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                    <span style="font-size:1.05rem">Hôtel Les Petits Oreillers</span>
+                    <a href="https://www.booking.com/city/fr/aigueze.fr.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Book</a>
+                  </li>
+                  <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                    <span style="font-size:1.05rem">Château Saint Martin <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Overflow pool cottages, view of Aiguèze &middot; cottages “Aiguèze” and “Les Gorges de l'Ardèche”</span></span>
+                    <a href="https://locations-ardeche.e-monsite.com/" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Book</a>
+                  </li>
+                  <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                    <span style="font-size:1.05rem">Le MARINE <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Apartments</span></span>
+                    <a href="https://www.cartesfrance.fr/carte-france-ville/hotel_30005_Aigueze.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Book</a>
+                  </li>
+                </ul>
+              </div>
+            </span>
+
 
           </div>
         </div>
@@ -1678,9 +1807,12 @@
       <div class="section-inner content-block center narrow">
         <div class="eyebrow" data-i18n="dress.eyebrow">Thème</div>
         <h2 class="title" data-i18n="dress.title">Suggestion de tenue</h2>
-        <p class="content-copy">
+        <span class="lang-fr"><p class="content-copy">
           Aucune obligation, mais si l'inspiration vous manque, voici quelques idées : la Provence de carte postale, lin froissé, soie sauvage, matières naturelles, des silhouettes décontractées, dans une palette de tons chauds et terreux. Le mariage se déroule en extérieur, pelouse, gravier, terrasses, les chaussures confortables sont recommandées, les talons aiguilles sont déconseillés.
-        </p>
+        </p></span>
+        <span class="lang-en" style="display:none"><p class="content-copy">
+          There is no strict dress code, but if you need a little inspiration, here are a few ideas: postcard Provence, crinkled linen, wild silk, natural fabrics, relaxed silhouettes, in a palette of warm earthy tones. The wedding will take place outdoors, on grass, gravel, and terraces, so comfortable shoes are recommended and stilettos are discouraged.
+        </p></span>
 
         <div class="dress-moodboard-grid">
           <img class="dress-moodboard-photo" src="photos/moodboard.jpg" alt="Moodboard tenue" loading="lazy">
@@ -1715,9 +1847,12 @@
       <div class="section-inner content-block center narrow">
         <div class="eyebrow" data-i18n="honey.eyebrow">Contribution</div>
         <h2 class="title" data-i18n="honey.title">Voyage de noces</h2>
-        <p class="content-copy">
+        <span class="lang-fr"><p class="content-copy">
           Votre présence est le plus beau des cadeaux. Si vous souhaitez tout de même participer à notre voyage de noces, vous pouvez faire un virement directement, et une urne sera aussi présente le jour J.
-        </p>
+        </p></span>
+        <span class="lang-en" style="display:none"><p class="content-copy">
+          Your presence is the greatest gift of all. If you would still like to contribute to our honeymoon, you can transfer money directly, and a box will also be available on the day.
+        </p></span>
         <details class="panel full-card iban-dropdown">
           <summary class="iban-toggle">
             <span class="lang-fr">Coordonnées bancaires</span>
@@ -2179,6 +2314,32 @@
     }
 
 
+    const RSVP_EMAIL_TO = 'aude.chlt@gmail.com';
+
+    document.querySelector('.rsvp-form')?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const formData = new FormData(form);
+      const name = (formData.get('name') || '').toString().trim() || 'Guest';
+      const attendanceFri = form.elements.attendanceFri ? form.elements.attendanceFri.value : '—';
+      const attendanceSat = form.elements.attendance ? form.elements.attendance.value : '—';
+      const party = form.elements.party ? form.elements.party.value : '1';
+      const diet = form.elements.diet ? form.elements.diet.value : '—';
+      const message = form.elements.message ? form.elements.message.value : '—';
+
+      const subject = encodeURIComponent(`RSVP - ${name}`);
+      const body = encodeURIComponent(
+        `Nom / Full name: ${name}\n` +
+        `Vendredi / Friday: ${attendanceFri}\n` +
+        `Samedi / Saturday: ${attendanceSat}\n` +
+        `Nombre de personnes / Guests: ${party}\n` +
+        `Allergies / Dietary: ${diet}\n` +
+        `Message: ${message}`
+      );
+
+      window.location.href = `mailto:${RSVP_EMAIL_TO}?subject=${subject}&body=${body}`;
+    });
+
     // ── i18n ──────────────────────────────────────────────────────────────────
     const t = {
       fr: {
@@ -2192,6 +2353,7 @@
         'prog.eyebrow':'Le week-end','prog.title':'Programme',
         'prog.fri':'Vendredi 5 mai','prog.sat':'Samedi 6 mai','prog.sun':'Dimanche 7 mai',
         'prog.arrival.title':'Arrivée & installation','prog.arrival.note':'Découverte du domaine, temps libre.',
+        'prog.invite.title':'Faire-part digital','prog.invite.cta':'Télécharger le faire-part',
         'prog.dinner-fri.title':'Dîner de retrouvailles','prog.dinner-fri.note':"Repas d'arrivée pré-mariage pour les invités présents dès le vendredi.",
         'prog.guestarrival.title':'Arrivée des invités','prog.guestarrival.note':'Installation avant le début de la cérémonie.',
         'prog.ceremony.title':'Cérémonie laïque','prog.ceremony.note':'En plein air, dans le parc du domaine.',
@@ -2239,6 +2401,7 @@
         'prog.eyebrow':'The weekend','prog.title':'Schedule',
         'prog.fri':'Friday, May 5th','prog.sat':'Saturday, May 6th','prog.sun':'Sunday, May 7th',
         'prog.arrival.title':'Arrival & check-in','prog.arrival.note':'Explore the estate, free time.',
+        'prog.invite.title':'Digital invitation','prog.invite.cta':'Download the invitation',
         'prog.dinner-fri.title':'Welcome dinner','prog.dinner-fri.note':'Pre-wedding dinner for guests arriving on Friday.',
         'prog.guestarrival.title':'Guest arrival','prog.guestarrival.note':'Settling in before the ceremony begins.',
         'prog.ceremony.title':'Ceremony','prog.ceremony.note':'Outdoors, in the estate grounds.',
