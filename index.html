@@ -22,6 +22,7 @@
     --paper: #FDFAF0;
     --shadow: 0 18px 60px rgba(20, 28, 8, 0.09);
     --heading-unified-size: clamp(1.55rem, 2.6vw, 2.2rem);
+    --name-script-size: clamp(4.8rem, 12vw, 9.4rem);
     --hero-photo: url('https://plus.unsplash.com/premium_photo-1688114988405-5849e59e961b?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
   }
 
@@ -65,15 +66,6 @@
     position: relative;
     z-index: 1;
     overflow: hidden;
-  }
-
-  .section {
-    padding: 70px 24px;
-  }
-
-  .section-inner {
-    width: min(1120px, 100%);
-    margin: 0 auto;
   }
 
   .narrow {
@@ -200,19 +192,31 @@
     color: var(--gold-soft);
   }
 
-  .script {
+  .script,
+  .hero-name {
     font-family: 'Italianno', cursive;
-    font-size: clamp(5.6rem, 10vw, 9.4rem);
+    font-size: var(--name-script-size);
     font-style: normal;
     font-weight: 400;
     letter-spacing: 0.02em;
-    line-height: 0.76;
-    margin: 0 0 18px;
+    line-height: 0.92;
+    margin: 0;
     color: rgba(255, 246, 232, 0.99);
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.14);
-    transform: translateY(-2px);
-    width: 100%;
+    width: min(100%, 1100px);
+    display: block;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-transform: none;
+    filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.2));
+  }
+
+  .script {
     max-width: 900px;
+  }
+
+  .gate-card .hero-name {
+    margin: 0 0 18px;
   }
 
   .gate-sub {
@@ -435,7 +439,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    justify-content: center;
+    gap: 12px;
     text-align: center;
     color: #fff;
     margin-top: 18px;
@@ -454,9 +459,9 @@
     color: rgba(245, 241, 231, 0.88);
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    font-size: 0.96rem;
+    font-size: clamp(1.05rem, 2vw, 1.38rem);
     font-family: 'Cormorant SC', serif;
-    margin-bottom: 2px;
+    margin-bottom: 0;
   }
 
   .hero-mark {
@@ -470,34 +475,25 @@
   }
 
   .hero-name {
-    font-family: 'Italianno', cursive;
-    font-size: clamp(7rem, 13vw, 11.5rem);
-    line-height: 0.7;
-    letter-spacing: 0.02em;
-    font-weight: 400;
     color: rgba(255, 248, 236, 0.99);
     text-shadow: 0 1px 0 rgba(255,255,255,0.12), 0 10px 22px rgba(0, 0, 0, 0.18);
-    margin: 2px auto 0;
-    text-transform: none;
-    white-space: normal;
-    width: min(100%, 1100px);
-    display: block;
-    filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.2));
-    transform: translateY(-2px);
+    margin: 8px auto 6px;
   }
 
   .hero-name .initial {
     font-size: 1.32em;
     letter-spacing: -0.015em;
+    display: inline-block;
+    margin-right: 0.08em;
   }
 
   .hero-name .amp {
     font-size: 0.78em;
-    margin: 0 0.12em;
+    margin: 0 0.18em 0 0.08em;
   }
 
   .invitation-meta {
-    margin-top: 6px;
+    margin-top: 12px;
     display: grid;
     gap: 2px;
     color: rgba(245, 241, 231, 0.88);
@@ -624,8 +620,14 @@
     font-size: 0.98rem;
   }
 
-  .prog-download-card {
+  .prog-download-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
     margin-top: 28px;
+  }
+
+  .prog-download-card {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1377,8 +1379,8 @@
     .invitation-top { min-height: auto; padding: 24px 18px; }
     .site-sticky-nav { padding: 8px 10px 0; }
     .site-sticky-nav .invitation-nav a { font-size: 0.52rem; }
-    .hero-name { font-size: clamp(3.8rem, 14vw, 6.2rem); }
-    .invitation-intro { font-size: 0.8rem; letter-spacing: 0.14em; }
+    .hero-name { font-size: clamp(3.8rem, 14vw, 6.2rem); line-height: 0.98; }
+    .invitation-intro { font-size: 1rem; letter-spacing: 0.14em; }
     .invitation-meta { font-size: 0.66rem; letter-spacing: 0.11em; }
     .title { margin-bottom: 14px; }
     .content-copy { font-size: clamp(1.1rem, 4vw, 1.35rem); }
@@ -1514,7 +1516,7 @@
         <path d="M50 31c0-12 8-20 18-19" />
         <path d="M50 31c0-12-8-20-18-19" />
       </svg>
-      <h1 class="script">Doune &amp; Grem</h1>
+      <h1 class="script hero-name"><span class="initial">D</span>oune <span class="amp">&amp;</span> <span class="initial">G</span>rem</h1>
       <div class="gate-sub" data-i18n="gate.sub">Accès invités</div>
       <input id="gateInput" class="gate-input" type="text" placeholder="Votre prénom" autocomplete="off" aria-label="Votre prénom" data-i18n-placeholder="gate.placeholder">
       <div style="margin-top:18px;">
@@ -1640,16 +1642,26 @@
             </article>
           </div>
         </div>
-        <a class="prog-download-card" href="photos/faire-part-digital.jpg" download="faire-part-doune-grem.jpg" aria-label="Télécharger le faire-part digital">
-          <div class="prog-download-text">
-            <span class="prog-download-title" data-i18n="prog.invite.title">Faire-part digital</span>
-            <span class="prog-download-cta" data-i18n="prog.invite.cta">Télécharger le faire-part</span>
-          </div>
-          <svg class="prog-download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 6h18v12H3z" />
-            <path d="m3 7 9 7 9-7" />
-          </svg>
-        </a>
+        <div class="prog-download-grid">
+          <a class="prog-download-card lang-fr" href="invites/invitation-fr.pdf" download="invitation-fr.pdf" aria-label="Télécharger l'invitation française">
+            <div class="prog-download-text">
+              <span class="prog-download-title" data-i18n="prog.invite.fr.title">Faire-part digital</span>
+            </div>
+            <svg class="prog-download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 6h18v12H3z" />
+              <path d="m3 7 9 7 9-7" />
+            </svg>
+          </a>
+          <a class="prog-download-card lang-en" href="invites/invitation-en.pdf" download="invitation-en.pdf" aria-label="Download the English invitation" style="display:none;">
+            <div class="prog-download-text">
+              <span class="prog-download-title" data-i18n="prog.invite.en.title">Digital invitation</span>
+            </div>
+            <svg class="prog-download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 6h18v12H3z" />
+              <path d="m3 7 9 7 9-7" />
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -2354,6 +2366,8 @@
         'prog.fri':'Vendredi 5 mai','prog.sat':'Samedi 6 mai','prog.sun':'Dimanche 7 mai',
         'prog.arrival.title':'Arrivée & installation','prog.arrival.note':'Découverte du domaine, temps libre.',
         'prog.invite.title':'Faire-part digital','prog.invite.cta':'Télécharger le faire-part',
+        'prog.invite.fr.title':'Invitation française','prog.invite.fr.cta':"Télécharger l'invitation FR",
+        'prog.invite.en.title':'English invitation','prog.invite.en.cta':'Download the English invitation',
         'prog.dinner-fri.title':'Dîner de retrouvailles','prog.dinner-fri.note':"Repas d'arrivée pré-mariage pour les invités présents dès le vendredi.",
         'prog.guestarrival.title':'Arrivée des invités','prog.guestarrival.note':'Installation avant le début de la cérémonie.',
         'prog.ceremony.title':'Cérémonie laïque','prog.ceremony.note':'En plein air, dans le parc du domaine.',
@@ -2402,6 +2416,8 @@
         'prog.fri':'Friday, May 5th','prog.sat':'Saturday, May 6th','prog.sun':'Sunday, May 7th',
         'prog.arrival.title':'Arrival & check-in','prog.arrival.note':'Explore the estate, free time.',
         'prog.invite.title':'Digital invitation','prog.invite.cta':'Download the invitation',
+        'prog.invite.fr.title':'French invitation','prog.invite.fr.cta':'Download the French invitation',
+        'prog.invite.en.title':'English invitation','prog.invite.en.cta':'Download the English invitation',
         'prog.dinner-fri.title':'Welcome dinner','prog.dinner-fri.note':'Pre-wedding dinner for guests arriving on Friday.',
         'prog.guestarrival.title':'Guest arrival','prog.guestarrival.note':'Settling in before the ceremony begins.',
         'prog.ceremony.title':'Ceremony','prog.ceremony.note':'Outdoors, in the estate grounds.',
