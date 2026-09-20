@@ -1340,6 +1340,53 @@
     text-align: left;
   }
 
+  .pdf-modal-box {
+    max-width: min(1100px, 96vw);
+    width: 100%;
+    height: min(86vh, 900px);
+    padding: 18px 18px 14px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 12px;
+  }
+
+  .pdf-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-right: 34px;
+  }
+
+  .pdf-modal-title {
+    margin: 0;
+    color: var(--navy);
+    font-family: 'Cormorant SC', serif;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .pdf-modal-frame {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(188,141,62,0.22);
+    border-radius: 10px;
+    background: #fff;
+  }
+
+  .pdf-modal-fallback {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(45,42,39,0.74);
+  }
+
+  .pdf-modal-fallback a {
+    color: var(--navy);
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+  }
+
   .modal-close {
     position: absolute;
     top: 12px;
@@ -1505,6 +1552,16 @@
     .iban-meta-grid { grid-template-columns: 1fr 1fr; }
     .modal-guest-list { grid-template-columns: 1fr; }
     .modal-box { padding: 24px 20px; }
+    .pdf-modal-box {
+      width: 100vw;
+      max-width: 100vw;
+      height: 100vh;
+      max-height: 100vh;
+      border-radius: 0;
+      padding: 14px 14px 10px;
+    }
+    #invitationPdfModal { padding: 0; }
+    .pdf-modal-header { padding-right: 40px; }
     #rsvp + .section { padding-top: 18px; }
   }
 
@@ -2118,6 +2175,24 @@
     </div>
   </div>
 
+  <div id="invitationPdfModal" class="modal-overlay hidden" onclick="if(event.target===this) closeInvitationPreview()">
+    <div class="modal-box pdf-modal-box">
+      <button class="modal-close" onclick="closeInvitationPreview()" aria-label="Close PDF preview">&times;</button>
+      <div class="pdf-modal-header">
+        <h3 id="invitationPdfTitle" class="pdf-modal-title">Faire-part digital</h3>
+      </div>
+      <iframe id="invitationPdfFrame" class="pdf-modal-frame" title="Invitation PDF preview"></iframe>
+      <p class="pdf-modal-fallback">
+        <span class="lang-fr">Si l’aperçu ne s’affiche pas, </span>
+        <span class="lang-en" style="display:none">If the preview does not load, </span>
+        <a id="invitationPdfFallbackLink" href="#" target="_blank" rel="noopener">
+          <span class="lang-fr">ouvrir le PDF dans un nouvel onglet</span>
+          <span class="lang-en" style="display:none">open the PDF in a new tab</span>
+        </a>
+      </p>
+    </div>
+  </div>
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const gate = document.getElementById('gate');
@@ -2317,6 +2392,41 @@
     function closeGuestList() {
       document.getElementById('guestListModal').classList.add('hidden');
     }
+
+    function openInvitationPreview(link) {
+      const href = link.getAttribute('href');
+      const localFileUrl = link.dataset.localFileUrl;
+      const previewUrl = window.location.protocol === 'file:'
+        ? (localFileUrl || new URL(href, window.location.href).href)
+        : href;
+      const modal = document.getElementById('invitationPdfModal');
+      const frame = document.getElementById('invitationPdfFrame');
+      const fallbackLink = document.getElementById('invitationPdfFallbackLink');
+      const title = document.getElementById('invitationPdfTitle');
+
+      if (!modal || !frame || !fallbackLink || !title || !previewUrl) return;
+
+      title.textContent = link.getAttribute('aria-label') || 'Invitation PDF';
+      frame.src = previewUrl;
+      fallbackLink.href = previewUrl;
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeInvitationPreview() {
+      const modal = document.getElementById('invitationPdfModal');
+      const frame = document.getElementById('invitationPdfFrame');
+
+      if (!modal || !frame) return;
+
+      modal.classList.add('hidden');
+      frame.src = 'about:blank';
+      document.body.style.overflow = hasUnlocked ? 'auto' : 'hidden';
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeInvitationPreview();
+    });
 
     function bindImagePathFallback() {
       const candidates = document.querySelectorAll('img[src*="photos/"]');
@@ -2571,39 +2681,9 @@
 
     function setupInvitationDownloads() {
       document.querySelectorAll('.prog-download-card').forEach((link) => {
-        link.addEventListener('click', async (event) => {
-          const href = link.getAttribute('href');
-          const localFileUrl = link.dataset.localFileUrl;
-          if (!href) return;
-
+        link.addEventListener('click', (event) => {
           event.preventDefault();
-
-          if (window.location.protocol === 'file:') {
-            const targetUrl = localFileUrl || new URL(href, window.location.href).href;
-            window.location.href = targetUrl;
-            return;
-          }
-
-          try {
-            const response = await fetch(href);
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-            const blob = await response.blob();
-            const objectUrl = URL.createObjectURL(blob);
-            const downloadName = link.getAttribute('download') || href.split('/').pop() || 'invitation.pdf';
-            const anchor = document.createElement('a');
-
-            anchor.href = objectUrl;
-            anchor.download = downloadName;
-            anchor.rel = 'noopener';
-            document.body.appendChild(anchor);
-            anchor.click();
-            anchor.remove();
-
-            window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
-          } catch (error) {
-            window.location.href = localFileUrl || href;
-          }
+          openInvitationPreview(link);
         });
       });
     }
