@@ -86,6 +86,11 @@
     font-size: var(--heading-unified-size);
     color: var(--ink);
     margin-bottom: 18px;
+    line-height: 1.12;
+  }
+
+  .section {
+    padding: 60px 0;
   }
 
   .prog-title,
@@ -316,7 +321,7 @@
     place-items: center;
     padding: 34px 36px 40px;
     background:
-      linear-gradient(180deg, rgba(4, 7, 4, 0.24) 0%, rgba(6, 9, 6, 0.46) 100%),
+      linear-gradient(180deg, rgba(4, 7, 4, 0.32) 0%, rgba(6, 9, 6, 0.56) 100%),
       var(--hero-photo) center center / cover no-repeat;
   }
 
@@ -557,11 +562,13 @@
   .content-copy {
     font-size: clamp(1.25rem, 2.2vw, 1.65rem);
     text-align: center;
+    line-height: 1.55;
+    margin: 0 auto;
   }
 
   .spacious {
     padding-top: 88px;
-    padding-bottom: 88px;
+    padding-bottom: 62px;
   }
 
   .navy {
@@ -624,7 +631,7 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
-    margin-top: 28px;
+    margin-top: 18px;
   }
 
   .prog-download-card {
@@ -841,6 +848,36 @@
     line-height: 1.65;
   }
 
+  .accom-groups {
+    display: grid;
+    gap: 32px;
+  }
+
+  .accom-group-title {
+    margin: 0 0 14px;
+    font-family: 'Cormorant SC', serif;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+
+  .accom-group-meta {
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 0.9rem;
+    color: var(--gold);
+  }
+
+  .accom-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 8px;
+  }
+
   #rsvp .eyebrow {
     font-size: 1.06rem;
     letter-spacing: 0.34em;
@@ -848,19 +885,19 @@
   }
 
   #story.section {
-    padding-top: 25px;
+    padding-top: 42px;
   }
 
   #rsvp.section {
-    padding-top: 32px;
+    padding-top: 40px;
   }
 
   #rsvp + .section {
-    padding-top: 28px;
+    padding-top: 34px;
   }
 
   .strip-gallery-section {
-    padding: 42px 0 24px;
+    padding: 36px 0 20px;
     background: #3f2417;
     overflow: hidden;
   }
@@ -953,6 +990,49 @@
     margin-top: 8px;
   }
 
+  .iban-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(188,141,62,0.22);
+  }
+
+  .iban-meta-label {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2px;
+  }
+
+  .iban-meta-value {
+    font-size: 0.92rem;
+  }
+
+  .venue-intro {
+    margin-top: 14px;
+    margin-bottom: 0;
+  }
+
+  .venue-panel {
+    margin-top: 26px;
+    text-align: left;
+  }
+
+  .venue-parking {
+    margin-top: 20px;
+  }
+
+  .venue-note {
+    margin-top: 12px;
+  }
+
+  .venue-subtitle {
+    margin-top: 18px;
+  }
+
   .story-section {
     position: relative;
     background: url('https://i.pinimg.com/736x/e0/6e/8c/e06e8c4447180d9df440f71fda4374b5.jpg') center / cover no-repeat;
@@ -979,7 +1059,7 @@
   }
 
   .story-photo-wrap {
-    margin-top: 24px;
+    margin-top: 28px;
     display: flex;
     justify-content: center;
   }
@@ -1422,6 +1502,7 @@
     #rsvp .eyebrow { font-size: 0.92rem; letter-spacing: 0.24em; }
     .gate-card { padding: 24px 16px 22px; }
     .section-inner.narrow { padding: 0; }
+    .iban-meta-grid { grid-template-columns: 1fr 1fr; }
     .modal-guest-list { grid-template-columns: 1fr; }
     .modal-box { padding: 24px 20px; }
     #rsvp + .section { padding-top: 18px; }
@@ -1667,11 +1748,12 @@
 
     <section class="section" id="details">
       <div class="section-inner content-block center">
+        <div class="eyebrow" data-i18n="venue.eyebrow">Où</div>
         <h2 class="title" data-i18n="venue.title">Le lieu</h2>
-        <span class="lang-fr"><p class="content-copy" style="margin-top:14px;margin-bottom:0">
+        <span class="lang-fr"><p class="content-copy venue-intro">
           <strong>Domaine du Clos d'Hullias</strong>, hameau provençal du XVII<sup>e</sup>&nbsp;siècle niché dans les vignobles du Gard, vue panoramique sur le Mont Ventoux, deux piscines et un parc de cèdres centenaires.
         </p></span>
-        <span class="lang-en" style="display:none"><p class="content-copy" style="margin-top:14px;margin-bottom:0">
+        <span class="lang-en" style="display:none"><p class="content-copy venue-intro">
           <strong>Clos d'Hullias Estate</strong>, a Provençal hamlet from the XVII<sup>th</sup> century tucked into the vineyards of the Gard, with panoramic views over Mont Ventoux, two swimming pools, and an ancient cedar park.
         </p></span>
         <div class="venue-links">
@@ -1689,13 +1771,13 @@
             <span data-i18n="venue.link.maps">Google Maps</span>
           </a>
         </div>
-        <div class="panel full-card" style="margin-top:26px;text-align:left">
+        <div class="panel full-card venue-panel">
           <span class="lang-fr"><p><strong>Adresse :</strong> 314 chemin d'Hullias, 30760 Saint-Christol-de-Rodières (Gard)</p></span>
           <span class="lang-en" style="display:none"><p><strong>Address:</strong> 314 chemin d'Hullias, 30760 Saint-Christol-de-Rodières (Gard)</p></span>
-          <p style="margin-top:20px"><strong data-i18n="venue.parking">Parking :</strong> <span data-i18n="venue.parking.desc">Parking sur place, gratuit pour tous les invités.</span></p>
-          <span class="lang-fr"><p style="margin-top:12px">Vous trouverez toutes les informations relatives à notre mariage sur ce site internet.</p></span>
-          <span class="lang-en" style="display:none"><p style="margin-top:12px">You will find all the information about our wedding on this website.</p></span>
-          <p style="margin-top:18px"><strong data-i18n="venue.how">Comment venir :</strong></p>
+          <p class="venue-parking"><strong data-i18n="venue.parking">Parking :</strong> <span data-i18n="venue.parking.desc">Parking sur place, gratuit pour tous les invités.</span></p>
+          <span class="lang-fr"><p class="venue-note">Vous trouverez toutes les informations relatives à notre mariage sur ce site internet.</p></span>
+          <span class="lang-en" style="display:none"><p class="venue-note">You will find all the information about our wedding on this website.</p></span>
+          <p class="venue-subtitle"><strong data-i18n="venue.how">Comment venir :</strong></p>
           <div class="acces-grid">
             <div class="acces-item"><strong>Avignon TGV</strong><span data-i18n="venue.avignon">1h de route, gare la plus proche</span></div>
             <div class="acces-item"><strong>Aéroport Marseille</strong><span data-i18n="venue.marseille">2h de route</span></div>
@@ -1719,12 +1801,12 @@
           </article>
         </div>
         <div class="panel full-card" style="margin-top:18px;text-align:left">
-          <div style="display:grid;gap:24px">
+          <div class="accom-groups">
 
             <span class="lang-fr">
               <div>
-                <p style="margin:0 0 12px;font-family:'Cormorant SC',serif;font-size:1rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--navy)">Aiguèze <span style="font-family:'Cormorant Garamond',serif;text-transform:none;letter-spacing:0;font-size:0.9rem;color:var(--gold)">— 10 min, village classé "Plus beaux villages de France"</span></p>
-                <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
+                <p class="accom-group-title">Aiguèze <span class="accom-group-meta">— 10 min, village classé "Plus beaux villages de France"</span></p>
+                <ul class="accom-list">
                   <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                     <span style="font-size:1.05rem">Le Castélas <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Appart'hôtel avec piscine, cœur du village &middot; 04 66 82 18 76</span></span>
                     <a href="https://www.aigueze.fr/tourisme/hotels" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Voir</a>
@@ -1743,8 +1825,8 @@
 
             <span class="lang-en" style="display:none">
               <div>
-                <p style="margin:0 0 12px;font-family:'Cormorant SC',serif;font-size:1rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--navy)">Aiguèze <span style="font-family:'Cormorant Garamond',serif;text-transform:none;letter-spacing:0;font-size:0.9rem;color:var(--gold)">— 10 minutes away, a village listed as "One of the Most Beautiful Villages of France"</span></p>
-                <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
+                <p class="accom-group-title">Aiguèze <span class="accom-group-meta">— 10 minutes away, a village listed as "One of the Most Beautiful Villages of France"</span></p>
+                <ul class="accom-list">
                   <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                     <span style="font-size:1.05rem">Le Castélas <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Apartment-hotel with pool, heart of the village &middot; +33 4 66 82 18 76</span></span>
                     <a href="https://www.aigueze.fr/tourisme/hotels" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">View</a>
@@ -1763,8 +1845,8 @@
 
             <span class="lang-fr">
               <div>
-                <p style="margin:0 0 12px;font-family:'Cormorant SC',serif;font-size:1rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--navy)">Saint-Martin-d'Ardèche <span style="font-family:'Cormorant Garamond',serif;text-transform:none;letter-spacing:0;font-size:0.9rem;color:var(--gold)">— 10 à 15 min, au bord de la rivière</span></p>
-                <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
+                <p class="accom-group-title">Saint-Martin-d'Ardèche <span class="accom-group-meta">— 10 à 15 min, au bord de la rivière</span></p>
+                <ul class="accom-list">
                   <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                     <span style="font-size:1.05rem">Logis Hôtel Bellevue <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Piscine chauffée, restaurant, au bord de l'Ardèche</span></span>
                     <a href="https://www.hotel-bellevue-restaurant.com/" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
@@ -1787,8 +1869,8 @@
 
             <span class="lang-en" style="display:none">
               <div>
-                <p style="margin:0 0 12px;font-family:'Cormorant SC',serif;font-size:1rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--navy)">Saint-Martin-d'Ardèche <span style="font-family:'Cormorant Garamond',serif;text-transform:none;letter-spacing:0;font-size:0.9rem;color:var(--gold)">— 10 to 15 minutes away, by the river</span></p>
-                <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
+                <p class="accom-group-title">Saint-Martin-d'Ardèche <span class="accom-group-meta">— 10 to 15 minutes away, by the river</span></p>
+                <ul class="accom-list">
                   <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                     <span style="font-size:1.05rem">Logis Hôtel Bellevue <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Heated pool, restaurant, by the Ardèche river</span></span>
                     <a href="https://www.hotel-bellevue-restaurant.com/" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Book</a>
@@ -1880,22 +1962,22 @@
               <div style="font-family:'Cormorant SC',serif;font-size:0.74rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:4px">BIC</div>
               <div style="font-size:1.05rem;letter-spacing:0.03em">CEPAFRPP444</div>
             </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;padding-top:6px;border-top:1px solid rgba(188,141,62,0.22)">
+            <div class="iban-meta-grid">
               <div>
-                <div style="font-family:'Cormorant SC',serif;font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:2px">Code banque</div>
-                <div style="font-size:0.92rem">14445</div>
+                <div class="iban-meta-label">Code banque</div>
+                <div class="iban-meta-value">14445</div>
               </div>
               <div>
-                <div style="font-family:'Cormorant SC',serif;font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:2px">Code guichet</div>
-                <div style="font-size:0.92rem">00400</div>
+                <div class="iban-meta-label">Code guichet</div>
+                <div class="iban-meta-value">00400</div>
               </div>
               <div>
-                <div style="font-family:'Cormorant SC',serif;font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:2px">N° compte</div>
-                <div style="font-size:0.92rem">04080190620</div>
+                <div class="iban-meta-label">N° compte</div>
+                <div class="iban-meta-value">04080190620</div>
               </div>
               <div>
-                <div style="font-family:'Cormorant SC',serif;font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:2px">Clé RIB</div>
-                <div style="font-size:0.92rem">01</div>
+                <div class="iban-meta-label">Clé RIB</div>
+                <div class="iban-meta-value">01</div>
               </div>
             </div>
           </div>
@@ -2487,7 +2569,53 @@
       if (typeof currentGuest !== 'undefined' && currentGuest) renderPersonalGreeting();
     }
 
+    function setupInvitationDownloads() {
+      document.querySelectorAll('.prog-download-card').forEach((link) => {
+        link.addEventListener('click', async (event) => {
+          const href = link.getAttribute('href');
+          if (!href) return;
+
+          event.preventDefault();
+
+          if (window.location.protocol === 'file:') {
+            const downloadName = link.getAttribute('download') || href.split('/').pop() || 'invitation.pdf';
+            const anchor = document.createElement('a');
+
+            anchor.href = new URL(href, window.location.href).href;
+            anchor.download = downloadName;
+            anchor.rel = 'noopener';
+            document.body.appendChild(anchor);
+            anchor.click();
+            anchor.remove();
+            return;
+          }
+
+          try {
+            const response = await fetch(href);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+            const blob = await response.blob();
+            const objectUrl = URL.createObjectURL(blob);
+            const downloadName = link.getAttribute('download') || href.split('/').pop() || 'invitation.pdf';
+            const anchor = document.createElement('a');
+
+            anchor.href = objectUrl;
+            anchor.download = downloadName;
+            anchor.rel = 'noopener';
+            document.body.appendChild(anchor);
+            anchor.click();
+            anchor.remove();
+
+            window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+          } catch (error) {
+            window.location.href = href;
+          }
+        });
+      });
+    }
+
     if (currentLang === 'en') setLang('en');
+    setupInvitationDownloads();
 
     document.body.style.overflow = 'hidden';
 
