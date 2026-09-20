@@ -144,13 +144,14 @@
   .button:hover { transform: translateY(-1px); background: var(--navy-deep); }
 
   .button-outline {
-    background: rgba(184, 165, 76, 0.08);
-    color: #fef6de;
-    border-color: rgba(184, 165, 76, 0.82);
+    background: rgba(184, 165, 76, 0.16);
+    color: #fff8e8;
+    border-color: rgba(218, 196, 112, 0.96);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
   }
 
   .button-outline:hover {
-    background: rgba(184, 165, 76, 0.14);
+    background: rgba(184, 165, 76, 0.24);
   }
 
   .panel {
@@ -168,7 +169,7 @@
     place-items: center;
     padding: 24px;
     background:
-      linear-gradient(180deg, rgba(8, 12, 8, 0.10) 0%, rgba(8, 12, 8, 0.18) 100%),
+      linear-gradient(180deg, rgba(8, 12, 8, 0.34) 0%, rgba(8, 12, 8, 0.5) 100%),
       var(--hero-photo) center 28% / cover no-repeat;
     transition: opacity 0.45s ease, visibility 0.45s ease;
   }
@@ -222,6 +223,8 @@
 
   .gate-card .hero-name {
     margin: 0 0 18px;
+    color: rgba(255, 250, 240, 1);
+    text-shadow: 0 3px 18px rgba(0, 0, 0, 0.34);
   }
 
   .gate-sub {
@@ -625,59 +628,6 @@
   .prog-note {
     margin-top: 6px;
     font-size: 0.98rem;
-  }
-
-  .prog-download-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-    margin-top: 18px;
-  }
-
-  .prog-download-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-    text-decoration: none;
-    padding: 16px 18px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.06);
-    color: #fff;
-    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-  }
-
-  .prog-download-card:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.35);
-    transform: translateY(-1px);
-  }
-
-  .prog-download-text {
-    display: grid;
-    gap: 4px;
-  }
-
-  .prog-download-title {
-    font-family: 'Cormorant SC', serif;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-size: 0.82rem;
-    color: var(--gold-soft);
-  }
-
-  .prog-download-cta {
-    font-size: 1.08rem;
-    letter-spacing: 0.02em;
-  }
-
-  .prog-download-icon {
-    width: 30px;
-    height: 30px;
-    color: var(--gold-soft);
-    flex-shrink: 0;
-    opacity: 0.95;
   }
 
   .card-grid {
@@ -1340,53 +1290,6 @@
     text-align: left;
   }
 
-  .pdf-modal-box {
-    max-width: min(1100px, 96vw);
-    width: 100%;
-    height: min(86vh, 900px);
-    padding: 18px 18px 14px;
-    display: grid;
-    grid-template-rows: auto 1fr;
-    gap: 12px;
-  }
-
-  .pdf-modal-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding-right: 34px;
-  }
-
-  .pdf-modal-title {
-    margin: 0;
-    color: var(--navy);
-    font-family: 'Cormorant SC', serif;
-    font-size: 1rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .pdf-modal-frame {
-    width: 100%;
-    height: 100%;
-    border: 1px solid rgba(188,141,62,0.22);
-    border-radius: 10px;
-    background: #fff;
-  }
-
-  .pdf-modal-fallback {
-    margin: 0;
-    font-size: 0.9rem;
-    color: rgba(45,42,39,0.74);
-  }
-
-  .pdf-modal-fallback a {
-    color: var(--navy);
-    text-decoration: underline;
-    text-decoration-color: var(--gold);
-  }
-
   .modal-close {
     position: absolute;
     top: 12px;
@@ -1552,16 +1455,6 @@
     .iban-meta-grid { grid-template-columns: 1fr 1fr; }
     .modal-guest-list { grid-template-columns: 1fr; }
     .modal-box { padding: 24px 20px; }
-    .pdf-modal-box {
-      width: 100vw;
-      max-width: 100vw;
-      height: 100vh;
-      max-height: 100vh;
-      border-radius: 0;
-      padding: 14px 14px 10px;
-    }
-    #invitationPdfModal { padding: 0; }
-    .pdf-modal-header { padding-right: 40px; }
     #rsvp + .section { padding-top: 18px; }
   }
 
@@ -1779,26 +1672,6 @@
               <p class="prog-note" data-i18n="prog.checkout.note">Heure limite de check-out du domaine.</p>
             </article>
           </div>
-        </div>
-        <div class="prog-download-grid">
-          <a class="prog-download-card lang-fr" href="invites/invitation-fr.pdf" download="invitation-fr.pdf" data-local-file-url="file:///Users/chaloaud/digital-ecosystem-kb-main/%F0%9F%8C%B8%20Doune/private/invites/invitation-fr.pdf" aria-label="Télécharger l'invitation française">
-            <div class="prog-download-text">
-              <span class="prog-download-title" data-i18n="prog.invite.fr.title">Faire-part digital</span>
-            </div>
-            <svg class="prog-download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 6h18v12H3z" />
-              <path d="m3 7 9 7 9-7" />
-            </svg>
-          </a>
-          <a class="prog-download-card lang-en" href="invites/invitation-en.pdf" download="invitation-en.pdf" data-local-file-url="file:///Users/chaloaud/digital-ecosystem-kb-main/%F0%9F%8C%B8%20Doune/private/invites/invitation-en.pdf" aria-label="Download the English invitation" style="display:none;">
-            <div class="prog-download-text">
-              <span class="prog-download-title" data-i18n="prog.invite.en.title">Digital invitation</span>
-            </div>
-            <svg class="prog-download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 6h18v12H3z" />
-              <path d="m3 7 9 7 9-7" />
-            </svg>
-          </a>
         </div>
       </div>
     </section>
@@ -2175,24 +2048,6 @@
     </div>
   </div>
 
-  <div id="invitationPdfModal" class="modal-overlay hidden" onclick="if(event.target===this) closeInvitationPreview()">
-    <div class="modal-box pdf-modal-box">
-      <button class="modal-close" onclick="closeInvitationPreview()" aria-label="Close PDF preview">&times;</button>
-      <div class="pdf-modal-header">
-        <h3 id="invitationPdfTitle" class="pdf-modal-title">Faire-part digital</h3>
-      </div>
-      <iframe id="invitationPdfFrame" class="pdf-modal-frame" title="Invitation PDF preview"></iframe>
-      <p class="pdf-modal-fallback">
-        <span class="lang-fr">Si l’aperçu ne s’affiche pas, </span>
-        <span class="lang-en" style="display:none">If the preview does not load, </span>
-        <a id="invitationPdfFallbackLink" href="#" target="_blank" rel="noopener">
-          <span class="lang-fr">ouvrir le PDF dans un nouvel onglet</span>
-          <span class="lang-en" style="display:none">open the PDF in a new tab</span>
-        </a>
-      </p>
-    </div>
-  </div>
-
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const gate = document.getElementById('gate');
@@ -2392,41 +2247,6 @@
     function closeGuestList() {
       document.getElementById('guestListModal').classList.add('hidden');
     }
-
-    function openInvitationPreview(link) {
-      const href = link.getAttribute('href');
-      const localFileUrl = link.dataset.localFileUrl;
-      const previewUrl = window.location.protocol === 'file:'
-        ? (localFileUrl || new URL(href, window.location.href).href)
-        : href;
-      const modal = document.getElementById('invitationPdfModal');
-      const frame = document.getElementById('invitationPdfFrame');
-      const fallbackLink = document.getElementById('invitationPdfFallbackLink');
-      const title = document.getElementById('invitationPdfTitle');
-
-      if (!modal || !frame || !fallbackLink || !title || !previewUrl) return;
-
-      title.textContent = link.getAttribute('aria-label') || 'Invitation PDF';
-      frame.src = previewUrl;
-      fallbackLink.href = previewUrl;
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeInvitationPreview() {
-      const modal = document.getElementById('invitationPdfModal');
-      const frame = document.getElementById('invitationPdfFrame');
-
-      if (!modal || !frame) return;
-
-      modal.classList.add('hidden');
-      frame.src = 'about:blank';
-      document.body.style.overflow = hasUnlocked ? 'auto' : 'hidden';
-    }
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') closeInvitationPreview();
-    });
 
     function bindImagePathFallback() {
       const candidates = document.querySelectorAll('img[src*="photos/"]');
@@ -2679,17 +2499,7 @@
       if (typeof currentGuest !== 'undefined' && currentGuest) renderPersonalGreeting();
     }
 
-    function setupInvitationDownloads() {
-      document.querySelectorAll('.prog-download-card').forEach((link) => {
-        link.addEventListener('click', (event) => {
-          event.preventDefault();
-          openInvitationPreview(link);
-        });
-      });
-    }
-
     if (currentLang === 'en') setLang('en');
-    setupInvitationDownloads();
 
     document.body.style.overflow = 'hidden';
 
