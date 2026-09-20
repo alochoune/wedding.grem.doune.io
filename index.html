@@ -1724,7 +1724,7 @@
           </div>
         </div>
         <div class="prog-download-grid">
-          <a class="prog-download-card lang-fr" href="invites/invitation-fr.pdf" download="invitation-fr.pdf" aria-label="Télécharger l'invitation française">
+          <a class="prog-download-card lang-fr" href="invites/invitation-fr.pdf" download="invitation-fr.pdf" data-local-file-url="file:///Users/chaloaud/digital-ecosystem-kb-main/%F0%9F%8C%B8%20Doune/private/invites/invitation-fr.pdf" aria-label="Télécharger l'invitation française">
             <div class="prog-download-text">
               <span class="prog-download-title" data-i18n="prog.invite.fr.title">Faire-part digital</span>
             </div>
@@ -1733,7 +1733,7 @@
               <path d="m3 7 9 7 9-7" />
             </svg>
           </a>
-          <a class="prog-download-card lang-en" href="invites/invitation-en.pdf" download="invitation-en.pdf" aria-label="Download the English invitation" style="display:none;">
+          <a class="prog-download-card lang-en" href="invites/invitation-en.pdf" download="invitation-en.pdf" data-local-file-url="file:///Users/chaloaud/digital-ecosystem-kb-main/%F0%9F%8C%B8%20Doune/private/invites/invitation-en.pdf" aria-label="Download the English invitation" style="display:none;">
             <div class="prog-download-text">
               <span class="prog-download-title" data-i18n="prog.invite.en.title">Digital invitation</span>
             </div>
@@ -2573,6 +2573,7 @@
       document.querySelectorAll('.prog-download-card').forEach((link) => {
         link.addEventListener('click', async (event) => {
           const href = link.getAttribute('href');
+          const localFileUrl = link.dataset.localFileUrl;
           if (!href) return;
 
           event.preventDefault();
@@ -2581,7 +2582,7 @@
             const downloadName = link.getAttribute('download') || href.split('/').pop() || 'invitation.pdf';
             const anchor = document.createElement('a');
 
-            anchor.href = new URL(href, window.location.href).href;
+            anchor.href = localFileUrl || new URL(href, window.location.href).href;
             anchor.download = downloadName;
             anchor.rel = 'noopener';
             document.body.appendChild(anchor);
@@ -2608,7 +2609,7 @@
 
             window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
           } catch (error) {
-            window.location.href = href;
+            window.location.href = localFileUrl || href;
           }
         });
       });
