@@ -2579,15 +2579,8 @@
           event.preventDefault();
 
           if (window.location.protocol === 'file:') {
-            const downloadName = link.getAttribute('download') || href.split('/').pop() || 'invitation.pdf';
-            const anchor = document.createElement('a');
-
-            anchor.href = localFileUrl || new URL(href, window.location.href).href;
-            anchor.download = downloadName;
-            anchor.rel = 'noopener';
-            document.body.appendChild(anchor);
-            anchor.click();
-            anchor.remove();
+            const targetUrl = localFileUrl || new URL(href, window.location.href).href;
+            window.location.href = targetUrl;
             return;
           }
 
