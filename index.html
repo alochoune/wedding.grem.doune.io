@@ -23,6 +23,8 @@
     --shadow: 0 18px 60px rgba(20, 28, 8, 0.09);
     --heading-unified-size: clamp(1.55rem, 2.6vw, 2.2rem);
     --name-script-size: clamp(4.8rem, 12vw, 9.4rem);
+    /* Images locales (photos/) en priorité ; les liens externes servent de secours tant qu'elles ne sont pas en ligne */
+    --hero-photo-local: url('photos/hero.jpg');
     --hero-photo: url('https://plus.unsplash.com/premium_photo-1688114988405-5849e59e961b?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
   }
 
@@ -170,6 +172,7 @@
     padding: 24px;
     background:
       linear-gradient(180deg, rgba(8, 12, 8, 0.34) 0%, rgba(8, 12, 8, 0.5) 100%),
+      var(--hero-photo-local) center 28% / cover no-repeat,
       var(--hero-photo) center 28% / cover no-repeat;
     transition: opacity 0.45s ease, visibility 0.45s ease;
   }
@@ -325,6 +328,7 @@
     padding: 34px 36px 40px;
     background:
       linear-gradient(180deg, rgba(4, 7, 4, 0.32) 0%, rgba(6, 9, 6, 0.56) 100%),
+      var(--hero-photo-local) center center / cover no-repeat,
       var(--hero-photo) center center / cover no-repeat;
   }
 
@@ -856,6 +860,7 @@
     position: relative;
     background:
       linear-gradient(180deg, rgba(32, 43, 24, 0.6) 0%, rgba(32, 43, 24, 0.72) 100%),
+      url('photos/honeymoon.jpg') center / cover no-repeat,
       url('https://i.pinimg.com/736x/6b/92/dc/6b92dc06ee6730e8eb0c613377e39609.jpg') center / cover no-repeat;
     color: #f7f3e8;
     overflow: hidden;
@@ -985,7 +990,9 @@
 
   .story-section {
     position: relative;
-    background: url('https://i.pinimg.com/736x/e0/6e/8c/e06e8c4447180d9df440f71fda4374b5.jpg') center / cover no-repeat;
+    background:
+      url('photos/story-bg.jpg') center / cover no-repeat,
+      url('https://i.pinimg.com/736x/e0/6e/8c/e06e8c4447180d9df440f71fda4374b5.jpg') center / cover no-repeat;
     overflow: hidden;
   }
 
@@ -1494,6 +1501,11 @@
   }
   .lang-btn.active { background: rgba(255,255,255,0.16); color: #fff; }
 
+  /* Sur mobile, le menu ☰ est en haut à droite : FR/EN passe à gauche */
+  @media (max-width: 1024px) {
+    .lang-toggle { top: 10px; right: auto; left: 12px; }
+  }
+
   .day-accordion {
     margin-top: 16px;
     border-radius: 10px;
@@ -1587,7 +1599,7 @@
             <div id="personalGreeting" class="personal-greeting hidden" aria-live="polite"></div>
             <div class="invitation-meta">
               <span data-i18n="hero.ceremonyline">Cérémonie laïque · Samedi 6 mai 2028</span>
-              <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x12b5a9b3c53c32bf:0x2e85cc8e52649dd0?sa=X&ved=1t:8290&ictx=111" target="_blank" rel="noopener noreferrer">Clos d'Hullias - Saint-Christol-de-Rodières, Gard</a>
+              <a href="https://www.google.com/maps/place/Domaine+Le+Clos+d'Hullias/@44.2847326,4.513559,17z/data=!3m1!4b1!4m6!3m5!1s0x12b5a9b3c53c32bf:0x2e85cc8e52649dd0!8m2!3d44.2847326!4d4.5161339!16s%2Fg%2F1tj70sh9" target="_blank" rel="noopener noreferrer">Clos d'Hullias - Saint-Christol-de-Rodières, Gard</a>
             </div>
           </div>
         </div>
@@ -1692,11 +1704,11 @@
             <span class="lang-fr" data-i18n="venue.link.site">Site officiel</span>
             <span class="lang-en" style="display:none">Official website</span>
           </a>
-          <a class="venue-link" href="https://www.instagram.com/domaineduclosdhullias/" target="_blank" rel="noopener">
+          <a class="venue-link" href="https://www.instagram.com/domaineleclosdhullias/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
             Instagram
           </a>
-          <a class="venue-link" href="https://www.google.com/maps/place/Clos+d'Hullias/@44.2432158,4.9208403,9z/" target="_blank" rel="noopener">
+          <a class="venue-link" href="https://www.google.com/maps/place/Domaine+Le+Clos+d'Hullias/@44.2847326,4.513559,17z/data=!3m1!4b1!4m6!3m5!1s0x12b5a9b3c53c32bf:0x2e85cc8e52649dd0!8m2!3d44.2847326!4d4.5161339!16s%2Fg%2F1tj70sh9" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             <span data-i18n="venue.link.maps">Google Maps</span>
           </a>
@@ -1739,15 +1751,12 @@
                 <ul class="accom-list">
                   <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                     <span style="font-size:1.05rem">Le Castélas <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Appart'hôtel avec piscine, cœur du village &middot; 04 66 82 18 76</span></span>
-                    <a href="https://www.aigueze.fr/tourisme/hotels" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Voir</a>
                   </li>
                   <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                     <span style="font-size:1.05rem">La Poussinière <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Chambre d'hôtes</span></span>
-                    <a href="https://www.booking.com/city/fr/aigueze.fr.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
                   </li>
                   <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                     <span style="font-size:1.05rem">Le Château d'Aiguèze <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Villas avec piscine</span></span>
-                    <a href="https://www.cartesfrance.fr/carte-france-ville/hotel_30005_Aigueze.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
                   </li>
                 </ul>
               </div>
@@ -1759,15 +1768,12 @@
                 <ul class="accom-list">
                   <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                     <span style="font-size:1.05rem">Le Castélas <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Apartment-hotel with pool, heart of the village &middot; +33 4 66 82 18 76</span></span>
-                    <a href="https://www.aigueze.fr/tourisme/hotels" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">View</a>
                   </li>
                   <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                     <span style="font-size:1.05rem">La Poussinière <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Guesthouse</span></span>
-                    <a href="https://www.booking.com/city/fr/aigueze.fr.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Book</a>
                   </li>
                   <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                     <span style="font-size:1.05rem">Le Château d'Aiguèze <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Pool villas</span></span>
-                    <a href="https://www.cartesfrance.fr/carte-france-ville/hotel_30005_Aigueze.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Book</a>
                   </li>
                 </ul>
               </div>
@@ -1783,7 +1789,7 @@
                   </li>
                   <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                     <span style="font-size:1.05rem">Hôtel Les Petits Oreillers</span>
-                    <a href="https://www.booking.com/city/fr/aigueze.fr.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
+                    <a href="https://lespetitsoreillers.jimdofree.com/" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
                   </li>
                   <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                     <span style="font-size:1.05rem">Château Saint Martin <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Gîtes avec piscine à débordement, vue Aiguèze &middot; gîtes «&nbsp;Aiguèze&nbsp;» et «&nbsp;Les Gorges de l'Ardèche&nbsp;»</span></span>
@@ -1791,7 +1797,6 @@
                   </li>
                   <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                     <span style="font-size:1.05rem">Le MARINE <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Appartements</span></span>
-                    <a href="https://www.cartesfrance.fr/carte-france-ville/hotel_30005_Aigueze.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Réserver</a>
                   </li>
                 </ul>
               </div>
@@ -1807,7 +1812,7 @@
                   </li>
                   <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                     <span style="font-size:1.05rem">Hôtel Les Petits Oreillers</span>
-                    <a href="https://www.booking.com/city/fr/aigueze.fr.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Book</a>
+                    <a href="https://lespetitsoreillers.jimdofree.com/" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Book</a>
                   </li>
                   <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                     <span style="font-size:1.05rem">Château Saint Martin <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Overflow pool cottages, view of Aiguèze &middot; cottages “Aiguèze” and “Les Gorges de l'Ardèche”</span></span>
@@ -1815,7 +1820,6 @@
                   </li>
                   <li style="padding:11px 16px;border:1px solid rgba(188,141,62,0.22);border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
                     <span style="font-size:1.05rem">Le MARINE <span style="font-size:0.88rem;color:rgba(45,42,39,0.55)">Apartments</span></span>
-                    <a href="https://www.cartesfrance.fr/carte-france-ville/hotel_30005_Aigueze.html" target="_blank" rel="noopener" style="color:var(--navy);font-family:'Cormorant SC',serif;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(188,141,62,0.4)">Book</a>
                   </li>
                 </ul>
               </div>
@@ -1883,34 +1887,8 @@
             <span class="lang-en" style="display:none">Bank details</span>
             <span class="iban-chevron" aria-hidden="true"></span>
           </summary>
-          <div class="iban-content">
-            <div>
-              <div style="font-family:'Cormorant SC',serif;font-size:0.74rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:4px">IBAN</div>
-              <div style="font-size:1.05rem;letter-spacing:0.03em">FR76 1444 5004 0004 0801 9062 001</div>
-            </div>
-            <div>
-              <div style="font-family:'Cormorant SC',serif;font-size:0.74rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:4px">BIC</div>
-              <div style="font-size:1.05rem;letter-spacing:0.03em">CEPAFRPP444</div>
-            </div>
-            <div class="iban-meta-grid">
-              <div>
-                <div class="iban-meta-label">Code banque</div>
-                <div class="iban-meta-value">14445</div>
-              </div>
-              <div>
-                <div class="iban-meta-label">Code guichet</div>
-                <div class="iban-meta-value">00400</div>
-              </div>
-              <div>
-                <div class="iban-meta-label">N° compte</div>
-                <div class="iban-meta-value">04080190620</div>
-              </div>
-              <div>
-                <div class="iban-meta-label">Clé RIB</div>
-                <div class="iban-meta-value">01</div>
-              </div>
-            </div>
-          </div>
+          <!-- Rempli après connexion depuis les données chiffrées (VAULT) -->
+          <div class="iban-content" id="ibanContent"></div>
         </details>
       </div>
     </section>
@@ -1930,16 +1908,16 @@
             <span data-i18n="rsvp.attend.fri">Serez-vous présent(e) au dîner de vendredi 5 mai ? *</span>
             <select name="attendanceFri">
               <option>—</option>
-              <option>Oui</option>
-              <option>Non</option>
+              <option value="Oui" data-i18n="rsvp.yes">Oui</option>
+              <option value="Non" data-i18n="rsvp.no">Non</option>
             </select>
           </label>
           <label class="field">
             <span data-i18n="rsvp.attend">Serez-vous présent(e) le samedi 6 mai ? *</span>
             <select name="attendance">
               <option>—</option>
-              <option>Oui</option>
-              <option>Non</option>
+              <option value="Oui" data-i18n="rsvp.yes">Oui</option>
+              <option value="Non" data-i18n="rsvp.no">Non</option>
             </select>
           </label>
           <label class="field">
@@ -1956,6 +1934,7 @@
           </label>
           <div>
             <button class="button" type="submit" data-i18n="rsvp.submit">Envoyer ma réponse</button>
+            <div id="rsvpError" aria-live="polite" style="min-height:1.4em;margin-top:10px;color:#9b2c2c;font-size:0.95rem"></div>
           </div>
         </form>
       </div>
@@ -1987,7 +1966,7 @@
             <span class="lang-fr"><h3>Comment venir sans voiture ?</h3><p>La gare TGV la plus proche est <strong>Avignon</strong> (1h de route). Des taxis locaux peuvent assurer le trajet. Pour les invités venant d'Amsterdam, l'aéroport de Lyon-Saint Exupéry est recommandé (2h10 de route).</p></span><span class="lang-en" style="display:none"><h3>How do I get there without a car?</h3><p>The nearest TGV train station is <strong>Avignon</strong> (1h drive). Local taxis can take you from there. For guests coming from Amsterdam, Lyon-Saint Exupéry airport is recommended (2h10 drive).</p></span>
               </article>
               <article class="faq-item">
-            <span class="lang-fr"><h3>Où se loger ?</h3><p>Le domaine propose 30 couchages sur place. Les personnes qui dorment sur place au Clos d'Hullias n'ont rien à payer pour leur logement, c'est notre cadeau. Pour les autres invités, des hébergements sont disponibles dans les villages de Saint-Martin-d'Ardèche (4 km), Saint-Julien-de-Peyrolas et Aiguèze.</p></span><span class="lang-en" style="display:none"><h3>Where should I stay?</h3><p>The estate has 30 beds on-site. Guests staying on-site at the Clos d'Hullias don't need to pay anything for accommodation, it's our gift. For other guests, accommodation is available in the nearby villages of Saint-Martin-d'Ardèche (4 km), Saint-Julien-de-Peyrolas and Aiguèze.</p></span>
+            <span class="lang-fr"><h3>Où se loger ?</h3><p>Le domaine propose 30 couchages sur place. Les personnes qui dorment sur place au Clos d'Hullias n'ont rien à payer pour leur logement, c'est notre cadeau. Pour les autres invités, des hébergements sont disponibles dans les villages de Saint-Martin-d'Ardèche (4 km) et Aiguèze.</p></span><span class="lang-en" style="display:none"><h3>Where should I stay?</h3><p>The estate has 30 beds on-site. Guests staying on-site at the Clos d'Hullias don't need to pay anything for accommodation, it's our gift. For other guests, accommodation is available in the nearby villages of Saint-Martin-d'Ardèche (4 km) and Aiguèze.</p></span>
               </article>
               <article class="faq-item">
             <span class="lang-fr"><h3>Y a-t-il une piscine ?</h3><p>Oui, le domaine dispose de deux piscines, prévoyez votre maillot de bain. La baignade de nuit n'est pas autorisée.</p></span><span class="lang-en" style="display:none"><h3>Is there a pool?</h3><p>Yes, the estate has two swimming pools, bring your swimsuit. Night swimming is not permitted.</p></span>
@@ -2038,13 +2017,8 @@
       <button class="modal-close" onclick="closeGuestList()" aria-label="Fermer">&times;</button>
       <h3 style="margin-bottom:4px">Sur place au Clos d'Hullias</h3>
       <p style="font-size:0.9rem;color:rgba(45,42,39,0.6);margin:0 0 18px">Couchages disponibles</p>
-      <ul class="modal-guest-list">
-        <li>Aude</li><li>Charles</li><li>Dominique Chalot</li><li>Sabine</li><li>Noémie</li><li>Alix</li>
-        <li>Solène</li><li>Adrien</li><li>Pablo</li><li>Auriane</li><li>Pierre</li><li>Shems</li>
-        <li>Faustine</li><li>Margaux</li><li>Paul</li><li>Laurence</li><li>Lawrence</li><li>Livia</li>
-        <li>Sam</li><li>Dominique Van Ravensberg</li><li>Médéric</li><li>Irvin</li><li>Mewen</li><li>Lucas</li>
-        <li>Valentin</li><li>Aglaée</li><li>Ludwig</li><li>Lorelei</li><li>Mina</li><li>Carlos</li>
-      </ul>
+      <!-- Rempli après connexion depuis les données chiffrées (VAULT) -->
+      <ul class="modal-guest-list" id="roomList"></ul>
     </div>
   </div>
 
@@ -2087,91 +2061,10 @@
       });
     }
 
-    // Base d'invités : prénom (ou prénom+nom si homonyme) → jour d'arrivée
-    const GUESTS = [
-      ['Irvin', 'Vendredi'],
-      ['Mewen', 'Vendredi'],
-      ['Lucas', 'Vendredi'],
-      ['Valentin', 'Vendredi'],
-      ['Sten', 'Samedi'],
-      ['Benoît', 'Samedi'],
-      ['Benjamin', 'Samedi'],
-      ['Nicolas', 'Samedi'],
-      ['Margaux', 'Vendredi'],
-      ['Paul', 'Vendredi'],
-      ['Laurie', 'Samedi'],
-      ['Élodie', 'Samedi'],
-      ['Baudouin', 'Samedi'],
-      ['Servane', 'Samedi'],
-      ['Mina', 'Samedi'],
-      ['Liliane', 'Samedi'],
-      ['Élisabeth', 'Samedi'],
-      ['Faustine', 'Vendredi'],
-      ['Clémence', 'Samedi'],
-      ['Antonin', 'Samedi'],
-      ['Fabien', 'Samedi'],
-      ['Shems', 'Vendredi'],
-      ['Khadija', 'Samedi'],
-      ['Jules', 'Samedi'],
-      ['Léa', 'Samedi'],
-      ['Daniel', 'Samedi'],
-      ['Lucas Gomard', 'Samedi'],
-      ['Hugo', 'Samedi'],
-      ['Julie', 'Samedi'],
-      ['Camille', 'Samedi'],
-      ['Koen', 'Samedi'],
-      ['Federica', 'Samedi'],
-      ['Guy-Jean', 'Samedi'],
-      ['Dirk', 'Samedi'],
-      ['Kevin', 'Samedi'],
-      ['Sander', 'Samedi'],
-      ['Céline', 'Samedi'],
-      ['Marajsha', 'Samedi'],
-      ['Médéric', 'Vendredi'],
-      ['Dominique Van Ravensberg', 'Vendredi'],
-      ['Livia', 'Vendredi'],
-      ['Sam', 'Vendredi'],
-      ['Espérance', 'Samedi'],
-      ['Auriane', 'Vendredi'],
-      ['Pierre', 'Vendredi'],
-      ['Noëlle', 'Samedi'],
-      ['Raquel', 'Samedi'],
-      ['Carlos', 'Samedi'],
-      ['Nga', 'Samedi'],
-      ['Laurence', 'Vendredi'],
-      ['Lawrence', 'Vendredi'],
-      ['Taylor', 'Samedi'],
-      ['Remco', 'Samedi'],
-      ['Sophie', 'Samedi'],
-      ['Fabrice', 'Samedi'],
-      ['Léonie', 'Vendredi'],
-      ['Iain', 'Vendredi'],
-      ['Aglaée', 'Vendredi'],
-      ['Ludwig', 'Vendredi'],
-      ['Lorelei', 'Vendredi'],
-      ['Françoise', 'Vendredi'],
-      ['Alain', 'Vendredi'],
-      ['Nathalie', 'Vendredi'],
-      ['Sabine', 'Vendredi'],
-      ['Noémie', 'Vendredi'],
-      ['Alix', 'Vendredi'],
-      ['Solène', 'Vendredi'],
-      ['Adrien', 'Vendredi'],
-      ['Pablo', 'Vendredi'],
-      ['Dominique Chalot', 'Vendredi'],
-      ['Joëlle', 'Vendredi'],
-      ['Vincent', 'Vendredi'],
-      ['Janick', 'Samedi'],
-      ['Jérôme', 'Samedi'],
-      ['Papou', 'Vendredi'],
-      ['François', 'Samedi'],
-      ['Manon', 'Samedi'],
-      ['Claude', 'Samedi'],
-      ['Bella', 'Samedi'],
-      ['Juliette', 'Samedi'],
-      ['Aude', 'Mariee'],
-      ['Charles', 'Mariee'],
-    ];
+    // Données privées (invités et jour d'arrivée, IBAN, e-mail RSVP), chiffrées.
+    // Seul un prénom invité les déchiffre. Généré par doune-grem-private/build-vault.mjs :
+    // ne pas modifier à la main, changer private-data.json puis relancer le script.
+    const VAULT = {"iter":600000,"salt":"P7Rf4CGOJvlFijBna5q90w==","iv":"HPFbDz9FBhmoIEmI","data":"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","keys":[["LTvH9S8PUu8IAsgJ","64lVUmcnUpRxT342qwfN+CnWHiSh8BU1axoA5vkVsNdKdAnwMmPAjSwYpTSR7u4A"],["jFyArNVkWYjeFQHP","qSHn1QVMsSPQ5lH8mzh9e1cWvXMcF/vdFEXci5iuGGGu+fWrTQDEjznfFLpcZU3c"],["S4VNuWuO1iWTEPid","291vthV0JXrbt5UuFBtD5vyZcAtEIWRyuQdYcvSNLBIC4/79Y56Qfr6U6Kt+GACT"],["IibiwMSwte4dOvui","NGlzW7TSyGj5V6TXRsBNP46bBwcaMsUSNAaLehvFXfhj8uOzMtr5eIGhL/NL+mHp"],["Nke4WushQsBjYTfj","SA+BqZ42teaOkE03bu4O+ATXf6YMoyhtrduUakpd7kcrNvk/yG2akjxbwifGMWSI"],["lxXoyl8RCObKVFmg","5DcXzSFhnRwcXxYALBDKBjRGYAT6VrKFHShho/OsoVJ3SBR8Zwfi+9PwrF8I2FV7"],["uE2HWzvir1s9vW4r","+4ROZXIoCQFvFlMf0B6ZTCBzF32qJyy8gHvAXJaNwadPZty/9KjIjvkbWpht83wS"],["PrUiatYK7sIYLQ+V","aFj3CDCbHcdywd0B44beKIkcTO5XRALL2bQuVAXKIYjp286RueBie4O8O1Wl43a2"],["e+2ISkBdzQyIaQ0d","g0RqkZYC5kGdrQBFba1d4J0XrllB0lwFaYC2smAsdtRuhinfWl/Q4WtjbZ7VaoRC"],["GUuA6Da+0w5JILnD","06STBpkPIpCgw7oOMrbWT+awK4t73rk0+sU9jHTzGueozTOHTG3lOFw0lLCAzCfe"],["0zwZXk8VMD8zqu66","Q8APIrposDWsLNG6FKUBj/yrNz/ueNdi2PPvC8/yJVF9+TkOVjARHyvjpp1DYcez"],["9Elcqxdp5supSKjY","WgBvDEWN/oFHE5t8qfBz+ZIWWNhFdp+NKxE+bsm1MwtbgXkdLgm0qOx2h6Ia7mCc"],["3USnwXC+/nsIpYBL","TPXvCuOhNuPUVF4Ff9cVl4QAtp6aqJFhPk0I27iF1761jCEmYsPKICnqI//TdXpT"],["xwA5r/Kox56hPoan","m7TwGPxFJmX/PM25XwaP6S3oGRhie2jYVKCvfqURmBRk2rF0eaS7J8XQ/+PkJc61"],["TTYb3cDB4Fernlzq","1BvjjOdE/od8VVUeQgmSdQ6gz32bnEGtElbhYgeyq+lfOAx461tHR7q7dSIKocGd"],["WXMggpXu1NI00V9G","Ok6lcoNQJPaJA7fG0QRrcSHw9y2OmGZn+sKh6UjWQhbV3Cyk7IHjSHPaq/gxH11D"],["wfM2tWkrjnnnAjYg","efwD8gt9ktjLjyL8yT6yeG6iMWfwT3pYFBSO8suPVhKsmpNZWbUvYNO/FRMfmFqp"],["G5vh2toAHNKDv/XE","3z96kXtc4m8vu5eJSpgUBNE2lat7tWqghlEt0eFapkx6pCZ6A+uImhy53b4ybuW+"],["Sq4YOixgIikhYO6J","KBpSAiKO0F9uLzAfRQPFkOLW8aQIaEk+u+rjHYqi7J7NVksyyag8/pGr0U5p6Wsh"],["5APvvS/QViEGTWps","1HsOG5pjrGotvHtkmyj2rbfvwuSGXJNm4YYhU6r5/ZXKanSX2pRKLzMUBaSCRWWt"],["vLBnp2sYDGneB+lc","wNioUQRIJu8PZ3xurNdCqDXjC36nPamaYWpYF7GKTG5YqSAD7TgUUKPR4x5c2yvp"],["Vj74qGAVa4lYgJ4T","IIUpt6cXj4C2yRLRzj/k+hjP0Q9mAxZE2HWdKYHI6/X7Hy2NxbFK28Qdpg4e5cME"],["uDUIEhHY+JeUC3u+","U0Bvdvg/L0hCLvhswD1jIE3c3bFDVr+ONiHJcpxgwnVK/9ypowWMxBsW8//SzdN1"],["aU4AAwKcCeOAsuI0","hOleRBFOCm2jcCZGvCQS5WhX0imZtNjui5tkxy+woul5TrzTAUmRl0a4Qt48hHJd"],["JYC6W/ICUF8uPoyj","tN3iFYDmunTPe8zIRVm+IgNayYvOlRNrqqdr32aWhfvVuFkkAl4KWUi4ulOGplGX"],["/pSXjQhv9FQDg/QA","RSiZeSxwURZZLx4Egzdd9INvCAtL2Zpz1qpQ5p/T98skEw9gwjig/9MuDsr0RPOW"],["T/2m/9pCNhe+m50E","q2KMbp/+B+M4udtR7cWQDFVOMREvu3hZ22eqaVcZ1z/S3O0RH7Ij+HkrHX4AKFkF"],["AknUEG/6IudVhBCf","u8f4ozDyLifNlIfqi+xtYY/frO0HFo3WrZLLh12+QNfGyYyyOdGa0YOobCVazPob"],["PRGPuDc/iMhhPt7z","DqEIX/45qMsU6uZRU3wEeOKD6S5PGQRko4GjGTDxCVRvVfJZSUyKEb0u4Gs2PDLO"],["3tSU74sKQOZpKUuz","SJ1DIiwdEUyfFbfJjiECjdeQnJE5kZ4Oincfkuq4mSn5ibFn7PIGs1v3uzrpDKDI"],["WyLBLdijtmO+nTPa","MIaMEiy+qXvDL4aVAxKxfPjGjPzPEIta4KFOl7P15cKCaMJvfhL3gfbPtNVF1Drg"],["SrzqbzZJe3M1W4Pw","cH58yb63pwjSre1nqrLqK4OVucYMF6vNXhOzdrO/1lhvy+2Cc8WiNonlK+j9JPc3"],["0HjTayvp9GPlbqWI","PNyualVa1G0xq+vRerbBeE7M+nb25m1HCsZfuT7OHR0JdJ1dCuKKqBY17h4jfPYL"],["vyVfHOaBuQB2Lon2","nJDjj/fXSgj9DmzJiScCrxd1GMce9IUWebkpUy6E7F4u87g144k+1exvi8NN72nm"],["zaIupS23UVZLjlXA","mKtBg+p9RDPxCCbtAOnWvvfpyxRsitTk3bItkDe/bOvGpWpKe9rTVOQ0vt3sQvrd"],["+rL06+TCVLakTibX","mg9hUNB2zouoL0t0aCxb3irt38v4x4nLvmpD/r7JOi0UIYmOx3MzNFkUxBJ0Jzhx"],["eaGyYnxZPR7MyPB7","ROYqUzo0b8YL3WtIcx6W2aLcKQs07yXF53ymR+XV5lArCZfcDb6zAl+B6H1JRMJg"],["qBCcoyP6M5NctelU","/ZTZweqVtagDzpA7Kze6+mQcuPDy+aEK5CN2Q5xrPks0pZTTpUfanvkAW8pECflQ"],["7yCTHb8OXVTRR60e","bxZs0u80Q9A26Aqh3Y0UsS1qXxFBZ1reTEVlnQRAvRAncH5w8o3WbU/Ou7CqTHxI"],["TWFkoZNTdWQz6XyV","gtzh1GJHU85vdH0/RHM1v/9U8SxszeQz3vX6+hXq1Uev6ZRGtgcbQ3Zru01lrifU"],["HDCGA0HI0AVy19YC","wA7HXlJCL6+R8Tk6hzsZ2fHUfM+4M/ydLOS6GLa7VsKbvM/ebPXjpv1EP7ZKZISw"],["6RKOBOPJj53ObM3b","tybyaGPP/WaEWwanKbNCIfwK+CAY2Z1eEBNEEwrgQPHxDht9L1hw108r0JQh9HrE"],["kUIlDSH6qgrIP+k+","UDC8RuLNk7HjiFPrJoyNooGeRPqoMcGpHt+LLNgjPl4NkaZix39XmgKrJ99usJGf"],["ncDbbwE/b+4HNmHr","8Rf0bmWSTfLgcgdP6Glg9BAHegjKObUX6MUFmpGCcLjj/4iksfbQvnFHP41e6egl"],["MizMfTVAQmWIUR1a","CUH4wonG12DjlrjDfN8CuA+DbiDi1f4EadARRF9tIj4cKE8zgMUMILTcR0EKHDzw"],["GEWYWU1BmDRCgMyu","uIZddKNv3NJTiJJZXrM35jOI8aoLhefKFQauYYaNJPVU5RWig/a1MzUy3JDbEblz"],["wiAjTD9PoIeSMGZ2","qf4mlRaopfwMH6pUPI3BgPY8rEu+dMfib7WaBFODGp+tI3ZOR8cyT26pH/+nbQXz"],["+YDFZcspEBlOM8H/","I+AOQmIzN8r0sax5YIQG2yQMlf9cnaQ+MPR3QOXAU+xFyRTLr0iGtwIzcmnnWONH"],["afSDtyUGPCU1p1OJ","hfZ94NmRywH4P/fFMMaIgj2UcSqMffDUuGCdJein0ngSB3VipUB0EupXgvXtWX8g"],["j80x/FzVf6w7tVQq","leJ80rBBgX1lX0dgfwx9CLPqkP8SGYHKWubp0RD7gY6Z7xOOaDoE6rKdjiIbAdph"],["lFlOn4pD5Mvtq2Q2","ZXRnqpNFwH1oLpE5XOvnt/9316qLpNAlKJiXqWpznMGuEOAwhuzkz/sO6oubLDMj"],["dKbEKQUPQZizRbQa","ahBP/S4y6y608rqDQKhlTLLTQDdMCgg/mZe+Nua0zTTX8SnjKt6hwnarEbY4XwhI"],["A7+dssGaFlWnFRob","D5w/GiThpcil4lCCt0ZA+xYrDR6uGeFhnkaKQ59K1TKCAv8Gm9x9ZpuQ7n6fEfQx"],["/zixeJO9pcJkY8cd","HGJSqUFDznshE72iecNF9wkYsiEgn2URBOYvi4u4INbd7e85vQg25sOk0qaeusVp"],["s0WVOzAbRntquRX6","TCTudlEuJSn+uU9xAooDK5psCLHobHLLuFn3lpYvf5fIEMom9Yx7J6eD3s3n7Xdj"],["VLyFAWA4I1H8/Kj0","+86zChj5A4RkKHVN2lMU+DhRh4/89nNNBM01t4dkojcpFnD3C8Os4eWRCrO50wNS"],["SUZOfvWZZ/+4j1fh","E+e8PLl32W4dz+yES1LG6R1uDdEuuJCcA149zxVDpr45RYWDMWhdUuDE75CW+dSr"],["n0tQgiylQ5Ax/qPV","Xd/pw8DsvGZv6eyHyOUu2ogAa2a8sM9bevBu5WInFoCQvrF4LXRVAIY7gOdtZ1mz"],["IrwBX2ic/h3yia63","2E9A66p0tkM9YKA+spu0O6fVqJmaDo6Q/IR4ItHLZWpZUprwDswlIMW06OHlEJOo"],["hGr0PMbnJ1XTk2C/","0GjILHYDl/u9D6wMbRi2k1hLUvlt22lBxiDl2NbP4iy18nsDcgz+xSFXnK4qLRKK"],["kasc+vUuC5sU9RSw","Gg8i3rjUx3C72YGxn+8EYlD0gwQpXANGUWmGs4nvktogH/O5suLYAgoXlbir30cF"],["Q2nuBbGsnFvVJOtJ","RsvaWVKGvR78PKPKSYFhOTYWX8I0vKzVDAHX6FumE0z9z1TiyXYB9vIihdz+8B5m"],["4u4W/UpCNVudfaLT","o3z2diVTdeQJWPT3vL6eRzdgb3TKpMgtEkdr/441/32JSp81OtnNqd4DoMWkqNlZ"],["aym7rugRz1PVOP49","nBP0DHqwvXIYwhO38NgQYI5n4CV2E2wMU3FkYQ/3PE7kjKQqtYVymVMIsU+Zxuah"],["q02cfJ6GWoIADdjK","/UQ0mBaS6/46GrHDdi+rAZMEEsDp3peBg3NK+55/C+k9zyEeVnHDhi9yx5bdC2oo"],["w6O2j5GUqJIj40xi","znlDUVWVTiouYg9mja1HcUtF/wsVQJRgPRehLCb1azyDd2tNiuBSyYL0V1F7PETx"],["K31gKRzz7tZ5ni7p","XBa+xALCrXOPkKxC/+W2+yIhpsRy2gROmPaROmcmF6JaXzcXY9OY+jz6buuG5/Vx"],["ut5SRehFiCmnbrOf","qR0h5e1+MqBfy0UWXHPVlgJhXh+QpSneria+NX6XZJGX+sLW9AvySBQxywM0p5EJ"],["/7T49m5GylYs+3g3","buzObeClp9xaWJbHQyab/9RnxqLinIfOiuGpatu2awk1/XGdKuGsV2LO1QtpmeTy"],["XYm0uinTe9IFeLAY","tTGUMlXP0XFaeVbB1M6obyfE7pzNOOZqAu7cuGC8srPmgI+/ORa2ThBT50MpGsVN"],["oB29iqXXjSMfWoGO","VNTHmsAPLv2gLMhj5RmFvoQ4w5PXC5GR6k60P5GaFP1bpoDfPACjPFKY6ITQMGxj"],["WU6oHyoRVDDDKFlA","XSHenPkVSCl9L9MlF/aLbI1EaShmcV9E5SzMPrSE78DidRgCr5t9vge6QYsJDPJd"],["/IsxoelzF0WEPU0M","FfRziYw7P1Qq8ndJtQ6Vxn1xWSJcQVjhEH8lKom50MFtUe9DZASfBaL+71S0Q2KF"],["1nqQUAqdxwZU8Yo9","cbcL+P8AWfpOYT3icKW/ihnNpeN+0N7NokjLuSF0FMPrb4YEcsFpExIRHQNUYO5t"],["+DSYXK1M6w5MaZai","SH5QCwwRLdp4LuaXiN7PVGOIuCy37suQGHSHhyN8PBs0QOdgPIlwW4vr1BKQ1I3M"],["ONih+Vu2zUWNFyXp","ErND8ByJr6TaTkUuAc5FJVOCYxpg963wPFuCyBd/v8+bCtNVYOkysb0BpbUN2gRe"],["V8UXcRtb8a+b9E+K","ZkBPsJ3d557fmhXhVKrtKkpPkkCwpjtWK7tROVJNnfYMi98Mzl1J0DVyjXjElLtf"],["eL9+tcfbcnLkixd0","KXwf3hgjmAsl7+ro9A3Ou/e4aPgD5cAM+brR0jW96GrN09CDsCMmkNmxkBhuTq5K"],["nOLWHGYbA2+APlbJ","i8nna0c13MfzhdXsz/xNxYrbClDvYpdMph/QM0cCCz1iAruF2kLDBuIHGDqDUXB+"],["X/JpJi0JAcRlqK4k","NW/kQpmqDMZTIxIoogNNih8z1xRt0JGb/xl+B4o/ngWISKPNPryxos4Jb4UEzZJ2"],["WqqIUDO/6AZPPwSI","8COcoUaX70ecqq4z0ZUakRvUnFG6yHbADt/iBKgX+X5dr0Htj+5Wl3d/0JdEhCww"],["dGK4wFLEzhrAXjZd","KwnNuV8V46vUTbcLKRhvEVu3IDqdUGtnPs8lzblyNur26yJqNqdJHCG0pDjJtNcw"]]};
 
     // Normalisation : minuscules, sans accents, espaces multiples réduits
     function normalize(str) {
@@ -2183,25 +2076,61 @@
         .replace(/\s+/g, ' ');
     }
 
-    const GUEST_LOOKUP = {};
-    GUESTS.forEach(([name, day]) => {
-      GUEST_LOOKUP[normalize(name)] = { name, day };
-    });
+    const fromBase64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+
+    // Déchiffre VAULT avec le prénom saisi ; renvoie null si le prénom n'ouvre aucune clé
+    async function openVault(name) {
+      if (!name || !VAULT || !window.crypto?.subtle) return null;
+      const { subtle } = window.crypto;
+      const base = await subtle.importKey('raw', new TextEncoder().encode(name), 'PBKDF2', false, ['deriveKey']);
+      const wrapKey = await subtle.deriveKey(
+        { name: 'PBKDF2', salt: fromBase64(VAULT.salt), iterations: VAULT.iter, hash: 'SHA-256' },
+        base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+      for (const [iv, wrapped] of VAULT.keys) {
+        let rawKey;
+        try {
+          rawKey = await subtle.decrypt({ name: 'AES-GCM', iv: fromBase64(iv) }, wrapKey, fromBase64(wrapped));
+        } catch (_) {
+          continue; // clé d'un autre prénom
+        }
+        const contentKey = await subtle.importKey('raw', rawKey, 'AES-GCM', false, ['decrypt']);
+        const plain = await subtle.decrypt({ name: 'AES-GCM', iv: fromBase64(VAULT.iv) }, contentKey, fromBase64(VAULT.data));
+        return JSON.parse(new TextDecoder().decode(plain));
+      }
+      return null;
+    }
 
     let currentGuest = null;
     let hasUnlocked = false;
+    let unlocking = false;
 
-    const unlock = () => {
+    const unlock = async () => {
+      if (unlocking) return;
+      unlocking = true;
+      gateButton.disabled = true;
+      gateError.textContent = '';
+
       const entered = normalize(gateInput.value);
-      const match = GUEST_LOOKUP[entered];
+      let privateData = null;
+      try {
+        privateData = await openVault(entered);
+      } catch (_) {
+        privateData = null;
+      }
+      unlocking = false;
+      gateButton.disabled = false;
 
-      if (!match) {
+      const row = privateData && privateData.guests.find(([name]) => normalize(name) === entered);
+      if (!row) {
         gateError.textContent = t[currentLang]['gate.error'];
         gateInput.focus();
         return;
       }
 
-      currentGuest = match;
+      currentGuest = { name: row[0], day: row[1] };
+      RSVP_EMAIL_TO = privateData.email;
+      document.getElementById('ibanContent').innerHTML = privateData.ibanHtml;
+      document.getElementById('roomList').innerHTML = privateData.roomListHtml;
       hasUnlocked = true;
       gate.classList.add('hidden');
       site.classList.remove('hidden');
@@ -2338,7 +2267,7 @@
     }
 
 
-    const RSVP_EMAIL_TO = 'aude.chlt@gmail.com';
+    let RSVP_EMAIL_TO = ''; // vient des données chiffrées, après connexion
 
     document.querySelector('.rsvp-form')?.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -2350,6 +2279,19 @@
       const party = form.elements.party ? form.elements.party.value : '1';
       const diet = form.elements.diet ? form.elements.diet.value : '—';
       const message = form.elements.message ? form.elements.message.value : '—';
+
+      // Champs obligatoires (*) : on bloque l'envoi tant qu'il manque une réponse
+      const fridayAsked = document.getElementById('rsvpFridayField')?.style.display !== 'none';
+      const rsvpError = document.getElementById('rsvpError');
+      const missing = !(formData.get('name') || '').toString().trim()
+        || attendanceSat === '—'
+        || (fridayAsked && attendanceFri === '—')
+        || !(Number(party) >= 1);
+      if (missing) {
+        rsvpError.textContent = t[currentLang]['rsvp.error'];
+        return;
+      }
+      rsvpError.textContent = '';
 
       const subject = encodeURIComponent(`RSVP - ${name}`);
       const body = encodeURIComponent(
@@ -2405,10 +2347,11 @@
         'dress.swatch.navy':'Bleu marine','dress.swatch.brown':'Brun chocolat','dress.swatch.forest':'Vert forêt','dress.swatch.olive':'Olive &amp; Sauge','dress.swatch.ivory':'Ivoire','dress.swatch.gold':'Doré','dress.swatch.cream':'Crème','dress.swatch.linen':'Lin',
         'honey.eyebrow':'Contribution','honey.title':'Voyage de noces',
         'rsvp.eyebrow':'RSVP','rsvp.title':'Merci de répondre avant le 6 mai 2027',
-        'rsvp.name':'Nom et prénom','rsvp.attend':'Serez-vous présent(e) le samedi 6 mai ?','rsvp.attend.fri':'Serez-vous présent(e) au dîner de vendredi 5 mai ?',
+        'rsvp.name':'Nom et prénom *','rsvp.attend':'Serez-vous présent(e) le samedi 6 mai ? *','rsvp.attend.fri':'Serez-vous présent(e) au dîner de vendredi 5 mai ? *',
         'rsvp.brunch':'Serez-vous présent(e) au brunch du dimanche 7 mai ?',
-        'rsvp.party':'Nombre de personnes','rsvp.diet':'Allergies / régime alimentaire',
+        'rsvp.party':'Nombre de personnes *','rsvp.diet':'Allergies / régime alimentaire',
         'rsvp.msg':'Message (optionnel)','rsvp.submit':'Envoyer ma réponse',
+        'rsvp.error':'Merci de remplir tous les champs marqués d’un *.','rsvp.yes':'Oui','rsvp.no':'Non',
         'faq.eyebrow':'FAQ','faq.title':'Questions fréquentes',
         'map.eyebrow':'Nos invités','map.title':'Notre fête de mariage est internationale !',
         'map.desc':"80 invités se déplacent pour l'occasion.",
@@ -2455,10 +2398,11 @@
         'dress.swatch.navy':'Navy','dress.swatch.brown':'Chocolate brown','dress.swatch.forest':'Forest green','dress.swatch.olive':'Olive &amp; Sage','dress.swatch.ivory':'Ivory','dress.swatch.gold':'Gold','dress.swatch.cream':'Cream','dress.swatch.linen':'Linen',
         'honey.eyebrow':'Contribution','honey.title':'Honeymoon',
         'rsvp.eyebrow':'RSVP','rsvp.title':'Please reply by May 6th, 2027',
-        'rsvp.name':'Full name','rsvp.attend':'Will you join us on Saturday, May 6th?','rsvp.attend.fri':'Will you join the Friday, May 5th dinner?',
+        'rsvp.name':'Full name *','rsvp.attend':'Will you join us on Saturday, May 6th? *','rsvp.attend.fri':'Will you join the Friday, May 5th dinner? *',
         'rsvp.brunch':'Will you join Sunday brunch on May 7th?',
-        'rsvp.party':'Number of guests','rsvp.diet':'Dietary requirements / allergies',
+        'rsvp.party':'Number of guests *','rsvp.diet':'Dietary requirements / allergies',
         'rsvp.msg':'Message (optional)','rsvp.submit':'Send my reply',
+        'rsvp.error':'Please fill in all fields marked with *.','rsvp.yes':'Yes','rsvp.no':'No',
         'faq.eyebrow':'FAQ','faq.title':'Frequently asked questions',
         'map.eyebrow':'Our lovely guests','map.title':'Our wedding celebration is international!',
         'map.desc':'80 guests are travelling for the celebration.',
@@ -2539,32 +2483,32 @@
         html: '<div style="width:13px;height:13px;background:#0c2342;border:3px solid #bc8d3e;border-radius:50%;box-shadow:0 2px 10px rgba(0,0,0,0.4);"></div>',
         iconSize: [13, 13], iconAnchor: [6, 6]
       });
-      L.marker([44.2432, 4.9208], { icon: venueIcon }).addTo(map)
+      L.marker([44.2847, 4.5161], { icon: venueIcon }).addTo(map)
         .bindPopup('<strong style="font-family:\'Cormorant SC\',serif;font-size:1.05rem">Clos d\'Hullias</strong><br><span style="color:#bc8d3e;font-size:0.85rem">Saint-Christol-de-Rodières, Gard</span>');
 
       const guests = [
-        { city: 'Amsterdam', coords: [52.3676, 4.9041], count: 21, route: '<b>Conseillé :</b> Vol Amsterdam → Lyon-Saint Exupéry (1h30) + 2h de route.<br><b>Alternative :</b> Train Amsterdam → Paris (2h15) + TGV → Avignon (2h40) + 1h de route.' },
-        { city: 'Nantes', coords: [47.2184, -1.5536], count: 6, route: 'Train Nantes → Lyon (3h) + TGV → Avignon (1h) + 1h de route. Ou voiture A71/A7 (6h).' },
-        { city: 'Paris', coords: [48.8566, 2.3522], count: 5, route: 'TGV Paris Gare de Lyon → Avignon (2h40) + 1h de route. Ou voiture A6/A7 (5h).' },
-        { city: 'Bordeaux', coords: [44.8378, -0.5792], count: 3, route: 'Voiture A62/A9/A7 (4h30). Ou train Bordeaux → Nîmes → Avignon (4h).' },
-        { city: 'Toulon', coords: [43.1242, 5.9280], count: 3, route: 'Voiture A8/A9 (3h). Ou train Toulon → Avignon (2h) + 1h de route.' },
-        { city: 'Lyon', coords: [45.7640, 4.8357], count: 2, route: 'Voiture A7 (2h10). Ou TGV Lyon → Avignon (1h) + 1h de route.' },
-        { city: 'Valence', coords: [44.9334, 4.8924], count: 2, route: 'Voiture A7 (1h45). Ou train Valence → Avignon (40 min) + 1h de route.' },
-        { city: 'Annecy', coords: [45.8992, 6.1294], count: 2, route: 'Voiture A43/A7 (2h30). Ou train Annecy → Lyon → Avignon (2h30).' },
-        { city: 'Lorient', coords: [47.7483, -3.3680], count: 2, route: 'Train Lorient → Paris (3h) + TGV Paris → Avignon (2h40) + 1h de route.' },
-        { city: 'Barcelone', coords: [41.3851, 2.1734], count: 2, route: 'Voiture AP-7/A7 (4h). Ou TGV Barcelone → Montpellier + 1h30 de route.' },
-        { city: 'La Réunion', coords: [-20.9043, 55.5317], count: 2, route: 'Vol La Réunion → Paris CDG (12h) + TGV → Avignon (2h40) + 1h de route.' },
-        { city: 'Australie', coords: [-25.2744, 133.7751], count: 2, route: 'Vol → Dubaï ou Singapour → Paris (22h+) + TGV → Avignon (2h40) + 1h de route.' },
-        { city: 'Limoges', coords: [45.8315, 1.2578], count: 1, route: 'Voiture A20/A9 (4h). Ou train → Lyon → Avignon (4h).' },
-        { city: 'Bruxelles', coords: [50.8503, 4.3517], count: 1, route: 'TGV Bruxelles-Midi → Avignon (3h30) + 1h de route.' },
-        { city: 'New York', coords: [40.7128, -74.0060], count: 1, route: 'Vol → Paris CDG (7h) + TGV → Avignon (2h40) + 1h de route.' },
-        { city: 'Montréal', coords: [45.5017, -73.5673], count: 1, route: 'Vol → Paris CDG (7h30) + TGV → Avignon (2h40) + 1h de route.' },
-        { city: 'Tahiti', coords: [-17.6509, -149.4260], count: 1, route: 'Vol → Los Angeles → Paris (18h+) + TGV → Avignon + 1h de route.' },
-        { city: 'Moraira', coords: [38.6826, 0.1290], count: 1, route: 'Voiture via AP-7/A7 (4h30).' },
-        { city: 'Beaune', coords: [47.0260, 4.8357], count: 1, route: 'Voiture A6/A7 (3h). Ou train → Lyon → Avignon (2h30).' },
-        { city: 'Lisieux', coords: [49.1455, 0.2276], count: 1, route: 'Train → Paris St-Lazare (1h30) + TGV → Avignon (2h40) + 1h de route.' },
-        { city: 'Mexico', coords: [19.4326, -99.1332], count: 1, route: 'Vol → Paris CDG ou Madrid (11-12h) + TGV/route → Avignon (2h40) + 1h de route.' },
-        { city: 'San Francisco', coords: [37.7749, -122.4194], count: 1, route: 'Vol → Paris CDG (11h) + TGV → Avignon (2h40) + 1h de route.' },
+        { city: 'Amsterdam', coords: [52.3676, 4.9041], count: 21, route: '<b>Conseillé :</b> Vol Amsterdam → Lyon-Saint Exupéry (1h30) + 2h de route.<br><b>Alternative :</b> Train Amsterdam → Paris (2h15) + TGV → Avignon (2h40) + 1h de route.', routeEn: '<b>Recommended:</b> Flight Amsterdam → Lyon-Saint Exupéry (1h30) + 2h drive.<br><b>Alternative:</b> Train Amsterdam → Paris (2h15) + TGV → Avignon (2h40) + 1h drive.' },
+        { city: 'Nantes', coords: [47.2184, -1.5536], count: 6, route: 'Train Nantes → Lyon (3h) + TGV → Avignon (1h) + 1h de route. Ou voiture A71/A7 (6h).', routeEn: 'Train Nantes → Lyon (3h) + TGV → Avignon (1h) + 1h drive. Or by car via A71/A7 (6h).' },
+        { city: 'Paris', coords: [48.8566, 2.3522], count: 5, route: 'TGV Paris Gare de Lyon → Avignon (2h40) + 1h de route. Ou voiture A6/A7 (5h).', routeEn: 'TGV Paris Gare de Lyon → Avignon (2h40) + 1h drive. Or by car via A6/A7 (5h).' },
+        { city: 'Bordeaux', coords: [44.8378, -0.5792], count: 3, route: 'Voiture A62/A9/A7 (4h30). Ou train Bordeaux → Nîmes → Avignon (4h).', routeEn: 'By car via A62/A9/A7 (4h30). Or train Bordeaux → Nîmes → Avignon (4h).' },
+        { city: 'Toulon', coords: [43.1242, 5.9280], count: 3, route: 'Voiture A8/A9 (3h). Ou train Toulon → Avignon (2h) + 1h de route.', routeEn: 'By car via A8/A9 (3h). Or train Toulon → Avignon (2h) + 1h drive.' },
+        { city: 'Lyon', coords: [45.7640, 4.8357], count: 2, route: 'Voiture A7 (2h10). Ou TGV Lyon → Avignon (1h) + 1h de route.', routeEn: 'By car via A7 (2h10). Or TGV Lyon → Avignon (1h) + 1h drive.' },
+        { city: 'Valence', coords: [44.9334, 4.8924], count: 2, route: 'Voiture A7 (1h45). Ou train Valence → Avignon (40 min) + 1h de route.', routeEn: 'By car via A7 (1h45). Or train Valence → Avignon (40 min) + 1h drive.' },
+        { city: 'Annecy', coords: [45.8992, 6.1294], count: 2, route: 'Voiture A43/A7 (2h30). Ou train Annecy → Lyon → Avignon (2h30).', routeEn: 'By car via A43/A7 (2h30). Or train Annecy → Lyon → Avignon (2h30).' },
+        { city: 'Lorient', coords: [47.7483, -3.3680], count: 2, route: 'Train Lorient → Paris (3h) + TGV Paris → Avignon (2h40) + 1h de route.', routeEn: 'Train Lorient → Paris (3h) + TGV Paris → Avignon (2h40) + 1h drive.' },
+        { city: 'Barcelone', cityEn: 'Barcelona', coords: [41.3851, 2.1734], count: 2, route: 'Voiture AP-7/A7 (4h). Ou TGV Barcelone → Montpellier + 1h30 de route.', routeEn: 'By car via AP-7/A7 (4h). Or TGV Barcelona → Montpellier + 1h30 drive.' },
+        { city: 'La Réunion', cityEn: 'Réunion Island', coords: [-20.9043, 55.5317], count: 2, route: 'Vol La Réunion → Paris CDG (12h) + TGV → Avignon (2h40) + 1h de route.', routeEn: 'Flight Réunion → Paris CDG (12h) + TGV → Avignon (2h40) + 1h drive.' },
+        { city: 'Australie', cityEn: 'Australia', coords: [-25.2744, 133.7751], count: 2, route: 'Vol → Dubaï ou Singapour → Paris (22h+) + TGV → Avignon (2h40) + 1h de route.', routeEn: 'Flight → Dubai or Singapore → Paris (22h+) + TGV → Avignon (2h40) + 1h drive.' },
+        { city: 'Limoges', coords: [45.8315, 1.2578], count: 1, route: 'Voiture A20/A9 (4h). Ou train → Lyon → Avignon (4h).', routeEn: 'By car via A20/A9 (4h). Or train → Lyon → Avignon (4h).' },
+        { city: 'Bruxelles', cityEn: 'Brussels', coords: [50.8503, 4.3517], count: 1, route: 'TGV Bruxelles-Midi → Avignon (3h30) + 1h de route.', routeEn: 'TGV Brussels-Midi → Avignon (3h30) + 1h drive.' },
+        { city: 'New York', coords: [40.7128, -74.0060], count: 1, route: 'Vol → Paris CDG (7h) + TGV → Avignon (2h40) + 1h de route.', routeEn: 'Flight → Paris CDG (7h) + TGV → Avignon (2h40) + 1h drive.' },
+        { city: 'Montréal', coords: [45.5017, -73.5673], count: 1, route: 'Vol → Paris CDG (7h30) + TGV → Avignon (2h40) + 1h de route.', routeEn: 'Flight → Paris CDG (7h30) + TGV → Avignon (2h40) + 1h drive.' },
+        { city: 'Tahiti', coords: [-17.6509, -149.4260], count: 1, route: 'Vol → Los Angeles → Paris (18h+) + TGV → Avignon + 1h de route.', routeEn: 'Flight → Los Angeles → Paris (18h+) + TGV → Avignon + 1h drive.' },
+        { city: 'Moraira', coords: [38.6826, 0.1290], count: 1, route: 'Voiture via AP-7/A7 (4h30).', routeEn: 'By car via AP-7/A7 (4h30).' },
+        { city: 'Beaune', coords: [47.0260, 4.8357], count: 1, route: 'Voiture A6/A7 (3h). Ou train → Lyon → Avignon (2h30).', routeEn: 'By car via A6/A7 (3h). Or train → Lyon → Avignon (2h30).' },
+        { city: 'Lisieux', coords: [49.1455, 0.2276], count: 1, route: 'Train → Paris St-Lazare (1h30) + TGV → Avignon (2h40) + 1h de route.', routeEn: 'Train → Paris St-Lazare (1h30) + TGV → Avignon (2h40) + 1h drive.' },
+        { city: 'Mexico', cityEn: 'Mexico City', coords: [19.4326, -99.1332], count: 1, route: 'Vol → Paris CDG ou Madrid (11-12h) + TGV/route → Avignon (2h40) + 1h de route.', routeEn: 'Flight → Paris CDG or Madrid (11-12h) + TGV/road → Avignon (2h40) + 1h drive.' },
+        { city: 'San Francisco', coords: [37.7749, -122.4194], count: 1, route: 'Vol → Paris CDG (11h) + TGV → Avignon (2h40) + 1h de route.', routeEn: 'Flight → Paris CDG (11h) + TGV → Avignon (2h40) + 1h drive.' },
       ];
 
       guests.forEach(g => {
@@ -2572,14 +2516,17 @@
         L.circleMarker(g.coords, {
           radius: r, fillColor: '#bc8d3e', color: '#0c2342',
           weight: 1.5, opacity: 0.9, fillOpacity: 0.72
-        }).addTo(map).bindPopup(
-          '<div style="font-family:\'Cormorant Garamond\',serif;max-width:260px">' +
-          '<div style="font-family:\'Cormorant SC\',serif;font-size:1.1rem;margin-bottom:4px">' + g.city + '</div>' +
-          '<div style="color:#bc8d3e;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px">' +
-          g.count + ' invité' + (g.count > 1 ? 's' : '') + '</div>' +
-          '<div style="font-size:0.92rem;line-height:1.55">' + g.route + '</div></div>',
-          { maxWidth: 300 }
-        );
+        }).addTo(map).bindPopup(() => {
+          // Contenu construit à l'ouverture, pour suivre la langue choisie (FR/EN)
+          const en = currentLang === 'en';
+          const city = en ? (g.cityEn || g.city) : g.city;
+          const label = en ? ' guest' : ' invité';
+          return '<div style="font-family:\'Cormorant Garamond\',serif;max-width:260px">' +
+            '<div style="font-family:\'Cormorant SC\',serif;font-size:1.1rem;margin-bottom:4px">' + city + '</div>' +
+            '<div style="color:#bc8d3e;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px">' +
+            g.count + label + (g.count > 1 ? 's' : '') + '</div>' +
+            '<div style="font-size:0.92rem;line-height:1.55">' + (en ? g.routeEn : g.route) + '</div></div>';
+        }, { maxWidth: 300 });
       });
     }
   </script>
